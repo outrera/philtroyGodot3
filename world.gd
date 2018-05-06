@@ -17,11 +17,12 @@ var dayOfMonth = 1
 
 var sceneData = {}
 
-onready var effectHoverUI = get_node("effects/tween")
-onready var effectToggleUI = get_node("effects/tween")
-onready var descriptionLabel = get_node("ui/descriptionLabel")
+onready var effectHoverUI = $"effects/tween"
+onready var effectToggleUI = $"effects/tween"
+onready var descriptionLabel = $"ui/descriptionLabel"
+onready var sceneCol = $"scene/col"
 
-onready var screenBlur = get_node("effects/blurfx")
+onready var screenBlur = $"effects/blurfx"
 
 onready var viewsize = get_viewport().get_visible_rect().size
 
@@ -32,37 +33,37 @@ var calendarOpen = false
 
 onready var phoneHidePos
 onready var phoneShowPos
-onready var schoolbagHidePos = get_node("ui/schoolbag_ui").position
+onready var schoolbagHidePos = $"ui/schoolbag_ui".position
 onready var schoolbagShowPos
 onready var mapHidePos
 onready var mapShowPos
 onready var calendarHidePos
 onready var calendarShowPos
 
-onready var uiIconsShowPos = get_node("ui/map").position.y
+onready var uiIconsShowPos = $"ui/map".position.y
 onready var uiIconsHidePos = uiIconsShowPos + 200
 
 func _ready():
 
 	schoolbagShowPos = schoolbagHidePos - Vector2(0, 1000)
-	phoneHidePos = get_node("ui/phone_ui").position
+	phoneHidePos = $"ui/phone_ui".position
 	phoneShowPos = phoneHidePos - Vector2(0, 1310)	
-	mapHidePos = get_node("ui/map_ui").position
+	mapHidePos = $"ui/map_ui".position
 	mapShowPos = mapHidePos - Vector2(0, 1000)
-	calendarHidePos = get_node("ui/calendar_ui").position
+	calendarHidePos = $"ui/calendar_ui".position
 	calendarShowPos =  calendarHidePos - Vector2(0, 1000)
 	
 	set_process(true)
 	set_process_input(true)
 		
-	get_node("ui/dateLabel").set_text(global.gameData.time[time] + ", " + global.gameData.weekday[day])
+	$"ui/dateLabel".set_text(global.gameData.time[time] + ", " + global.gameData.weekday[day])
 	
 	global.scene = "schoolyard"
 	#Why? WHY does the below affect rotation of the NPC if I remove it?!
 #	sceneData = global.load_json("res://data/locations/location_schoolyard.json")
 	global.load_scene("schoolyard")
 
-	get_node("ui/map_ui").connect("exit_ui", self, "map_location")
+	$"ui/map_ui".connect("exit_ui", self, "map_location")
 	connect()
 	
 func connect():
@@ -77,7 +78,6 @@ func _process(delta):
 	#if dialogue is running and we press ui_exit, exit dialogue and delete dialogue nodes
 	if Input.is_action_pressed("ui_exit"):
 		ui_exit()
-#	$ui/map.position.x += 1
 
 func map_location(location):
 	global.scene = location
@@ -123,7 +123,6 @@ func ui_exit():
 func _input(event):
 	if hoverNode:
 		if hoverNode.get_name() == "phone":	
-			#for Godot 3.0 use if(event is InputEventMouseButton)
 			if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():
 				global.blocking_ui = true
 				phoneOpen = true
@@ -132,7 +131,6 @@ func _input(event):
 				var positionDelta = get_node("ui/phone_ui").position - phoneShowPos
 				ui_hide_show(get_node("ui/phone_ui"), Vector2(-positionDelta), Tween.TRANS_QUAD, Tween.EASE_OUT)
 		elif hoverNode.get_name() == "schoolbag":	
-			#for Godot 3.0 use if(event is InputEventMouseButton)
 			if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():
 				global.blocking_ui = true
 				schoolbagOpen = true
@@ -141,7 +139,6 @@ func _input(event):
 				var positionDelta = get_node("ui/phone_ui").position - schoolbagShowPos
 				ui_hide_show(get_node("ui/schoolbag_ui"), Vector2(0,-1000), Tween.TRANS_QUAD, Tween.EASE_OUT)
 		elif hoverNode.get_name() == "map":	
-			#for Godot 3.0 use if(event is InputEventMouseButton)
 			if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():
 				global.blocking_ui = true
 				mapOpen = true
@@ -150,7 +147,6 @@ func _input(event):
 				var positionDelta = get_node("ui/phone_ui").position - mapShowPos
 				ui_hide_show(get_node("ui/map_ui"), Vector2(0,-1000), Tween.TRANS_QUAD, Tween.EASE_OUT)
 		elif hoverNode.get_name() == "calendar":	
-			#for Godot 3.0 use if(event is InputEventMouseButton)
 			if event is InputEventMouseButton:
 				if event.button_index == BUTTON_LEFT:
 					if event.is_pressed():
@@ -188,36 +184,44 @@ func _input(event):
 func _on_phone_mouse_entered():
 	ui_hover("phone", get_node("ui/phone/Sprite"), Vector2(1.1, 1.1), true)
 	hoverNode = get_node("ui/phone")
+	sceneCol.disabled = true
 
 func _on_phone_mouse_exited():
 	ui_hover("", get_node("ui/phone/Sprite"), Vector2(1.0, 1.0), false)
 	hoverNode = null
+	sceneCol.disabled = false
 
 func _on_schoolbag_mouse_entered():
 	ui_hover("school bag", get_node("ui/schoolbag/Sprite"), Vector2(1.1, 1.1), true)
 	hoverNode = get_node("ui/schoolbag")
+	sceneCol.disabled = true
 
 func _on_schoolbag_mouse_exited():
 	ui_hover("", get_node("ui/schoolbag/Sprite"), Vector2(1.0, 1.0), false)
 	hoverNode = null
+	sceneCol.disabled = false
 
 func _on_map_mouse_entered():
 	ui_hover("map", get_node("ui/map/Sprite"), Vector2(1.1, 1.1), true)
 	hoverNode = get_node("ui/map")
+	sceneCol.disabled = true
 
 func _on_map_mouse_exited():
 	ui_hover("", get_node("ui/map/Sprite"), Vector2(1.0, 1.0), false)
 	hoverNode = null
+	sceneCol.disabled = false
 
 func _on_calendar_mouse_entered():
 	ui_hover("calendar", get_node("ui/calendar/Sprite"), Vector2(1.1, 1.1), true)
 	hoverNode = get_node("ui/calendar")
-	global.blocking_ui = true
+#	global.blocking_ui = true
+	sceneCol.disabled = true
 
 func _on_calendar_mouse_exited():
 	ui_hover("", get_node("ui/calendar/Sprite"), Vector2(1.0, 1.0), false)
 	hoverNode = null
-	global.blocking_ui = false
+#	global.blocking_ui = false
+	sceneCol.disabled = false
 
 #play effects when hovering over UI icons
 func ui_hover(name, gui_node, scale, move):

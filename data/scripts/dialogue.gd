@@ -50,13 +50,13 @@ func _input(event):
 		if event.is_action_pressed("ui_down") and replyCurrent != numReplies-1:
 			replyCurrent += 1
 			for reply in replyContainer:
-				get_node(reply).add_color_override("font_color", Color(1,1,1))
-			get_node(replyContainer[replyCurrent]).add_color_override("font_color", Color(1,0,1))
+				$reply.add_color_override("font_color", Color(1,1,1))
+			$replyContainer[replyCurrent].add_color_override("font_color", Color(1,0,1))
 		if event.is_action_pressed("ui_up") and replyCurrent != 0:
 			replyCurrent -= 1
 			for reply in replyContainer:
-				get_node(reply).add_color_override("font_color", Color(1,1,1))
-			get_node(replyContainer[replyCurrent]).add_color_override("font_color", Color(1,0,1))
+				$reply.add_color_override("font_color", Color(1,1,1))
+			$replyContainer[replyCurrent].add_color_override("font_color", Color(1,0,1))
 		if event.is_action_pressed("ui_exit"):
 			if replyCurrent != -1:
 				_pick_reply(replyCurrent)
@@ -200,10 +200,10 @@ func start_dialogue(json):
 	setup_dialogue_window()
 	
 	#set text and reply in dialogue panel
-	get_node("ui_dialogue/dialogue/name").set_text(npcName)
+	$"ui_dialogue/dialogue/name".set_text(npcName)
 	
 	#preparing for dialogue paging, the 0 will be replaced by ´n´, ´n´ being order of item in text array
-	get_node("ui_dialogue/dialogue").set_text(branch["text"][pageIndex])
+	$"ui_dialogue/dialogue".set_text(branch["text"][pageIndex])
 	
 	if pageIndex == numDialogueText-1 and numReplies > 0:
 		for n in range(0,numReplies):
@@ -221,12 +221,12 @@ func setup_dialogue_window():
 		
 	create_labels(labels)
 	
-	get_node("ui_dialogue/panel").set_size(Vector2(dialogBox.width, dialogBox.height + numReplies*30))
-	get_node("ui_dialogue/panel").set_position(Vector2(VIEWSIZE.x/2 - dialogBox.width/2, VIEWSIZE.y - dialogBox.posy))
-	get_node("ui_dialogue/panel").modulate.a = 0.5
+	$"ui_dialogue/panel".set_size(Vector2(dialogBox.width, dialogBox.height + numReplies*30))
+	$"ui_dialogue/panel".set_position(Vector2(VIEWSIZE.x/2 - dialogBox.width/2, VIEWSIZE.y - dialogBox.posy))
+	$"ui_dialogue/panel".modulate.a = 0.5
 	
-	get_node("ui_dialogue/dialogue").set_size(Vector2(dialogBox.width -20, dialogBox.height + numReplies*30))
-	get_node("ui_dialogue/dialogue").set_position(Vector2(VIEWSIZE.x/2 + 100 - dialogBox.width/2, VIEWSIZE.y - dialogBox.posy + 20))
+	$"ui_dialogue/dialogue".set_size(Vector2(dialogBox.width -20, dialogBox.height + numReplies*30))
+	$"ui_dialogue/dialogue".set_position(Vector2(VIEWSIZE.x/2 + 100 - dialogBox.width/2, VIEWSIZE.y - dialogBox.posy + 20))
 	
 	if pageIndex == numDialogueText-1 and numReplies > 0:
 		for n in range(numReplies):
@@ -240,7 +240,7 @@ func setup_dialogue_window():
 		talkAnim = talkAnim.instance()
 		talkAnim.set_scale(Vector2(1.5,1.5))
 		talkAnim.set_position(Vector2(VIEWSIZE.x/2 + 40 - dialogBox.width/2, VIEWSIZE.y - dialogBox.posy + 20))
-		get_node("ui_dialogue").add_child(talkAnim)
+		$"ui_dialogue".add_child(talkAnim)
 
 	reply_offset = 0
  
@@ -250,22 +250,22 @@ func create_labels(labels):
 		if lbl == "panel":
 			var node = Panel.new()
 			node.set_name(lbl)
-			get_node("ui_dialogue").add_child(node)
+			$"ui_dialogue".add_child(node)
 		if lbl == "dialogue":
 			var node = dialogPanel.instance()
 			node.set_name(lbl)
 			node.connect("dialogueClicked", self, "_dialogue_clicked")
-			get_node("ui_dialogue").add_child(node)
+			$"ui_dialogue".add_child(node)
 		if pageIndex == numDialogueText-1:
 			if "reply" in lbl:
 				var node = replyButton.instance()
 				node.set_name(lbl)
 				node.connect("reply_selected",self,"_pick_reply",[], CONNECT_ONESHOT)
 				node.connect("reply_mouseover",self,"_reply_mouseover")
-				get_node("ui_dialogue").add_child(node)
+				$"ui_dialogue".add_child(node)
 
 func kill_dialogue():
-	for x in get_node("ui_dialogue/").get_children():
+	for x in $"ui_dialogue/".get_children():
 		x.set_name("DELETED") #to make sure node doesn´t cause issues before being deleted
 		x.queue_free()
 	replyContainer = []

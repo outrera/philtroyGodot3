@@ -75,6 +75,8 @@ var locations = [
 	
 var playerScript = preload("res://data/scripts/player.gd")
 
+onready var sceneCol = get_tree().get_root().get_node("Node").get_node("scene").get_node("col")
+
 func _ready():
 	set_process(true)
 	
@@ -164,6 +166,6 @@ func load_scene(sceneLocation): #change this first, see if any conflicts
 		eventOverride = load_json("events/" + eventData["date"][str(gameday)][0][timeofday]["name"] + ".json")
 	else:
 		pass
-
+		
 	#TODO: animate scene transition somehow(time label swapped with animation?)
 	#TODO: how to handle scene specific cameras?
