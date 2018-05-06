@@ -187,7 +187,7 @@ _sections_unfolded = [ "Shadow" ]
 
 [node name="Camera" type="Camera" parent="." index="2"]
 
-transform = Transform( 0.995725, 0.0331962, -0.0861989, 0.0423814, 0.664978, 0.745659, 0.0820735, -0.746125, 0.660729, -0.238563, 8.75459, 16.235 )
+transform = Transform( 0.918464, 0.291216, -0.267613, -0.0580409, 0.768558, 0.637142, 0.391222, -0.56966, 0.722795, -5.25547, 9.25033, 15.9494 )
 keep_aspect = 1
 cull_mask = 1048575
 environment = null
@@ -516,69 +516,6 @@ scale = Vector2( 1.5, 1.6 )
 position = Vector2( 274.88, 1083.05 )
 audio_bus_override = false
 audio_bus_name = "Master"
-
-[node name="debug" type="Label" parent="ui" index="15"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 518.0
-margin_top = 9.0
-margin_right = 558.0
-margin_bottom = 23.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "DEBUG TEXT LABEL"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="debug2" type="Label" parent="ui" index="16"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 743.0
-margin_top = 6.0
-margin_right = 783.0
-margin_bottom = 20.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "2ND DEBUG TEXT LABEL"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="debug3" type="Label" parent="ui" index="17"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 996.0
-margin_top = 6.0
-margin_right = 1128.0
-margin_bottom = 20.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "Hovered item is: xxx"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [node name="npcs" type="Node" parent="." index="5"]
 

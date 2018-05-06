@@ -56,7 +56,6 @@ func _ready():
 	set_process_input(true)
 		
 	get_node("ui/dateLabel").set_text(global.gameData.time[time] + ", " + global.gameData.weekday[day])
-	$"ui/debug".set_text("Debug label works!")
 	
 	global.scene = "schoolyard"
 	#Why? WHY does the below affect rotation of the NPC if I remove it?!
@@ -122,10 +121,6 @@ func ui_exit():
 		toggle_ui_icons("show")
 
 func _input(event):
-	pass
-	#debug function to get screenspace mouse pos
-	#if event is InputEventMouseMotion:
-	#	$"ui/debug".set_text(str(event.position))
 	if hoverNode:
 		if hoverNode.get_name() == "phone":	
 			#for Godot 3.0 use if(event is InputEventMouseButton)
@@ -193,8 +188,6 @@ func _input(event):
 func _on_phone_mouse_entered():
 	ui_hover("phone", get_node("ui/phone/Sprite"), Vector2(1.1, 1.1), true)
 	hoverNode = get_node("ui/phone")
-	var debug_root = get_tree().get_root().get_node("Node")
-	debug_root.get_node("ui/debug3").set_text("hover: phone")
 
 func _on_phone_mouse_exited():
 	ui_hover("", get_node("ui/phone/Sprite"), Vector2(1.0, 1.0), false)
@@ -203,8 +196,6 @@ func _on_phone_mouse_exited():
 func _on_schoolbag_mouse_entered():
 	ui_hover("school bag", get_node("ui/schoolbag/Sprite"), Vector2(1.1, 1.1), true)
 	hoverNode = get_node("ui/schoolbag")
-	var debug_root = get_tree().get_root().get_node("Node")
-	debug_root.get_node("ui/debug3").set_text("hover: schoolbag")
 
 func _on_schoolbag_mouse_exited():
 	ui_hover("", get_node("ui/schoolbag/Sprite"), Vector2(1.0, 1.0), false)
@@ -213,8 +204,6 @@ func _on_schoolbag_mouse_exited():
 func _on_map_mouse_entered():
 	ui_hover("map", get_node("ui/map/Sprite"), Vector2(1.1, 1.1), true)
 	hoverNode = get_node("ui/map")
-	var debug_root = get_tree().get_root().get_node("Node")
-	debug_root.get_node("ui/debug3").set_text("hover: map")
 
 func _on_map_mouse_exited():
 	ui_hover("", get_node("ui/map/Sprite"), Vector2(1.0, 1.0), false)
@@ -224,8 +213,6 @@ func _on_calendar_mouse_entered():
 	ui_hover("calendar", get_node("ui/calendar/Sprite"), Vector2(1.1, 1.1), true)
 	hoverNode = get_node("ui/calendar")
 	global.blocking_ui = true
-	var debug_root = get_tree().get_root().get_node("Node")
-	debug_root.get_node("ui/debug3").set_text("hover: calendar")
 
 func _on_calendar_mouse_exited():
 	ui_hover("", get_node("ui/calendar/Sprite"), Vector2(1.0, 1.0), false)

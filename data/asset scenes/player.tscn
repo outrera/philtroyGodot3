@@ -41,6 +41,7 @@ axis_lock_angular_y = false
 axis_lock_angular_z = false
 collision/safe_margin = 0.001
 script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="geometry" type="MeshInstance" parent="." index="0"]
 
@@ -76,9 +77,10 @@ material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="." index="1"]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.989599, 0 )
 shape = SubResource( 3 )
 disabled = false
+_sections_unfolded = [ "Transform" ]
 
 [node name="rotation_helper" type="Area" parent="." index="2"]
 
