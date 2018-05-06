@@ -10,8 +10,12 @@ All functionality from the Godot 2 version is restored, except for the blurred b
 Future development:
 
 continue working on improving the engine, now named DIE(Dynamic Interactive Engine)
+
 finish the event systemm
+
 enable Visual Novel style gameplay functionality
+
 write DIElog (Dialogue and Event editor for ADDS)
+
 
 It´s crucial to have this functionality done before I start working on the actual game.
