@@ -59,7 +59,7 @@ proximity_fade_enable = false
 distance_fade_enable = false
 _sections_unfolded = [ "Albedo", "Flags", "Parameters", "Vertex Color" ]
 
-[node name="Area" type="Area"]
+[node name="Area" type="Area" index="0"]
 
 input_ray_pickable = false
 input_capture_on_drag = false

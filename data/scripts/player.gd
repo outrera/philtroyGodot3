@@ -23,8 +23,6 @@ var playerFacing
 var movement = Vector3()
 
 func _ready():
-	print("scene ready")
-	print("initial rotation helper position: " + str(helper_pos))
 	set_process(true)
 	set_physics_process(true)
 	set_process_input(true)
@@ -43,7 +41,6 @@ func _physics_process(delta):
 				player.move_and_collide(Vector3(playerFacing.x, 0, playerFacing.z)*get_physics_process_delta_time()*3)
 			if player_pos.distance_to(target_pos) < 0.5:
 				global.is_moving = false
-				print("stop")
 
 func turn_towards():
 	var t = player.get_transform()
@@ -58,20 +55,14 @@ func turn_towards():
 	playerFacing = (helper_pos - player_pos).normalized()
 
 func _on_scene_input_event(camera, event, click_position, click_normal, shape_idx):
-#	if event is InputEventMouseButton:
-#		if event.button_index == BUTTON_LEFT:
-#			if event.pressed:
-#				print(click_position)
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if event.pressed:
-				print("click mouse position:" + str(click_position))
 				global.is_moving = true
 				value = 0 
-#				player_pos = player.get_global_transform().origin
-#				helper_pos = helper.get_global_transform().origin
+				player_pos = player.get_global_transform().origin
+				helper_pos = helper.get_global_transform().origin
 				target_pos = click_position
-				print("clicked")
 
 	else:
 		#need to add this so player doesn´t move when exiting dialog

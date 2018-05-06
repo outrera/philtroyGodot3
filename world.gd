@@ -59,14 +59,12 @@ func _ready():
 	$"ui/debug".set_text("Debug label works!")
 	
 	global.scene = "schoolyard"
-	#Why? WHY is does the below affect rotation of the NPC if I remove it?!
+	#Why? WHY does the below affect rotation of the NPC if I remove it?!
 	sceneData = global.load_json("res://data/locations/location_schoolyard.json")
 	global.load_scene("schoolyard")
 
 	get_node("ui/map_ui").connect("exit_ui", self, "map_location")
 	connect()
-	print("scene origin: " + str(get_node("scene").transform.origin))
-	print(viewsize)
 	
 func connect():
 	for object in get_node("objects").get_children():
@@ -80,6 +78,7 @@ func _process(delta):
 	#if dialogue is running and we press ui_exit, exit dialogue and delete dialogue nodes
 	if Input.is_action_pressed("ui_exit"):
 		ui_exit()
+#	$ui/map.position.x += 1
 
 func map_location(location):
 	global.scene = location
@@ -123,6 +122,7 @@ func ui_exit():
 		toggle_ui_icons("show")
 
 func _input(event):
+	pass
 	#debug function to get screenspace mouse pos
 	#if event is InputEventMouseMotion:
 	#	$"ui/debug".set_text(str(event.position))
@@ -176,13 +176,12 @@ func _input(event):
 						global.weekday = global.gameData["weekday"][day]
 						global.timeofday = global.gameData["time"][time]
 						global.load_scene(global.scene)
-						
+
 						connect()
-							
+
 						get_node("ui/dateLabel").set_text(global.gameData.time[time] + ", " + global.gameData.weekday[day])		
 
 			if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT and event.is_pressed():
-				print("open calendar")
 				global.blocking_ui = true
 				calendarOpen = true
 				#screenBlur.show()
@@ -200,7 +199,7 @@ func _on_phone_mouse_entered():
 func _on_phone_mouse_exited():
 	ui_hover("", get_node("ui/phone/Sprite"), Vector2(1.0, 1.0), false)
 	hoverNode = null
-	
+
 func _on_schoolbag_mouse_entered():
 	ui_hover("school bag", get_node("ui/schoolbag/Sprite"), Vector2(1.1, 1.1), true)
 	hoverNode = get_node("ui/schoolbag")
@@ -227,7 +226,7 @@ func _on_calendar_mouse_entered():
 	global.blocking_ui = true
 	var debug_root = get_tree().get_root().get_node("Node")
 	debug_root.get_node("ui/debug3").set_text("hover: calendar")
-		
+
 func _on_calendar_mouse_exited():
 	ui_hover("", get_node("ui/calendar/Sprite"), Vector2(1.0, 1.0), false)
 	hoverNode = null
@@ -237,18 +236,16 @@ func _on_calendar_mouse_exited():
 func ui_hover(name, gui_node, scale, move):
 	descriptionLabel.set_text(name)
 	noMoveOnClick = move
-	effectHoverUI.interpolate_property (gui_node, "transform/scale", gui_node.scale, scale, 1, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
+	effectHoverUI.interpolate_property (gui_node, "scale", gui_node.scale, scale, 1, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
 	effectHoverUI.start()
 
 #hide or show UI icons when calling blocking UI elements, like phone, map or schoolbag
 func ui_hide_show(gui_node, move_delta, method1, method2):
-	print("hiding ui icons now " + str(gui_node.position))
-	effectToggleUI.interpolate_property (gui_node, "transform/position", gui_node.position, gui_node.position + move_delta, 0.5, method1, method2)
+	effectToggleUI.interpolate_property (gui_node, "position", gui_node.position, gui_node.position + move_delta, 0.5, method1, method2)
 	effectToggleUI.start()
 
 func toggle_ui_icons(toggle):
 	var startPos = get_node("ui/map").position.y
-	print("startPos is " + str(startPos))
 	var positionDelta
 	if toggle == "show":
 		positionDelta = uiIconsShowPos - startPos
