@@ -1,0 +1,82 @@
+{
+	"name": "NPC2",
+	"background": "background.png",
+	"dialogue": {
+		"a": {
+			"animation": "res://asset scenes/NPC2_talkanim.tscn",
+			"text": [
+				"Sorry, but I really don´t have time right now. I´m eating all these cookies!"
+			],
+			"replies": [{
+				"next": "b",
+				"reply": "Ok, I´ll get out of your face",
+				"exit": "true"
+				}
+			]
+		},
+		"b": {
+			"text": [
+				"Still eating cookies. Go away!"
+			],
+			"replies": [{
+				"next": "b",
+				"reply": "Sorry.",
+				"exit": "true"
+			}]
+		},
+		"c": {
+			"text": [
+				"So NPC1 wants me to share my cookies? Ok, here´s the deal, I´ll give you cookies, if you get NPC to give up some of his precious milk!"
+			],
+			"replies": [{
+				"next": "d",
+				"reply": "Milk..cookies.. ok. I´ll see what I can do.",
+				"exit": "true",
+				"progression": [{
+						"affected": "npc1",
+						"branch": "f"
+				}]
+			}]
+		},
+		"d": {
+			"text": [
+				"Did you get that milk?"
+			],
+			"replies": [{
+				"next": "d",
+				"reply": "not yet..",
+				"exit": "true"
+			}]
+		},
+		"e": {
+			"text": [
+				"You got the milk?! Well, ok, here are two cookies. One for you and one for the milkhorder."
+			],
+			"replies": [{
+					"next": "f",
+					"reply": "Thanks alot!",
+					"exit": "true",
+				"variables": [{
+						"name": "cookies",
+						"value": 2
+
+				}],
+				"progression": [{
+						"affected": "npc1",
+						"branch": "h"
+				}]
+				}
+			]
+		},
+		"f": {
+			"text": [
+				"Eating milk and cookies. Stop bothering me!"
+			],
+			"replies": [{
+				"next": "f",
+				"reply": "Ok, sorry..",
+				"exit": "true"
+			}]
+		}
+	}
+}

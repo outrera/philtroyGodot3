@@ -1,0 +1,16 @@
+[gd_scene load_steps=1 format=2]
+
+[ext_resource path="" type="Texture" id=1]
+
+[node name="TextureFrame" type="TextureRect"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags_horizontal = 1
+size_flags_vertical = 1
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 1 )
+stretch_mode = 0

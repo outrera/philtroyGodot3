@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://data/graphics/phone_ui.png" type="Texture" id=1]
+
+[node name="phone_ui" type="Area2D"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="Sprite" type="Sprite" parent="."]
+
+position = Vector2( 961.087, 1855.43 )
+texture = ExtResource( 1 )

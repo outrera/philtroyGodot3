@@ -1,0 +1,39 @@
+[application]
+
+config/icon = "res://icon.png"
+config/name = "Philemon Troy and the Student Body Pageant"
+run/main_scene = "res://scene.tscn"
+
+[autoload]
+
+global = "*res://global.gd"
+
+[display]
+
+window/size/fullscreen = false
+window/size/height = 1080
+window/size/width = 1920
+
+[importer_defaults]
+
+texture = {
+"flags/filter": true,
+"flags/mipmaps": true
+}
+
+[input]
+
+LMB_click = [ InputEvent(MBUTTON,1) ]
+ui_down = [ InputEvent(KEY,16777234), InputEvent(JBUTTON,13), InputEvent(KEY,83) ]
+ui_exit = [ InputEvent(KEY,16777217) ]
+ui_jump = [ InputEvent(KEY,32) ]
+ui_left = [ InputEvent(KEY,16777231), InputEvent(JBUTTON,14), InputEvent(KEY,65) ]
+ui_quit = [ InputEvent(KEY,81,C) ]
+ui_reload = [ InputEvent(KEY,16777246) ]
+ui_right = [ InputEvent(KEY,16777233), InputEvent(JBUTTON,15), InputEvent(KEY,68) ]
+ui_up = [ InputEvent(KEY,16777232), InputEvent(JBUTTON,12), InputEvent(KEY,87) ]
+
+[render]
+
+shadows_enabled = true
+

@@ -1,0 +1,112 @@
+{
+	"name": "NPC1",
+	"background": "background.png",
+	"dialogue": {
+		"a": {
+			"animation": "res://asset scenes/NPC1_talkanim.tscn",
+			"text": [
+				"Hi. Are you hungry? I am. NPC2 is holding all the cookies to himself.",
+				"Could you please ask him to share some with us?"
+			],
+			"replies": [{
+				"next": "b",
+				"reply": "Sure, I will ask him right away!",
+				"exit": "false"
+				},
+				{
+				"next": "c",
+				"reply": "I´m sorry, but I can´t do that right now.",
+				"exit": "false"
+				}
+			]
+		},
+		"b": {
+			"text": [
+				"Really?! That´s great!"
+			],
+			"replies": [{
+				"next": "d",
+				"reply": "I´ll be right back!",
+				"exit": "true",
+				"progression": [{
+						"affected": "npc2",
+						"branch": "c"
+				}],
+				"event": [{
+						"name": "Milk and cookies",
+						"stage": 1
+				}]
+			}]
+		},
+		"c": {
+			"text": [
+				"Oh, that´s too bad. I´ll just sit here and starve then..."
+			]
+		},
+		"d": {
+			"text": [
+				"Where are the cookies?"
+			]
+		},
+		"e": {
+			"text": [
+				"Hi again. Have you possibly changed your mind about the cookies?"
+			],
+			"replies": [{
+					"next": "b",
+					"reply": "Sure, I will ask him right away!",
+					"exit": "false"
+				},
+				{
+					"next": "c",
+					"reply": "No..",
+					"exit": "false"
+				}
+			]
+		},
+		"f": {
+			"text": [
+				"He wants milk, huh? Ok, here, give him this glass of milk."
+			],
+			"replies": [{
+					"next": "g",
+					"reply": "On my way!",
+					"exit": "true",
+				"variables": [{
+						"name": "milk",
+						"value": 1
+				}],
+				"progression": [{
+						"affected": "npc2",
+						"branch": "e"
+				}]
+				}
+			]
+		},
+		"g": {
+			"text": [
+				"You got the milk already! Go get the cookies."
+			]
+		},
+		"h": {
+			"text": [
+				"You got the cookies?! Gimme!"
+			],
+			"replies": [{
+					"next": "i",
+					"reply": "One´s for me, let´s eat them together.",
+					"exit": "false",
+				"progression": [{
+						"affected": "npc1",
+						"branch": "i"
+				}]
+				}
+			]
+		},
+		"i": {
+			"text": [
+				"End of demo."
+			]
+		}
+	}
+}
