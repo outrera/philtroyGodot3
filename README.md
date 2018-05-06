@@ -5,19 +5,7 @@ So I delayed/aborted this conversion a couple of times due to the pure frustrati
 do realize why they had to be done), but this time, although still frustrating, I got the core functions (player movement and dialogue 
 system) working.
 
-What works:
-
-Dialogue
-Moving player
-
-What doesn´t work yet:
-
-Any UI interaction/fx
-Player collision
-
-Considering nothing worked at all yesterday, I´m happy about this progress. Looks like I´ll finally be able to resume this project.
-
-I´m slowly going through the documentation for API changes for Godot 3 and it shouldn´t be too hard to fix the rest, just tedious...
+All functionality from the Godot 2 version is restored, except for the blurred background in dialogues and UI overlays, mainly because I haven´t gotten to it yet.
 
 Future development:
 
