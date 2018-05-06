@@ -100,10 +100,6 @@ func load_json(json):
 	return tempData
 	tempData = null
 	file.close()
-	#for Godot 3.0
-#	var file = File.new()
-#	file.open(json, File.READ)
-#	tempData = parse_json(file.get_as_text())
 
 func goto_scene(scene):
     get_tree().change_scene("res://"+scene)

@@ -59,7 +59,7 @@ func _ready():
 	
 	global.scene = "schoolyard"
 	#Why? WHY does the below affect rotation of the NPC if I remove it?!
-	sceneData = global.load_json("res://data/locations/location_schoolyard.json")
+#	sceneData = global.load_json("res://data/locations/location_schoolyard.json")
 	global.load_scene("schoolyard")
 
 	get_node("ui/map_ui").connect("exit_ui", self, "map_location")
