@@ -81,7 +81,7 @@ func _talk_to(identity, clickPos):
 	npc = identity
 	global.blocking_ui = true
 	get_parent().get_node("effects/blurfx").show()
-	get_parent().toggle_ui_icons("hide")
+	get_parent().get_node("ui").toggle_ui_icons("hide")
 	#we use a temp cache to be able to override charData without actually overwriting it
 	#TODO_ put the override here, uncomment conditional code
 #	if global.eventOverride != npc:
@@ -146,7 +146,7 @@ func _pick_reply(n):
 		charData[npc]["branch"] = replies[n]["next"]
 		get_parent().get_node("effects/blurfx").hide()
 		kill_dialogue()
-		get_parent().toggle_ui_icons("show")
+		get_parent().get_node("ui").toggle_ui_icons("show")
 
 func _reply_mouseover(mouseover, reply):
 	if mouseover == "TRUE":

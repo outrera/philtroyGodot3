@@ -22,7 +22,7 @@
 [ext_resource path="res://data/locations/schoolyard.tscn" type="PackedScene" id=20]
 [ext_resource path="res://data/asset scenes/player.tscn" type="PackedScene" id=21]
 
-[sub_resource type="Environment" id=12]
+[sub_resource type="Environment" id=1]
 
 background_mode = 0
 background_sky_custom_fov = 0.0
@@ -149,13 +149,13 @@ radius = 52.1685
 
 plane = Plane( 0, 1, 0, 0 )
 
-[node name="Node" type="Node" index="0"]
+[node name="world" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
 
-environment = SubResource( 12 )
+environment = SubResource( 1 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="." index="1"]
 
@@ -404,6 +404,7 @@ shape = SubResource( 6 )
 "UI_icons",
 ]]
 
+editor/display_folded = true
 position = Vector2( 235, 536 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -428,6 +429,7 @@ shape = SubResource( 7 )
 "UI_icons",
 ]]
 
+editor/display_folded = true
 position = Vector2( 319, 473 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -452,6 +454,7 @@ shape = SubResource( 8 )
 "UI_icons",
 ]]
 
+editor/display_folded = true
 position = Vector2( 550, 407 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -576,21 +579,21 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0621125, 0 )
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.981376, 0 )
 
-[connection signal="mouse_entered" from="ui/schoolbag" to="." method="_on_schoolbag_mouse_entered"]
+[connection signal="mouse_entered" from="ui/schoolbag" to="ui" method="_on_schoolbag_mouse_entered"]
 
-[connection signal="mouse_exited" from="ui/schoolbag" to="." method="_on_schoolbag_mouse_exited"]
+[connection signal="mouse_exited" from="ui/schoolbag" to="ui" method="_on_schoolbag_mouse_exited"]
 
-[connection signal="mouse_entered" from="ui/phone" to="." method="_on_phone_mouse_entered"]
+[connection signal="mouse_entered" from="ui/phone" to="ui" method="_on_phone_mouse_entered"]
 
-[connection signal="mouse_exited" from="ui/phone" to="." method="_on_phone_mouse_exited"]
+[connection signal="mouse_exited" from="ui/phone" to="ui" method="_on_phone_mouse_exited"]
 
-[connection signal="mouse_entered" from="ui/map" to="." method="_on_map_mouse_entered"]
+[connection signal="mouse_entered" from="ui/map" to="ui" method="_on_map_mouse_entered"]
 
-[connection signal="mouse_exited" from="ui/map" to="." method="_on_map_mouse_exited"]
+[connection signal="mouse_exited" from="ui/map" to="ui" method="_on_map_mouse_exited"]
 
-[connection signal="mouse_entered" from="ui/calendar" to="." method="_on_calendar_mouse_entered"]
+[connection signal="mouse_entered" from="ui/calendar" to="ui" method="_on_calendar_mouse_entered"]
 
-[connection signal="mouse_exited" from="ui/calendar" to="." method="_on_calendar_mouse_exited"]
+[connection signal="mouse_exited" from="ui/calendar" to="ui" method="_on_calendar_mouse_exited"]
 
 [connection signal="input_event" from="scene" to="player" method="_on_scene_input_event"]
 

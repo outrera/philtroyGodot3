@@ -75,7 +75,7 @@ var locations = [
 	
 var playerScript = preload("res://data/scripts/player.gd")
 
-onready var sceneCol = get_tree().get_root().get_node("Node").get_node("scene").get_node("col")
+onready var sceneCol = get_tree().get_root().get_node("world").get_node("scene").get_node("col")
 
 func _ready():
 	set_process(true)
@@ -107,7 +107,7 @@ func goto_scene(scene):
     get_tree().change_scene("res://"+scene)
 
 func load_scene(sceneLocation): #change this first, see if any conflicts
-	var gameRoot = get_tree().get_root().get_node("Node")
+	var gameRoot = get_tree().get_root().get_node("world")
 #	
 	gameRoot.get_node("player").queue_free()
 	gameRoot.get_node("player").set_name("DELETED")
