@@ -55,17 +55,17 @@ var eventData = {}
 
 var charData = {
 	"ellie": {
-	"dialogue": "res://data/dialogue/ellie.json", 
-	"branch": "a",
-	"relationship": "2"},
+		"dialogue": "res://data/dialogue/ellie.json", 
+		"branch": "a",
+		"relationship": "2"},
 	"bobby": {
-	"dialogue": "res://data/dialogue/bobby.json", 
-	"branch": "a",
-	"relationship": "2"},
+		"dialogue": "res://data/dialogue/bobby.json", 
+		"branch": "a",
+		"relationship": "2"},
 	"sam": {
-	"dialogue": "res://data/dialogue/sam.json", 
-	"branch": "a",
-	"relationship": "2"}
+		"dialogue": "res://data/dialogue/sam.json", 
+		"branch": "a",
+		"relationship": "2"}
 	}
 
 var locations = [

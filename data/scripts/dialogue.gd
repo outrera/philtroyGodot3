@@ -139,6 +139,17 @@ func _pick_reply(n):
 		charData[npc]["branch"] = replies[n]["next"]
 		pageIndex = 0
 		start_dialogue(charData[npc]["dialogue"])
+
+#	TODO: replace the above with this block. Make sure code is up to date/sane. check info = "godot thoughts aug 29.txt"	
+#	if replies[n]["exit"] != "true":
+#		if replies[n]["next"].ends_with(".json"):
+#			global.sceneData[location][day][timeofday]["actors"][name]["dialogue"] = replies[n]["next"]
+#			charData[npc]["dialogue"] = replies[n]["next"]
+#		else:
+#			global.sceneData[location][day][timeofday]["actors"][name]["branch"] = replies[n]["next"]
+#			charData[npc]["branch"] = replies[n]["next"]
+#		pageIndex = 0
+#		start_dialogue("res://data/dialogue/" + charData[npc]["dialogue"]) + charData[npc]["relationship"] + (".json")
 	
 	#if "exit" is "true", kill dialogue
 	else:

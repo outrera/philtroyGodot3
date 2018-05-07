@@ -98,7 +98,7 @@ func _input(event):
 			if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():
 				global.blocking_ui = true
 				phoneOpen = true
-				#screenBlur.show()
+				screenBlur.show()
 				toggle_ui_icons("hide")
 				var positionDelta = get_node("phone_ui").position - phoneShowPos
 				ui_hide_show(get_node("phone_ui"), Vector2(-positionDelta), Tween.TRANS_QUAD, Tween.EASE_OUT)
@@ -106,7 +106,7 @@ func _input(event):
 			if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():
 				global.blocking_ui = true
 				schoolbagOpen = true
-				#screenBlur.show()
+				screenBlur.show()
 				toggle_ui_icons("hide")
 				var positionDelta = get_node("phone_ui").position - schoolbagShowPos
 				ui_hide_show(get_node("schoolbag_ui"), Vector2(0,-1000), Tween.TRANS_QUAD, Tween.EASE_OUT)
@@ -114,7 +114,7 @@ func _input(event):
 			if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():
 				global.blocking_ui = true
 				mapOpen = true
-				#screenBlur.show()
+				screenBlur.show()
 				toggle_ui_icons("hide")
 				var positionDelta = get_node("phone_ui").position - mapShowPos
 				ui_hide_show(get_node("map_ui"), Vector2(0,-1000), Tween.TRANS_QUAD, Tween.EASE_OUT)
@@ -147,7 +147,7 @@ func _input(event):
 			if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT and event.is_pressed():
 				global.blocking_ui = true
 				calendarOpen = true
-				#screenBlur.show()
+				screenBlur.show()
 				toggle_ui_icons("hide")
 				var positionDelta = get_node("phone_ui").position - calendarShowPos
 				ui_hide_show(get_node("calendar_ui"), Vector2(0,-1000), Tween.TRANS_QUAD, Tween.EASE_OUT)
