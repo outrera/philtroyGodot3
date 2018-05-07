@@ -151,6 +151,43 @@ func load_scene(sceneLocation): #change this first, see if any conflicts
 			actor.set_name(name)
 			gameRoot.get_node("npcs").add_child(actor)
 
+#	TODO: replace the above conditional block with (might need some refactoring to fit new code):			
+#	
+#	var actor
+#	var object
+#
+#	if eventData["date"].has(str(gameData["day"])) and eventData["date"][(str(gameData["day"]))].has(time):
+#
+#		if eventData["type"] == "persistent":
+#			pass
+#			#loop through actors and objects in eventOverride, remove and add from location specified
+#
+#		elif eventData["type"] == "oneoff":
+#			eventOverride = load_json("events/" + eventData["date"][gameData["day"]][time]["name"] + ".json")
+#
+#	if location.has("actors"):
+#		for name in location["actors"].keys():
+#			if eventOverride != null and eventOverride["add"]["actor"].has(name):
+#				var pos = eventOverride["add"]["actor"][name]["pos"]
+#				var rot = eventOverride["add"]["actor"][name]["rot"]
+#				global.charData[name]["dialogue"] = eventOverride["add"]["actor"][name]["dialogue"]
+#				actor = load("res://data/npcs/" + eventOverride["add"]["actor"][name]["animation"] + ".tscn")
+#
+#			else:
+#				var pos = location["actors"][name]["pos"]
+#				var rot = location["actors"][name]["rot"]
+#				#TODO: think I might need to add a default dialogue to charData as well
+#				if location["actors"][name]["dialogue"] != "default":
+#					global.charData[name]["dialogue"] = location["actors"][name]["dialogue"]
+#				actor = load("res://data/npcs/" + name + ".tscn")
+#
+#			#TODO: pose > animation? For now use base animation.
+#			actor = actor.instance()
+#			actor.set_translation(Vector3(pos.x,pos.y,pos.z))
+#			actor.set_rotation(Vector3(rot.x,rot.y, rot.z))
+#			actor.set_name(name)
+#			gameRoot.get_node("npcs").add_child(actor)
+
 	if location.has("objects"):
 		for name in location["objects"].keys():
 			var pos = location["objects"][name]["pos"]
@@ -161,11 +198,37 @@ func load_scene(sceneLocation): #change this first, see if any conflicts
 			object.set_name(name)
 			get_node("objects").add_child(object)
 
+#	TODO: replace the above conditional block with (might need some refactoring to fit new code):
+#	
+#	if location.has("objects"):
+#		for name in location["object"].keys():
+#			if eventOverride != null and eventOverride["add"]["object"].has(name):
+#				var pos = eventOverride["add"]["object"][name]["pos"]
+#				var rot = eventOverride["add"]["object"][name]["rot"]
+#				global.charData[name]["dialogue"] = eventOverride["add"]["object"][name]["dialogue"]
+#				object = load("res://data/npcs/" + eventOverride["add"]["object"][name]["animation"] + ".tscn")
+#
+#			else:
+#				var pos = location["objects"][name]["pos"]
+#				var rot = location["actors"][name]["rot"]
+#				object = load("res://data/objects/" + name + ".tscn")
+#
+#			object.set_pos(Vector3(pos.x, pos.y, pos.z))
+#			object.set_rotation(Vector3(rot.x,rot.y, rot.z))
+#			object.set_name(name)
+#			get_node("objects").add_child(object)
+#
+#	#set eventOverride back to null, as it´s only needed and updated when calling load_scene()
+#	eventOverride = null
+
 	#if today has event - override
 	if eventData["date"].has(str(gameday)) and eventData["date"][str(gameday)][0].has(timeofday):
 		eventOverride = load_json("events/" + eventData["date"][str(gameday)][0][timeofday]["name"] + ".json")
 	else:
 		pass
 		
-	#TODO: animate scene transition somehow(time label swapped with animation?)
-	#TODO: how to handle scene specific cameras?
+#	TODO: animate scene transition somehow(time label swapped with animation?)
+#	TODO: how to handle scene specific cameras?
+
+func event_notifier():
+	pass

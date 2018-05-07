@@ -125,7 +125,7 @@ func _pick_reply(n):
 		global.eventData["date"][eventDay]["fail"]["noshow"] = replies[n]["event"]["noshow"]
 		global.eventData["date"][eventDay]["fail"]["cancel"] = replies[n]["event"]["cancel"]
 		
-	#if there is a progression array in json, update game progression variables
+	#if there is a progress array in json, update game progression variables
 	if replies[n].has("progress"):
 		for item in range(0, replies[n]["progress"].size()):
 			var affected = replies[n]["progress"][item]["name"]
@@ -157,6 +157,7 @@ func _reply_mouseover(mouseover, reply):
 		replyCurrent = -1
 
 func start_dialogue(json):
+#	TODO: when calling a dialogue, call start_dialogue("ellie_date_0" + str(global.chardata["relationship"]) + ".json")
 	talkData = global.load_json(json)
 	
 	branch = talkData["dialogue"][charData[npc]["branch"]]

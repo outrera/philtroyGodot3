@@ -2,8 +2,7 @@
 	"date":{
 		"7": [{
 			"evening":{
-				"name": "party_laura",
-				"time": "evening",
+				"event": "party_laura",
 				"fail": {
 					"noshow": "none",
 					"cancel": "none"
@@ -12,8 +11,7 @@
 		}],
 		"14": [{
 			"evening":{
-				"name": "party_sam",
-				"time": "evening",
+				"event": "party_sam",
 				"fail": {
 					"noshow": "none",
 					"cancel": "none"
@@ -22,8 +20,7 @@
 		}],
 		"20": [{
 			"evening":{
-				"name": "date_ellie",
-				"time": "evening",
+				"event": "date_ellie",
 				"fail": {
 					"noshow": "date_ellie_noshow",
 					"cancel": "date_ellie_cancel"
@@ -32,8 +29,7 @@
 		}],
 		"21": [{
 			"evening":{
-				"name": "party_bobby",
-				"time": "evening",
+				"event": "party_bobby",
 				"fail": {
 					"noshow": "none",
 					"cancel": "none"
@@ -41,9 +37,8 @@
 			}
 		}],
 		"28": [{
-			"evening":{
+			"event":{
 				"name": "prom",
-				"time": "evening",
 				"fail": {
 					"noshow": "none",
 					"cancel": "none"
