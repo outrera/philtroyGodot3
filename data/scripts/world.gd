@@ -51,7 +51,6 @@ func _process(delta):
 func change_location(location):
 	global.scene = location
 	global.load_scene(location)
-	print("changing location")
 	connect()
 	#issue with map scene changing is in ui_exit, sets global.blocking_ui = false
 	#find alternative solution

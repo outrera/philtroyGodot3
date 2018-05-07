@@ -3,7 +3,7 @@
 	"background": "background.png",
 	"dialogue": {
 		"a": {
-			"animation": "res://data/npcs/ellie_talkanim.tscn",
+			"avatar": "res://data/npcs/ellie_talkanim.tscn",
 			"speech" : [
 				"this is dialogue A
 				on to the second line (more...)", 
@@ -28,7 +28,7 @@
 				]
 		},
 		"b": {
-			"animation": "res://data/npcs/ellie_talkanim.tscn",
+			"avatar": "res://data/npcs/ellie_talkanim.tscn",
 			"speech" : ["this is dialogue B"],
 			"replies" : [
 				{
@@ -39,7 +39,7 @@
 			]	
 		},
 		"c": {
-			"animation": "res://data/npcs/ellie_talkanim.tscn",
+			"avatar": "res://data/npcs/ellie_talkanim.tscn",
 			"speech" : ["this is dialogue C"],
 			"replies" : [
 				{
@@ -50,7 +50,7 @@
 			]	
 		},
 		"d": {
-			"animation": "res://data/npcs/ellie_talkanim.tscn",
+			"avatar": "res://data/npcs/ellie_talkanim.tscn",
 			"speech" : ["this is dialogue D"],
 			"replies" : [
 				{

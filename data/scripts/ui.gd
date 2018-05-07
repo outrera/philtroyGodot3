@@ -62,7 +62,6 @@ func exit_map():
 	get_parent().map_location()
 
 func ui_exit():
-	print("ui_exit function running")
 	if phoneOpen == true:	
 		global.blocking_ui = false
 		phoneOpen = false
