@@ -164,12 +164,12 @@ func start_dialogue(json):
 	
 	npcName = talkData["name"]
 	
-	if branch.has("animation"):
-		talkAnim = load(branch["animation"])
+	if branch.has("avatar"):
+		talkAnim = load(branch["avatar"])
 	else:
 		talkAnim = null
 
-	numDialogueText = branch["text"].size()
+	numDialogueText = branch["speech"].size()
 	
 	#if branch has responses, check how many. If no responses, numReplies is 0
 	if branch.has("replies"):
@@ -203,7 +203,7 @@ func start_dialogue(json):
 	$"ui_dialogue/dialogue/name".set_text(npcName)
 	
 	#preparing for dialogue paging, the 0 will be replaced by ´n´, ´n´ being order of item in text array
-	$"ui_dialogue/dialogue".set_text(branch["text"][pageIndex])
+	$"ui_dialogue/dialogue".set_text(branch["speech"][pageIndex])
 	
 	if pageIndex == numDialogueText-1 and numReplies > 0:
 		for n in range(0,numReplies):

@@ -4,7 +4,7 @@
 	"dialogue": {
 		"a": {
 			"animation": "res://data/npcs/ellie_talkanim.tscn",
-			"text" : [
+			"speech" : [
 				"this is dialogue A
 				on to the second line (more...)", 
 				"more dialogue"
@@ -29,7 +29,7 @@
 		},
 		"b": {
 			"animation": "res://data/npcs/ellie_talkanim.tscn",
-			"text" : ["this is dialogue B"],
+			"speech" : ["this is dialogue B"],
 			"replies" : [
 				{
 				"next": "c",
@@ -40,7 +40,7 @@
 		},
 		"c": {
 			"animation": "res://data/npcs/ellie_talkanim.tscn",
-			"text" : ["this is dialogue C"],
+			"speech" : ["this is dialogue C"],
 			"replies" : [
 				{
 				"next": "a",
@@ -51,7 +51,7 @@
 		},
 		"d": {
 			"animation": "res://data/npcs/ellie_talkanim.tscn",
-			"text" : ["this is dialogue D"],
+			"speech" : ["this is dialogue D"],
 			"replies" : [
 				{
 				"next": "b",

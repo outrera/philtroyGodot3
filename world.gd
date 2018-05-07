@@ -57,6 +57,7 @@ func change_location(location):
 	#find alternative solution
 
 func ui_exit():
+	#this should probably be done in dialogue.gd
 	if dialogueRunning == true:
 		kill_dialogue()
 
