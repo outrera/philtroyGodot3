@@ -31,6 +31,9 @@ var charData = {}
 
 var mousePos = Vector3()
 
+onready var screenBlur = $"../effects/blurfx"
+onready var effectBlurUI = $"../effects/tween"
+
 func _ready():
 	set_process_input(true)
 	
@@ -80,7 +83,7 @@ func _talk_to(identity, clickPos):
 	mousePos = clickPos
 	npc = identity
 	global.blocking_ui = true
-	get_parent().get_node("effects/blurfx").show()
+	effectBlurUI.interpolate_property(screenBlur, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	get_parent().get_node("ui").toggle_ui_icons("hide")
 	#we use a temp cache to be able to override charData without actually overwriting it
 	#TODO_ put the override here, uncomment conditional code
@@ -155,7 +158,7 @@ func _pick_reply(n):
 	else:
 		pageIndex = 0
 		charData[npc]["branch"] = replies[n]["next"]
-		get_parent().get_node("effects/blurfx").hide()
+		effectBlurUI.interpolate_property(screenBlur, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 		kill_dialogue()
 		get_parent().get_node("ui").toggle_ui_icons("show")
 

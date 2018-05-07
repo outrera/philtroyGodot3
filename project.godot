@@ -11,7 +11,7 @@ config_version=3
 [application]
 
 config/name="Philemon Troy and the Student Body Pageant"
-run/main_scene="res://scene.tscn"
+run/main_scene="res://game.tscn"
 config/icon="res://icon.png"
 
 [autoload]

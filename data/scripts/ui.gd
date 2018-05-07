@@ -17,6 +17,7 @@ var dayOfMonth = 1
 
 onready var effectHoverUI = $"../effects/tween"
 onready var effectToggleUI = $"../effects/tween"
+onready var effectBlurUI = $"../effects/tween"
 onready var descriptionLabel = $descriptionLabel
 onready var sceneCol = $"../scene/col"
 
@@ -46,6 +47,8 @@ func _ready():
 	calendarHidePos = $calendar_ui.position
 	calendarShowPos =  calendarHidePos - Vector2(0, 1000)
 	
+	screenBlur.modulate = Color(1, 1, 1, 0)
+	
 	$map_ui.connect("location_chosen", self, "load_map_location")
 
 func _process(delta):
@@ -65,29 +68,28 @@ func ui_exit():
 	if phoneOpen == true:	
 		global.blocking_ui = false
 		phoneOpen = false
-		screenBlur.hide()
+		effectBlurUI.interpolate_property(screenBlur, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 		var positionDelta = phoneHidePos - get_node("phone_ui").position
-		print("exiting phone")
 		ui_hide_show(get_node("phone_ui"), Vector2(0,positionDelta.y), Tween.TRANS_QUAD, Tween.EASE_OUT)
 		toggle_ui_icons("show")
 	if schoolbagOpen == true:	
 		global.blocking_ui = false
 		schoolbagOpen = false
-		screenBlur.hide()
+		effectBlurUI.interpolate_property(screenBlur, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 		var positionDelta = schoolbagHidePos - get_node("schoolbag_ui").position
 		ui_hide_show(get_node("schoolbag_ui"), Vector2(0,positionDelta.y), Tween.TRANS_QUAD, Tween.EASE_OUT)
 		toggle_ui_icons("show")
 	if calendarOpen == true:	
 		global.blocking_ui = false
 		calendarOpen = false
-		screenBlur.hide()
+		effectBlurUI.interpolate_property(screenBlur, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 		var positionDelta = calendarHidePos - get_node("calendar_ui").get_position()
 		ui_hide_show(get_node("calendar_ui"), Vector2(0,positionDelta.y), Tween.TRANS_QUAD, Tween.EASE_OUT)
 		toggle_ui_icons("show")
 	if mapOpen == true:	
 		global.blocking_ui = false
 		mapOpen = false
-		screenBlur.hide()
+		effectBlurUI.interpolate_property(screenBlur, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 		var positionDelta = calendarHidePos - get_node("map_ui").get_position()
 		ui_hide_show(get_node("map_ui"), Vector2(0,positionDelta.y), Tween.TRANS_QUAD, Tween.EASE_OUT)
 		toggle_ui_icons("show")
@@ -98,7 +100,7 @@ func _input(event):
 			if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():
 				global.blocking_ui = true
 				phoneOpen = true
-				screenBlur.show()
+				effectBlurUI.interpolate_property(screenBlur, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 				toggle_ui_icons("hide")
 				var positionDelta = get_node("phone_ui").position - phoneShowPos
 				ui_hide_show(get_node("phone_ui"), Vector2(-positionDelta), Tween.TRANS_QUAD, Tween.EASE_OUT)
@@ -106,7 +108,7 @@ func _input(event):
 			if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():
 				global.blocking_ui = true
 				schoolbagOpen = true
-				screenBlur.show()
+				effectBlurUI.interpolate_property(screenBlur, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 				toggle_ui_icons("hide")
 				var positionDelta = get_node("phone_ui").position - schoolbagShowPos
 				ui_hide_show(get_node("schoolbag_ui"), Vector2(0,-1000), Tween.TRANS_QUAD, Tween.EASE_OUT)
@@ -114,7 +116,7 @@ func _input(event):
 			if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():
 				global.blocking_ui = true
 				mapOpen = true
-				screenBlur.show()
+				effectBlurUI.interpolate_property(screenBlur, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 				toggle_ui_icons("hide")
 				var positionDelta = get_node("phone_ui").position - mapShowPos
 				ui_hide_show(get_node("map_ui"), Vector2(0,-1000), Tween.TRANS_QUAD, Tween.EASE_OUT)
@@ -147,7 +149,7 @@ func _input(event):
 			if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT and event.is_pressed():
 				global.blocking_ui = true
 				calendarOpen = true
-				screenBlur.show()
+				effectBlurUI.interpolate_property(screenBlur, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 				toggle_ui_icons("hide")
 				var positionDelta = get_node("phone_ui").position - calendarShowPos
 				ui_hide_show(get_node("calendar_ui"), Vector2(0,-1000), Tween.TRANS_QUAD, Tween.EASE_OUT)
