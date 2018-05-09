@@ -138,22 +138,26 @@ func _pick_reply(n):
 				global.charData[affected]["branch"] = replies[n]["progress"][item]["next"]
 	
 	#if "exit" is "false" take value from "next" and start next dialogue
-	if replies[n]["exit"] != "true":
-		charData[npc]["branch"] = replies[n]["next"]
-		pageIndex = 0
-		start_dialogue(charData[npc]["dialogue"])
+#	if replies[n]["exit"] != "true":
+#		charData[npc]["branch"] = replies[n]["next"]
+#		pageIndex = 0
+#		print(global.sceneData)
+#		start_dialogue(charData[npc]["dialogue"])
 
 #	TODO: replace the above with this block. Make sure code is up to date/sane. check info = "godot thoughts aug 29.txt"
 #	ISSUE: gives error when clicking on dialogue reply. I´m clearly not using the json correctly here, investigate	
-#	if replies[n]["exit"] != "true":
-#		if replies[n]["next"].ends_with(".json"):
-#			global.sceneData[global.weekday][global.timeofday]["actors"][name]["dialogue"] = replies[n]["next"]
-#			charData[npc]["dialogue"] = replies[n]["next"]
-#		else:
-#			global.sceneData[global.weekday][global.timeofday]["actors"][name]["branch"] = replies[n]["next"]
-#			charData[npc]["branch"] = replies[n]["next"]
-#		pageIndex = 0
-#		start_dialogue("res://data/dialogue/" + charData[npc]["dialogue"]) + charData[npc]["relationship"] + (".json")
+	if replies[n]["exit"] != "true":
+		if replies[n]["next"].ends_with(".json"):
+			global.sceneData[global.currentLocation][global.weekday][global.timeofday]["actors"][npc]["dialogue"] = replies[n]["next"]
+			charData[npc]["dialogue"] = replies[n]["next"]
+			pageIndex = 0
+			start_dialogue("res://data/dialogue/" + charData[npc]["dialogue"]) + charData[npc]["relationship"] + (".json")
+		else:
+			global.sceneData[global.currentLocation][global.weekday][global.timeofday]["actors"][npc]["branch"] = replies[n]["next"]
+			charData[npc]["branch"] = replies[n]["next"]
+			pageIndex = 0
+			start_dialogue(charData[npc]["dialogue"])
+		
 	
 	#if "exit" is "true", kill dialogue
 	else:

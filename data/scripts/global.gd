@@ -4,6 +4,7 @@ var gameday
 var weekday
 var timeofday
 var scene
+var currentLocation
 
 var tempData = {}
 var sceneData = {}
@@ -108,6 +109,7 @@ func goto_scene(scene):
     get_tree().change_scene("res://"+scene)
 
 func load_scene(sceneLocation): #change this first, see if any conflicts
+	currentLocation = sceneLocation
 	var gameRoot = get_tree().get_root().get_node("world")
 #	
 	gameRoot.get_node("player").queue_free()
