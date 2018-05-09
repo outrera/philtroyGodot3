@@ -3,76 +3,21 @@ extends Node
 var gameday
 var weekday
 var timeofday
-var scene
-var currentLocation
 
 var tempData = {}
 var sceneData = {}
-var eventOverride = {}
+var gameData = {}
+var eventData = {}
+var charData = {}
 var gameVars = {}
-#ex:
-#var gameVars = {
-#	"event": "non",
-#	"eventDay": 23,
-#	"eventTOD": "evening"
-#}
 
 var blocking_ui = false
 var is_moving = false
 
-#let´s make this a json loaded at ready, so as to not clutter the script
-var gameData = {
-	"month": [
-		"january",
-		"february",
-		"march",
-		"april",
-		"may",
-		"june",
-		"july",
-		"august",
-		"september",
-		"oktober",
-		"november",
-		"december",
-	],
-	"weekday": [
-		"monday",
-		"tuesday",
-		"wednesday",
-		"thursday",
-		"friday",
-		"saturday",
-		"sunday"], 
-	"time": [
-		"morning",
-		"noon",
-		"evening",
-		"night"
-	], 
-}
-
-var eventData = {}
-
-var charData = {
-	"ellie": {
-		"dialogue": "res://data/dialogue/ellie.json", 
-		"branch": "a",
-		"relationship": "2"},
-	"bobby": {
-		"dialogue": "res://data/dialogue/bobby.json", 
-		"branch": "a",
-		"relationship": "2"},
-	"sam": {
-		"dialogue": "res://data/dialogue/sam.json", 
-		"branch": "a",
-		"relationship": "2"}
-	}
-
-var locations = [
-	"schoolyard",
-	"schoolhall",
-	"myroom"]
+var scene
+var locations = []
+var currentLocation
+var eventOverride = {}
 	
 var playerScript = preload("res://data/scripts/player.gd")
 
@@ -82,7 +27,9 @@ func _ready():
 	set_process(true)
 	
 	eventData = load_json("res://data/events/gameEvents.json")
-	eventOverride = null
+	gameData = load_json("res://data/global/game_data.json")
+	charData = load_json("res://data/global/character_data.json")
+	locations = load_json("res://data/global/location_data.json")
 	
 	for location in locations:
 		sceneData[location] = load_json("res://data/locations/location_" + location + ".json")
@@ -90,6 +37,8 @@ func _ready():
 	gameday = 1
 	weekday = "monday"
 	timeofday = "morning"
+	
+	eventOverride = null
 
 func _process(delta):
 	if Input.is_action_pressed("ui_reload"):

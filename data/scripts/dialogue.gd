@@ -136,16 +136,15 @@ func _pick_reply(n):
 				global.charData[affected]["dialogue"] = replies[n]["progress"][item]["next"]
 			else:
 				global.charData[affected]["branch"] = replies[n]["progress"][item]["next"]
-	
-	#if "exit" is "false" take value from "next" and start next dialogue
+
+#   OLD CODE - keeping around until I´m sure the below code does not cause unforseen issues :P 
 #	if replies[n]["exit"] != "true":
 #		charData[npc]["branch"] = replies[n]["next"]
 #		pageIndex = 0
 #		print(global.sceneData)
 #		start_dialogue(charData[npc]["dialogue"])
 
-#	TODO: replace the above with this block. Make sure code is up to date/sane. check info = "godot thoughts aug 29.txt"
-#	ISSUE: gives error when clicking on dialogue reply. I´m clearly not using the json correctly here, investigate	
+	#if "exit" is "false" take value from "next" and start next dialogue
 	if replies[n]["exit"] != "true":
 		if replies[n]["next"].ends_with(".json"):
 			global.sceneData[global.currentLocation][global.weekday][global.timeofday]["actors"][npc]["dialogue"] = replies[n]["next"]
@@ -207,6 +206,7 @@ func start_dialogue(json):
 	#0 is variable to check for
 	#1 is value of variable, and if that variable corresponds to gameVars, set 2 as current dialogue
 	#2 is target conversation (dialogue or branch)
+	#this block of code check if a condition in gameVars is met, and changes dialogue accordingly if it is
 	if branch.has("condition"):
 		for item in branch["condition"]:
 			if global.gameVars.has(branch["condition"][item][0]):
