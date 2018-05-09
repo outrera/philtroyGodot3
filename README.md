@@ -9,13 +9,13 @@ https://trello.com/b/MLCxDdmA/philemon-troy-and-the-student-body-pageant-roadmap
 
 Near future plans:
 
-Create a modular game engine (DIE - or Dynamic Interactive Engine) that can be extended with addons, and easily used for future games
+- Create a modular game engine (DIE - or Dynamic Interactive Engine) that can be extended with addons, and easily used for future games
 
-Finish the dialogue and event system and make it an addon (ADDS - or Ape´s Dynamic Dialogue System)
+- Finish the dialogue and event system and make it an addon (ADDS - or Ape´s Dynamic Dialogue System)
 
-Finish the dialogue editor (DIElog), because writing json-files for hand is killing me...
+- Finish the dialogue editor (DIElog), because writing json-files for hand is killing me...
 
-Create a bunch of json-files to test and validate the new dialogue and event functionality, find and eliminate weaknesses.
+- Create a bunch of json-files to test and validate the new dialogue and event functionality, find and eliminate weaknesses.
 
 Actual game content will have to wait until at least june, as I expand and polish functionality that will enable my vision. Maybe create
 a mini-game as a proof-of-concept? Also an important way to test Blender-Godot pipeline, using some simple environment and character models.
