@@ -1,9 +1,8 @@
-# philtroyGodot3
-Godot 3 conversion of Phil Troy
+# Philemon Troy and the Student Body Pageant
 
 Philemon Troy and the Student Body Pageant is a point´n´click adventure/dating game in the vein of Leisure suit Larry. The version on GitHub will be censored to comply with TOS, the code and functionality will be the same as the full version.
 
-Disclaimer: THIS IS A VERY BAREBONES GAME PROTYPE RIGHT NOW. DON`T DOWNLOAD THIS EXPECTING A GAME ANYWHERE NEAR COMPLETION. It´s basically a cube gliding around on a board, talking to other cubes :) Project is currently on a bit of a backburner, developmentwise, waiting for Godot 3.0 docs to mature, so I can migrate the project. The code might still be interesting to you, if you want to make the same type of game, hence why I´m publishing it. To follow progress on art, go here: http://cultofape.com/album/?cws_album=6468617191931709873&cws_album_title=Phil%20Troy%20WIP
+Disclaimer: THIS IS A VERY BAREBONES GAME PROTYPE RIGHT NOW. DON`T DOWNLOAD THIS EXPECTING A GAME ANYWHERE NEAR COMPLETION. It´s basically a cube gliding around on a board, talking to other cubes :) To follow progress on art, go here: http://cultofape.com/album/?cws_album=6468617191931709873&cws_album_title=Phil%20Troy%20WIP
 
 This Trello board is updated more frequently, if you want to track progress towards next release:
 https://trello.com/b/MLCxDdmA/philemon-troy-and-the-student-body-pageant-roadmap
@@ -17,6 +16,20 @@ Create a bunch of json-files to test and validate the new dialogue and event fun
 
 Actual game content will have to wait until at least june, as I expand and polish functionality that will enable my vision. Maybe create
 a mini-game as a proof-of-concept? Also an important way to test Blender-Godot pipeline, using some simple environment and character models.
+
+Some Google docs I´ve made to document code design:
+
+Dynamic Interactive Engine (DIE)
+https://docs.google.com/document/d/136s9Z87z-jAxGXymQQ2kSILJYRvtA6NvT7QcSoOp5Wk/edit?usp=sharing
+
+Ape´s Dynamic Dialogue System (ADDS) – code document
+https://docs.google.com/document/d/1Fk2ibcrorJhD-_Byec9JRJN6CGQvNFMw9pUllVV94jA/edit?usp=sharing
+
+Ape´s Dynamic Dialogue System (ADDS) – dialogue JSON structure
+https://docs.google.com/document/d/10JHm-Dq9DuULpQpPpKmPTZXTJBKEw0tCD9WauN_B3RE/edit?usp=sharing
+
+DIElog – json based dialogue creator for the Dynamic Interactive Engine (DIE)
+https://docs.google.com/document/d/1tceOjT8dSLx4fnuGmwi-P6tpnC-DcvGTiLniVz_p2RI/edit?usp=sharing
 
 Updates:
 =======
