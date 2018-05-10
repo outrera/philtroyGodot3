@@ -50,6 +50,7 @@ func event_handler():
 
 func _input(event):
 	if replyMouseover == "FALSE":
+		#TODO/BUG: make so these aren´t triggered unless dialogue is actually open. Will crash Godot.
 		if event.is_action_pressed("ui_down") and replyCurrent != numReplies-1:
 			replyCurrent += 1
 			for reply in replyContainer:
