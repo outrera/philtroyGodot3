@@ -39,6 +39,25 @@ https://docs.google.com/document/d/1zAa7h7q9aPP0W0raJch4cWq2L_ZlXmSJlG9WdL8L0OI/
 
 Updates:
 =======
+2017/05/10
+
+Input Map stuff
+
+1 - Opens inventory
+2-  Opens Phone
+3 - Opens Map
+ESC - Opens Game Settings Dialogue (not finished)
+
+had to move this functionality into functions, to not duplicate code.
+
+TODO: pressing the same button again should toggle, not move overlay further upwards.
+
+There is no way currently to close the game settings UI.
+
+Found bug: pressing ui direction keys will crash Godot if outside dialogue
+
+Most of the day spent designing UX for the dialogue editor (started coding basic functionality). Is a separate project (not on GitHub yet)
+
 2017/05/09
 
 1.dialogue now dynamically loads branch or json-file depending on what´s stored in "next"
