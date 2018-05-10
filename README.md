@@ -31,13 +31,27 @@ https://docs.google.com/document/d/1Fk2ibcrorJhD-_Byec9JRJN6CGQvNFMw9pUllVV94jA/
 Ape´s Dynamic Dialogue System (ADDS) – dialogue JSON structure
 https://docs.google.com/document/d/10JHm-Dq9DuULpQpPpKmPTZXTJBKEw0tCD9WauN_B3RE/edit?usp=sharing
 
-DIElog – json based dialogue creator for the Dynamic Interactive Engine (DIE)
+DIE.log – json based dialogue creator for the Dynamic Interactive Engine (DIE)
 https://docs.google.com/document/d/1tceOjT8dSLx4fnuGmwi-P6tpnC-DcvGTiLniVz_p2RI/edit?usp=sharing
+
+DIE.log - UX Design Document
+https://docs.google.com/document/d/1zAa7h7q9aPP0W0raJch4cWq2L_ZlXmSJlG9WdL8L0OI/edit?usp=sharing
 
 Updates:
 =======
-
 2017/05/09
+
+1.dialogue now dynamically loads branch or json-file depending on what´s stored in "next"
+
+if replies[n]["next"].ends_with(".json")
+
+then load the new json-file specified and restart the dialogue
+
+if not, just load the branch from the existing json-file
+
+2. Converted some global dictionaries into json-files, to be loaded at ready()
+
+2017/05/08
 
 Started converting the game to the Godot 3 API last week (for the fourth time..), and finished on monday of this week. After having
 successfully restored all functionality from the 2.1 version I then started refactoring the code in a couple of ways:
