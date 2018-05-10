@@ -31,8 +31,11 @@ https://docs.google.com/document/d/1Fk2ibcrorJhD-_Byec9JRJN6CGQvNFMw9pUllVV94jA/
 Ape´s Dynamic Dialogue System (ADDS) – dialogue JSON structure
 https://docs.google.com/document/d/10JHm-Dq9DuULpQpPpKmPTZXTJBKEw0tCD9WauN_B3RE/edit?usp=sharing
 
-DIElog – json based dialogue creator for the Dynamic Interactive Engine (DIE)
+DIE.log – json based dialogue creator for the Dynamic Interactive Engine (DIE)
 https://docs.google.com/document/d/1tceOjT8dSLx4fnuGmwi-P6tpnC-DcvGTiLniVz_p2RI/edit?usp=sharing
+
+DIE.log - UX Design Document
+https://docs.google.com/document/d/1zAa7h7q9aPP0W0raJch4cWq2L_ZlXmSJlG9WdL8L0OI/edit?usp=sharing
 
 Updates:
 =======
