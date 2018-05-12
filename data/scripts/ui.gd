@@ -69,45 +69,39 @@ func exit_map():
 
 func ui_exit():
 	if phoneOpen == true:	
-		global.blocking_ui = false
-		phoneOpen = false
-		effectBlurUI.interpolate_property(screenBlur, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
-		var positionDelta = phoneHidePos - get_node("phone_ui").position
-		ui_hide_show(get_node("phone_ui"), Vector2(0,positionDelta.y), Tween.TRANS_QUAD, Tween.EASE_OUT)
-		toggle_ui_icons("show")
+		hide_phone_ui()
 	if schoolbagOpen == true:	
-		global.blocking_ui = false
-		schoolbagOpen = false
-		effectBlurUI.interpolate_property(screenBlur, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
-		var positionDelta = schoolbagHidePos - get_node("schoolbag_ui").position
-		ui_hide_show(get_node("schoolbag_ui"), Vector2(0,positionDelta.y), Tween.TRANS_QUAD, Tween.EASE_OUT)
-		toggle_ui_icons("show")
+		hide_inventory_ui()
 	if calendarOpen == true:	
-		global.blocking_ui = false
-		calendarOpen = false
-		effectBlurUI.interpolate_property(screenBlur, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
-		var positionDelta = calendarHidePos - get_node("calendar_ui").get_position()
-		ui_hide_show(get_node("calendar_ui"), Vector2(0,positionDelta.y), Tween.TRANS_QUAD, Tween.EASE_OUT)
-		toggle_ui_icons("show")
+		hide_calendar_ui()
 	if mapOpen == true:	
-		global.blocking_ui = false
-		mapOpen = false
-		effectBlurUI.interpolate_property(screenBlur, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
-		var positionDelta = calendarHidePos - get_node("map_ui").get_position()
-		ui_hide_show(get_node("map_ui"), Vector2(0,positionDelta.y), Tween.TRANS_QUAD, Tween.EASE_OUT)
-		toggle_ui_icons("show")
-
+		hide_map_ui()
+	if gameSettingsOpen == true:
+		hide_game_settings()
+		
 func _input(event):
 	#these need checks so you can´t press the same key twice, or the overlays will continue upwards
 	#pressing a second time should hide the overlays again 
-	if event.is_action_pressed("ui_exit") and mapOpen!=true and phoneOpen!=true and schoolbagOpen!=true:
-		toggle_game_settings()
+	if event.is_action_pressed("ui_exit"):
+		if global.blocking_ui!=true:
+			if global.dialogue_running!=true:
+				if gameSettingsOpen!=true:
+					toggle_game_settings()
 	if event.is_action_pressed("ui_inventory"):
-		toggle_ui_inventory()
+		if schoolbagOpen!=true:
+			toggle_ui_inventory()
+		else:
+			hide_inventory_ui()
 	if event.is_action_pressed("ui_mobile"):
-		toggle_ui_mobile()
+		if phoneOpen!=true:
+			toggle_ui_mobile()
+		else:
+			hide_phone_ui()
 	if event.is_action_pressed("ui_map"):
-		toggle_ui_map()
+		if mapOpen!=true:
+			toggle_ui_map()
+		else:
+			hide_map_ui()
 	if hoverNode:
 		if hoverNode.get_name() == "phone":	
 			if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():
@@ -260,12 +254,57 @@ func toggle_ui_map():
 	ui_hide_show(get_node("map_ui"), Vector2(0,-1000), Tween.TRANS_QUAD, Tween.EASE_OUT)
 	
 func toggle_game_settings():
+	var mytween = get_parent().get_node("effects/tween")
 	global.blocking_ui = true
 	gameSettingsOpen = true
 	var gameSettings = gameSettingsUI.instance()
+	gameSettings.name = "game_settings"
 	gameSettings.set_position(Vector2(400,300))
 	self.add_child(gameSettings)
+	print($game_settings)
+	mytween.interpolate_property($game_settings, "modulate", Color(1,1,1,0), Color(1,1,1,1), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 #	effectBlurUI.interpolate_property(gameSettings, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	toggle_ui_icons("hide")
 #	ui_hide_show(gameSettings, Vector2(0,-1000), Tween.TRANS_QUAD, Tween.EASE_OUT)
+
+func hide_phone_ui():
+		global.blocking_ui = false
+		phoneOpen = false
+		effectBlurUI.interpolate_property(screenBlur, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+		var positionDelta = phoneHidePos - get_node("phone_ui").position
+		ui_hide_show(get_node("phone_ui"), Vector2(0,positionDelta.y), Tween.TRANS_QUAD, Tween.EASE_OUT)
+		toggle_ui_icons("show")
+
+func hide_inventory_ui():
+	global.blocking_ui = false
+	schoolbagOpen = false
+	effectBlurUI.interpolate_property(screenBlur, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	var positionDelta = schoolbagHidePos - get_node("schoolbag_ui").position
+	ui_hide_show(get_node("schoolbag_ui"), Vector2(0,positionDelta.y), Tween.TRANS_QUAD, Tween.EASE_OUT)
+	toggle_ui_icons("show")
+
+func hide_map_ui():
+	global.blocking_ui = false
+	mapOpen = false
+	effectBlurUI.interpolate_property(screenBlur, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	var positionDelta = calendarHidePos - get_node("map_ui").get_position()
+	ui_hide_show(get_node("map_ui"), Vector2(0,positionDelta.y), Tween.TRANS_QUAD, Tween.EASE_OUT)
+	toggle_ui_icons("show")
+	
+func hide_calendar_ui():
+	global.blocking_ui = false
+	calendarOpen = false
+	effectBlurUI.interpolate_property(screenBlur, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	var positionDelta = calendarHidePos - get_node("calendar_ui").get_position()
+	ui_hide_show(get_node("calendar_ui"), Vector2(0,positionDelta.y), Tween.TRANS_QUAD, Tween.EASE_OUT)
+	toggle_ui_icons("show")
+
+func hide_game_settings():
+	global.blocking_ui = false
+	gameSettingsOpen = false
+	var mytween = get_parent().get_node("effects/tween")
+	mytween.interpolate_property($game_settings, "modulate", Color(1,1,1,1), Color(1,1,1,0), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+#	$settings.queue_free()
+#	$settings.name = "deleted"
+	toggle_ui_icons("show")
 

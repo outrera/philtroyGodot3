@@ -11,6 +11,7 @@ var eventData = {}
 var charData = {}
 var gameVars = {}
 
+var dialogue_running
 var blocking_ui = false
 var is_moving = false
 
@@ -25,6 +26,8 @@ onready var sceneCol = get_tree().get_root().get_node("world").get_node("scene")
 
 func _ready():
 	set_process(true)
+	
+	dialogue_running = false
 	
 	eventData = load_json("res://data/events/gameEvents.json")
 	gameData = load_json("res://data/global/game_data.json")

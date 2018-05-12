@@ -49,7 +49,7 @@ func event_handler():
 			pass
 
 func _input(event):
-	if replyMouseover == "FALSE":
+	if global.dialogue_running == true and replyMouseover == "FALSE":
 		#TODO/BUG: make so these aren´t triggered unless dialogue is actually open. Will crash Godot.
 		if event.is_action_pressed("ui_down") and replyCurrent != numReplies-1:
 			replyCurrent += 1
@@ -61,23 +61,26 @@ func _input(event):
 			for reply in replyContainer:
 				$reply.add_color_override("font_color", Color(1,1,1))
 			$replyContainer[replyCurrent].add_color_override("font_color", Color(1,0,1))
-		if event.is_action_pressed("ui_exit"):
-			if replyCurrent != -1:
-				_pick_reply(replyCurrent)
-			if pageIndex < numDialogueText-1:    
-				pageIndex += 1
-				start_dialogue(charData[npc]["dialogue"])
-			if pageIndex < numDialogueText-1:    
-				pageIndex += 1
-				start_dialogue(charData[npc]["dialogue"])
-			if pageIndex == numDialogueText-1 and numReplies == 0:
-				kill_dialogue()
+		#TODO: not working like it should. Look over, old code.
+#		if event.is_action_pressed("ui_exit"):
+#			if replyCurrent != -1:
+#				_pick_reply(replyCurrent)
+#			if pageIndex < numDialogueText-1:    
+#				pageIndex += 1
+#				start_dialogue(charData[npc]["dialogue"])
+#			if pageIndex < numDialogueText-1:    
+#				pageIndex += 1
+#				start_dialogue(charData[npc]["dialogue"])
+#			if pageIndex == numDialogueText-1 and numReplies == 0:
+#				kill_dialogue()
 			
 func _dialogue_clicked():
 	if pageIndex < numDialogueText-1:    
 		pageIndex += 1
 		start_dialogue(charData[npc]["dialogue"])
+	#if there are no replies - exit dialogue
 	if pageIndex == numDialogueText-1 and numReplies == 0:
+		global.dialogue_running = false
 		kill_dialogue()
 
 func _talk_to(identity, clickPos):
@@ -164,6 +167,7 @@ func _pick_reply(n):
 		pageIndex = 0
 		charData[npc]["branch"] = replies[n]["next"]
 		effectBlurUI.interpolate_property(screenBlur, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+		global.dialogue_running = false
 		kill_dialogue()
 		get_parent().get_node("ui").toggle_ui_icons("show")
 
@@ -177,6 +181,8 @@ func _reply_mouseover(mouseover, reply):
 
 func start_dialogue(json):
 #	TODO: when calling a dialogue, call start_dialogue("ellie_date_0" + str(global.chardata["relationship"]) + ".json")
+	global.dialogue_running = true
+	print(global.dialogue_running)
 	talkData = global.load_json(json)
 	
 	branch = talkData["dialogue"][charData[npc]["branch"]]
@@ -230,6 +236,8 @@ func start_dialogue(json):
 		for n in range(0,numReplies):
 			replyContainer.push_back("ui_dialogue/reply" + str(n+1))
 			get_node("ui_dialogue/reply" + str(n+1)).set_text(replies[n]["reply"])
+			
+	print(global.dialogue_running)
 		
 func setup_dialogue_window():
 		
@@ -239,7 +247,7 @@ func setup_dialogue_window():
 	#add one element "reply" per number of replies in talkData
 	for n in range(numReplies):
 		labels.push_back("reply" + str(n+1))
-		
+	
 	create_labels(labels)
 	
 	$"ui_dialogue/panel".set_size(Vector2(dialogBox.width, dialogBox.height + numReplies*30))

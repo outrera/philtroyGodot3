@@ -47,9 +47,7 @@ func connect():
 		object.connect("dialogue", get_node("dialogue"), "_talk_to")
 
 func _process(delta):
-	#if dialogue is running and we press ui_exit, exit dialogue and delete dialogue nodes
-	if Input.is_action_pressed("ui_exit"):
-		ui_exit()
+	pass
 
 func change_location(location):
 	global.scene = location
@@ -57,11 +55,6 @@ func change_location(location):
 	connect()
 	#issue with map scene changing is in ui_exit, sets global.blocking_ui = false
 	#find alternative solution
-
-func ui_exit():
-	#this should probably be done in dialogue.gd
-	if dialogueRunning == true:
-		kill_dialogue()
 
 func _input(event):
 	pass
