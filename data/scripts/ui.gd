@@ -130,13 +130,14 @@ func _input(event):
 								if month > 12:
 									month = 0
 						global.gameday += 1 # replace the above with this, remove day from global.gameData
+						global.month = global.gameData["month"][month]
 						global.weekday = global.gameData["weekday"][day]
 						global.timeofday = global.gameData["time"][time]
 						global.load_scene(global.scene)
 
 						get_parent().connect()
 
-						get_node("dateLabel").set_text(global.gameData.time[time] + ", " + global.gameData.weekday[day])		
+						get_node("dateLabel").set_text(global.gameData.time[time] + ", " + global.gameData.weekday[day] + ", " + global.gameData.month[month])		
 
 			if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT and event.is_pressed():
 				global.blocking_ui = true

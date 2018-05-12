@@ -22,14 +22,13 @@ onready var screenBlur = $"effects/blurfx"
 onready var viewsize = get_viewport().get_visible_rect().size
 
 func _ready():
-	
 	var cursor = load("res://data/graphics/cursor_default.png")
 	Input.set_custom_mouse_cursor(cursor)
 	
 	set_process(true)
 	set_process_input(true)
 		
-	$"ui/dateLabel".set_text(global.gameData.time[time] + ", " + global.gameData.weekday[day])
+	$"ui/dateLabel".set_text(global.gameData.time[time] + ", " + global.gameData.weekday[day] + ", " + global.gameData.month[month])	
 	
 	global.scene = "schoolyard"
 	#Why? WHY does the below affect rotation of the NPC if I remove it?!

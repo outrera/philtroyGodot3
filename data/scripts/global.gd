@@ -3,6 +3,7 @@ extends Node
 var gameday
 var weekday
 var timeofday
+var month
 
 var tempData = {}
 var sceneData = {}
@@ -40,6 +41,7 @@ func _ready():
 	gameday = 1
 	weekday = "monday"
 	timeofday = "morning"
+	month=7
 	
 	eventOverride = null
 
@@ -177,7 +179,7 @@ func load_scene(sceneLocation): #change this first, see if any conflicts
 				rot = location["actors"][name]["rot"]
 				object = load("res://data/objects/" + name + ".tscn")
 
-			object.set_pos(Vector3(pos.x, pos.y, pos.z))
+			object.set_position(Vector3(pos.x, pos.y, pos.z))
 			object.set_rotation(Vector3(rot.x,rot.y, rot.z))
 			object.set_name(name)
 			get_node("objects").add_child(object)
