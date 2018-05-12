@@ -1,5 +1,6 @@
 extends Node
 
+var day
 var gameday
 var weekday
 var timeofday
@@ -39,6 +40,7 @@ func _ready():
 		sceneData[location] = load_json("res://data/locations/location_" + location + ".json")
 	
 	gameday = 1
+	day= 1
 	weekday = "wednesday"
 	timeofday = "morning"
 	month=7

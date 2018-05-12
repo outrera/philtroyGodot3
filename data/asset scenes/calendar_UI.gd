@@ -13,18 +13,20 @@ func _ready():
 	var new_week = 0
 	var event_label
 
+	#setup the calendar header (monday, tuesday....)
 	for i in range(7):
 		offsetX = i*165
 		var node = header_node.instance()
 		node.set_name(global.gameData["weekday"][i])
-		node.set_position(Vector2(100 + offsetX,30 + offsetY))
+		node.set_position(Vector2(125 + offsetX,85 + offsetY))
 		self.add_child(node)
 		get_node(global.gameData["weekday"][i] +"/label").set_text(global.gameData["weekday"][i])
-		print(get_node(global.gameData["weekday"][i]).name)
-		
+#		print(get_node(global.gameData["weekday"][i]).name)
+	
+	#setup the calendar cells (where days and events are displayed)
 	for i in range(35):
 		event_label = ""
-		if i > offsetDay-2 and i<35-offsetDay:
+		if i > offsetDay-2 and i<30 + offsetDay - 1:
 			if global.eventData["date"].has(str(i-(offsetDay-2))):
 				current_month.push_back("event")
 				event_label = global.eventData["date"][str(i-(offsetDay-2))][0]["evening"]["event"]
@@ -36,17 +38,20 @@ func _ready():
 		offsetX = i*165 - new_week
 		var node = calendar_node.instance()
 		node.set_name(str(i))
-		node.set_position(Vector2(100 + offsetX,130 + offsetY))
+		node.set_position(Vector2(125 + offsetX,130 + offsetY))
 		self.add_child(node)
-		get_node(str(i)+"/label").set_text(event_label)
-		
+		if (i - (offsetDay-2)) > 0 and (i - (offsetDay-2)) < 31:
+			get_node(str(i)+"/label_day").set_text(str(i - (offsetDay-2)))
+			get_node(str(i)+"/label_event").set_text(event_label)
+		#this is just to test the color override. TODO: need to figure out how to check if calendar day is the same as global.gameDay
+		if global.day == i - (offsetDay-2):
+			get_node(str(i)+"/label_day").add_color_override("font_color", Color(1,0,0,1))
+		print(global.day)
+		print(i - (offsetDay-2))
 		if i==6 or i==13 or i==20 or i==27:
 			offsetY += 155
 			new_week += 1155
-		
-	print(current_month)
-	print(self.get_children())
-
+	
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.

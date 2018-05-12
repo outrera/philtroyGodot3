@@ -129,6 +129,7 @@ func _input(event):
 								month += 1
 								if month > 12:
 									month = 0
+						global.day = day
 						global.gameday += 1 # replace the above with this, remove day from global.gameData
 						global.month = global.gameData["month"][month]
 						global.weekday = global.gameData["weekday"][day]
