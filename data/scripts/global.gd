@@ -39,7 +39,7 @@ func _ready():
 		sceneData[location] = load_json("res://data/locations/location_" + location + ".json")
 	
 	gameday = 1
-	weekday = "monday"
+	weekday = "wednesday"
 	timeofday = "morning"
 	month=7
 	
