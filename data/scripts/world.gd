@@ -23,6 +23,9 @@ onready var viewsize = get_viewport().get_visible_rect().size
 
 func _ready():
 	
+	var cursor = load("res://data/graphics/cursor_default.png")
+	Input.set_custom_mouse_cursor(cursor)
+	
 	set_process(true)
 	set_process_input(true)
 		
