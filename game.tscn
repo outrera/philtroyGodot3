@@ -164,7 +164,7 @@ shader = SubResource( 11 )
 shader_param/amount = 4.0
 _sections_unfolded = [ "shader_param" ]
 
-[node name="world" type="Node" index="0"]
+[node name="world" type="Node"]
 script = ExtResource( 1 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
@@ -476,8 +476,6 @@ _sections_unfolded = [ "Visibility", "Z Index" ]
 [node name="calendar_ui" parent="ui" index="14" instance=ExtResource( 15 )]
 position = Vector2( 274.88, 1083.05 )
 z_index = 96
-audio_bus_override = false
-audio_bus_name = "Master"
 _sections_unfolded = [ "Z Index" ]
 
 [node name="cursor_default" type="Panel" parent="ui" index="15"]

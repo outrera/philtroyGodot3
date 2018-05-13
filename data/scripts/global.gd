@@ -12,6 +12,7 @@ var gameData = {}
 var eventData = {}
 var charData = {}
 var gameVars = {}
+var inventoryData = {}
 
 var dialogue_running
 var blocking_ui = false
@@ -31,6 +32,7 @@ func _ready():
 	
 	dialogue_running = false
 	
+	inventoryData = load_json("res://data/global/inventory_data.json")
 	eventData = load_json("res://data/events/gameEvents.json")
 	gameData = load_json("res://data/global/game_data.json")
 	charData = load_json("res://data/global/character_data.json")
@@ -41,7 +43,7 @@ func _ready():
 	
 	gameday = 1
 	day= 1
-	weekday = "wednesday"
+	weekday = "monday"
 	timeofday = "morning"
 	month=7
 	

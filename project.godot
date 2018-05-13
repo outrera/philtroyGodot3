@@ -151,6 +151,10 @@ ui_map={
  ]
 }
 
+[physics]
+
+3d/physics_engine="Bullet"
+
 [render]
 
 shadows_enabled=true

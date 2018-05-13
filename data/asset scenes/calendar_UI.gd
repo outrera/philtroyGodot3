@@ -33,7 +33,7 @@ func _ready():
 #				current_month[i-1] = "event"
 			else:
 				current_month.push_back("blank")
-				event_label = "blank"
+				event_label = ""
 #				current_month[i-1] = "blank"
 		offsetX = i*165 - new_week
 		var node = calendar_node.instance()

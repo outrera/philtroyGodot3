@@ -1,9 +1,7 @@
 extends Panel
 
-var txt = "test"
-
 func _ready():
-	$label_event.set_text(txt)
+	pass
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
