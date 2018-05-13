@@ -1,40 +1,26 @@
 {
-	"misc": [
-		"january",
-		"february",
-		"march",
-		"april",
-		"may",
-		"june",
-		"july",
-		"august",
-		"september",
-		"oktober",
-		"november",
-		"december"
-	],
 	"tools": [
-		"monday",
-		"tuesday",
-		"wednesday",
-		"thursday",
-		"friday",
-		"saturday",
-		"sunday"
+		{
+			"id" : "wrench",
+			"description" : "Just your everyday wrench"
+		}
 	],
 	"gifts": [
-		"morning",
-		"noon",
-		"evening",
-		"night"
+		{
+			"id" : "rose",
+			"description" : "a red rose"
+		}
 	],
-	"junk":{
-		"monday" : "1",
-		"tuesday" : "2",
-		"wednesday" : "3",
-		"thursday" : "4",
-		"friday" : "5",
-		"saturday" : "6",
-		"sunday" : "7"
-	}
+	"misc": [
+	],
+	"junk": [
+		{
+			"id" : "shoe",
+			"description" : "smells like someone puked in it"
+		},
+		{
+			"id" : "ticket",
+			"description" : "this ticket has great sentimental value to me"
+		}
+	]
 }

@@ -108,8 +108,8 @@ func load_scene(sceneLocation): #change this first, see if any conflicts
 	else:
 		pass
 		
-	if eventOverride == null: 
-		print("null")
+#	if eventOverride == null: 
+#		print("null")
 
 #   OLD CODE - keeping around until I´m sure the below code does not cause unforseen issues :P 
 #	if location.has("actors"):
@@ -136,7 +136,6 @@ func load_scene(sceneLocation): #change this first, see if any conflicts
 				rot = eventOverride["add"]["actor"][name]["rot"]
 				global.charData[name]["dialogue"] = eventOverride["add"]["actor"][name]["dialogue"]
 				actor = load("res://data/npcs/" + eventOverride["add"]["actor"][name]["animation"] + ".tscn")
-				print("eventOverride not null")
 
 			else:
 				pos = location["actors"][name]["pos"]
@@ -145,7 +144,6 @@ func load_scene(sceneLocation): #change this first, see if any conflicts
 				if location["actors"][name]["dialogue"] != "default":
 					global.charData[name]["dialogue"] = location["actors"][name]["dialogue"]
 				actor = load("res://data/npcs/" + name + ".tscn")
-				print("eventOverride null")
 
 			#TODO: pose > animation? For now use base animation.
 			actor = actor.instance()

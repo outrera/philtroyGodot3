@@ -18,8 +18,6 @@ func _on_map01_mouse_entered():
 	label.set_text("School yard")
 	label.set_position($map01.get_position() + Vector2(-30, 45))
 	global.blocking_ui = true
-#	print(sceneCol)
-#	sceneCol.disabled = true
 
 func _on_map01_mouse_exited():
 	map01.hide()

@@ -6,7 +6,7 @@ onready var header_node = load("res://data/asset scenes/header_node.tscn")
 
 func _ready():
 	$lbl_month.set_text(global.gameData.month[global.month])
-	print("start day is: " + str(global.month*30-30+1))
+#	print("start day is: " + str(global.month*30-30+1))
 	var offsetY = 0
 	var offsetX = 0
 	var offsetDay = int(global.gameData["daycount"][global.weekday])
@@ -46,8 +46,8 @@ func _ready():
 		#this is just to test the color override. TODO: need to figure out how to check if calendar day is the same as global.gameDay
 		if global.day == i - (offsetDay-2):
 			get_node(str(i)+"/label_day").add_color_override("font_color", Color(1,0,0,1))
-		print(global.day)
-		print(i - (offsetDay-2))
+#		print(global.day)
+#		print(i - (offsetDay-2))
 		if i==6 or i==13 or i==20 or i==27:
 			offsetY += 155
 			new_week += 1155
