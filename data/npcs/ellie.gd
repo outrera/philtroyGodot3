@@ -29,4 +29,4 @@ func _on_npc_trigger_input_event(camera, event, click_position, click_normal, sh
 			
 	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT:
 		if event.is_pressed():
-			emit_signal("look_at", "This is Ellie")
+			emit_signal("look_at", "That´s Ellie. She´s cute!")

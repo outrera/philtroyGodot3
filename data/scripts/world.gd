@@ -7,8 +7,9 @@ var isMoving = false
 var isRotating = false
 var noMoveOnClick = false
 var dialogueRunning = false
+var isLookingAt = false
 
-var day = 0
+var day = 2
 var time = 0
 var month = 6
 var dayOfMonth = 1
@@ -51,7 +52,7 @@ func connect():
 		object.connect("highlight", self, "_highlight")
 
 func _process(delta):
-	pass
+		lookatLabel.set_position($Camera.unproject_position((get_node("player").translation) + Vector3(0,4.6,0)) - Vector2(30,0))
 
 func change_location(location):
 	global.scene = location
@@ -64,7 +65,13 @@ func _input(event):
 	pass
 
 func _look_at(text):
-	lookatLabel.set_position($Camera.unproject_position($player.translation) - Vector2(60,230))
+	if text != "":
+		lookatLabel.get_node("bubble").show()
+		isLookingAt = false
+	else:
+		lookatLabel.get_node("bubble").hide()
+		isLookingAt = true
+	lookatLabel.add_color_override("font_color", Color(0,0,0,1))
 	lookatLabel.set_text(text)
 	
 func _highlight(text):

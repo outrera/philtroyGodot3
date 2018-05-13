@@ -1,27 +1,29 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://data/scripts/world.gd" type="Script" id=1]
 [ext_resource path="res://data/scripts/ui.gd" type="Script" id=2]
 [ext_resource path="res://data/fonts/segoe.font" type="BitmapFont" id=3]
-[ext_resource path="res://data/graphics/char1.png" type="Texture" id=4]
-[ext_resource path="res://data/graphics/char2.png" type="Texture" id=5]
-[ext_resource path="res://data/graphics/char3.png" type="Texture" id=6]
-[ext_resource path="res://data/graphics/settings.png" type="Texture" id=7]
-[ext_resource path="res://data/graphics/schoolbag.png" type="Texture" id=8]
-[ext_resource path="res://data/graphics/mobile.png" type="Texture" id=9]
-[ext_resource path="res://data/graphics/map.png" type="Texture" id=10]
-[ext_resource path="res://data/graphics/calendar_checked.png" type="Texture" id=11]
-[ext_resource path="res://data/asset scenes/phone_ui.tscn" type="PackedScene" id=12]
-[ext_resource path="res://data/asset scenes/schoolbag_UI.tscn" type="PackedScene" id=13]
-[ext_resource path="res://data/asset scenes/map_ui.tscn" type="PackedScene" id=14]
-[ext_resource path="res://data/asset scenes/calendar_UI.tscn" type="PackedScene" id=15]
-[ext_resource path="res://data/npcs/ellie.tscn" type="PackedScene" id=16]
-[ext_resource path="res://data/asset scenes/object.tscn" type="PackedScene" id=17]
-[ext_resource path="res://data/asset scenes/dialogue.tscn" type="PackedScene" id=18]
-[ext_resource path="res://data/scripts/scene.gd" type="Script" id=19]
-[ext_resource path="res://data/locations/schoolyard.tscn" type="PackedScene" id=20]
-[ext_resource path="res://data/graphics/white.png" type="Texture" id=21]
-[ext_resource path="res://data/asset scenes/player.tscn" type="PackedScene" id=22]
+[ext_resource path="res://data/fonts/ReemKufi-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://data/graphics/speech_bubble.png" type="Texture" id=5]
+[ext_resource path="res://data/graphics/char1.png" type="Texture" id=6]
+[ext_resource path="res://data/graphics/char2.png" type="Texture" id=7]
+[ext_resource path="res://data/graphics/char3.png" type="Texture" id=8]
+[ext_resource path="res://data/graphics/settings.png" type="Texture" id=9]
+[ext_resource path="res://data/graphics/schoolbag.png" type="Texture" id=10]
+[ext_resource path="res://data/graphics/mobile.png" type="Texture" id=11]
+[ext_resource path="res://data/graphics/map.png" type="Texture" id=12]
+[ext_resource path="res://data/graphics/calendar_checked.png" type="Texture" id=13]
+[ext_resource path="res://data/asset scenes/phone_ui.tscn" type="PackedScene" id=14]
+[ext_resource path="res://data/asset scenes/schoolbag_UI.tscn" type="PackedScene" id=15]
+[ext_resource path="res://data/asset scenes/map_ui.tscn" type="PackedScene" id=16]
+[ext_resource path="res://data/asset scenes/calendar_UI.tscn" type="PackedScene" id=17]
+[ext_resource path="res://data/npcs/ellie.tscn" type="PackedScene" id=18]
+[ext_resource path="res://data/asset scenes/object.tscn" type="PackedScene" id=19]
+[ext_resource path="res://data/asset scenes/dialogue.tscn" type="PackedScene" id=20]
+[ext_resource path="res://data/scripts/scene.gd" type="Script" id=21]
+[ext_resource path="res://data/locations/schoolyard.tscn" type="PackedScene" id=22]
+[ext_resource path="res://data/graphics/white.png" type="Texture" id=23]
+[ext_resource path="res://data/asset scenes/player.tscn" type="PackedScene" id=24]
 
 [sub_resource type="Environment" id=1]
 
@@ -102,51 +104,61 @@ adjustment_contrast = 1.0
 adjustment_saturation = 1.0
 _sections_unfolded = [ "Ambient Light", "Background", "Fog", "SSAO" ]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="DynamicFont" id=2]
 
-custom_solver_bias = 0.0
-radius = 64.6215
+size = 15
+outline_size = 0
+outline_color = Color( 1, 1, 1, 1 )
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 4 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Resource", "Settings" ]
 
 [sub_resource type="CircleShape2D" id=3]
 
 custom_solver_bias = 0.0
-radius = 61.0041
+radius = 64.6215
 
 [sub_resource type="CircleShape2D" id=4]
 
 custom_solver_bias = 0.0
-radius = 64.1907
+radius = 61.0041
 
 [sub_resource type="CircleShape2D" id=5]
 
 custom_solver_bias = 0.0
-radius = 63.1471
+radius = 64.1907
 
 [sub_resource type="CircleShape2D" id=6]
 
 custom_solver_bias = 0.0
-radius = 56.4041
+radius = 63.1471
 
 [sub_resource type="CircleShape2D" id=7]
 
 custom_solver_bias = 0.0
-radius = 53.0022
+radius = 56.4041
 
 [sub_resource type="CircleShape2D" id=8]
 
 custom_solver_bias = 0.0
-radius = 47.2968
+radius = 53.0022
 
 [sub_resource type="CircleShape2D" id=9]
 
 custom_solver_bias = 0.0
+radius = 47.2968
+
+[sub_resource type="CircleShape2D" id=10]
+
+custom_solver_bias = 0.0
 radius = 52.1685
 
-[sub_resource type="PlaneShape" id=10]
+[sub_resource type="PlaneShape" id=11]
 
 plane = Plane( 0, 1, 0, 0 )
 
-[sub_resource type="Shader" id=11]
+[sub_resource type="Shader" id=12]
 
 code = "shader_type canvas_item;
 
@@ -157,10 +169,10 @@ void fragment() {
 	COLOR.rgb = textureLod(SCREEN_TEXTURE,SCREEN_UV,amount).rgb;
 }"
 
-[sub_resource type="ShaderMaterial" id=12]
+[sub_resource type="ShaderMaterial" id=13]
 
 render_priority = 0
-shader = SubResource( 11 )
+shader = SubResource( 12 )
 shader_param/amount = 4.0
 _sections_unfolded = [ "shader_param" ]
 
@@ -308,11 +320,18 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 0
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = SubResource( 2 )
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts" ]
+
+[node name="bubble" type="Sprite" parent="ui/lookatLabel" index="0"]
+visible = false
+position = Vector2( 74.7369, 17.8947 )
+z_index = -99
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Z Index" ]
 
 [node name="char1" type="Area2D" parent="ui" index="4"]
 editor/display_folded = true
@@ -327,11 +346,11 @@ audio_bus_name = "Master"
 
 [node name="Sprite" type="Sprite" parent="ui/char1" index="0"]
 position = Vector2( 0.059082, -1.54956 )
-texture = ExtResource( 4 )
+texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ui/char1" index="1"]
 position = Vector2( -2.55891, 0.235825 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="char2" type="Area2D" parent="ui" index="5"]
 editor/display_folded = true
@@ -346,11 +365,11 @@ audio_bus_name = "Master"
 
 [node name="Sprite" type="Sprite" parent="ui/char2" index="0"]
 position = Vector2( -2.88672, -1.29428 )
-texture = ExtResource( 5 )
+texture = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ui/char2" index="1"]
 position = Vector2( -1.09167, 0.598423 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="char3" type="Area2D" parent="ui" index="6"]
 editor/display_folded = true
@@ -365,11 +384,11 @@ audio_bus_name = "Master"
 
 [node name="Sprite" type="Sprite" parent="ui/char3" index="0"]
 position = Vector2( 72.8421, 131.84 )
-texture = ExtResource( 6 )
+texture = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ui/char3" index="1"]
 position = Vector2( 73.8691, 134.445 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="settings" type="Area2D" parent="ui" index="7"]
 editor/display_folded = true
@@ -384,11 +403,11 @@ audio_bus_name = "Master"
 
 [node name="Sprite" type="Sprite" parent="ui/settings" index="0"]
 position = Vector2( -3.73492, 1.64922 )
-texture = ExtResource( 7 )
+texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ui/settings" index="1"]
 position = Vector2( -2.99091, 0.0382233 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="schoolbag" type="Area2D" parent="ui" index="8" groups=[
 "UI_icons",
@@ -406,11 +425,11 @@ _sections_unfolded = [ "Collision", "Pickable" ]
 
 [node name="Sprite" type="Sprite" parent="ui/schoolbag" index="0"]
 position = Vector2( 579.032, 463.226 )
-texture = ExtResource( 8 )
+texture = ExtResource( 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ui/schoolbag" index="1"]
 position = Vector2( 575.795, 466.592 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="phone" type="Area2D" parent="ui" index="9" groups=[
 "UI_icons",
@@ -428,11 +447,11 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="ui/phone" index="0"]
 position = Vector2( 652.041, 526.164 )
-texture = ExtResource( 9 )
+texture = ExtResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ui/phone" index="1"]
 position = Vector2( 650.415, 519.668 )
-shape = SubResource( 7 )
+shape = SubResource( 8 )
 
 [node name="map" type="Area2D" parent="ui" index="10" groups=[
 "UI_icons",
@@ -450,11 +469,11 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="ui/map" index="0"]
 position = Vector2( 568.962, 589.103 )
-texture = ExtResource( 10 )
+texture = ExtResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ui/map" index="1"]
 position = Vector2( 565.873, 587.915 )
-shape = SubResource( 8 )
+shape = SubResource( 9 )
 
 [node name="calendar" type="Area2D" parent="ui" index="11" groups=[
 "UI_icons",
@@ -470,30 +489,30 @@ audio_bus_name = "Master"
 
 [node name="Sprite" type="Sprite" parent="ui/calendar" index="0"]
 position = Vector2( 1815.76, 997.246 )
-texture = ExtResource( 11 )
+texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ui/calendar" index="1"]
 position = Vector2( 1821.16, 1004 )
-shape = SubResource( 9 )
+shape = SubResource( 10 )
 
-[node name="phone_ui" parent="ui" index="12" instance=ExtResource( 12 )]
+[node name="phone_ui" parent="ui" index="12" instance=ExtResource( 14 )]
 z_index = 99
 audio_bus_override = false
 audio_bus_name = "Master"
 _sections_unfolded = [ "Z Index" ]
 
-[node name="schoolbag_ui" parent="ui" index="13" instance=ExtResource( 13 )]
+[node name="schoolbag_ui" parent="ui" index="13" instance=ExtResource( 15 )]
 position = Vector2( 666.235, 1087.7 )
 z_index = 98
 _sections_unfolded = [ "Z Index" ]
 
-[node name="map_ui" parent="ui" index="14" instance=ExtResource( 14 )]
+[node name="map_ui" parent="ui" index="14" instance=ExtResource( 16 )]
 position = Vector2( 209.654, 1078.39 )
 scale = Vector2( 1.5, 1.6 )
 z_index = 97
 _sections_unfolded = [ "Visibility", "Z Index" ]
 
-[node name="calendar_ui" parent="ui" index="15" instance=ExtResource( 15 )]
+[node name="calendar_ui" parent="ui" index="15" instance=ExtResource( 17 )]
 position = Vector2( 274.88, 1083.05 )
 z_index = 96
 _sections_unfolded = [ "Z Index" ]
@@ -515,15 +534,15 @@ _sections_unfolded = [ "Rect" ]
 
 [node name="npcs" type="Node" parent="." index="4"]
 
-[node name="npc" parent="npcs" index="0" instance=ExtResource( 16 )]
+[node name="npc" parent="npcs" index="0" instance=ExtResource( 18 )]
 
 [node name="objects" type="Node" parent="." index="5"]
 editor/display_folded = true
 
-[node name="object" parent="objects" index="0" instance=ExtResource( 17 )]
+[node name="object" parent="objects" index="0" instance=ExtResource( 19 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.122, 1.70829, 0 )
 
-[node name="dialogue" parent="." index="6" instance=ExtResource( 18 )]
+[node name="dialogue" parent="." index="6" instance=ExtResource( 20 )]
 editor/display_folded = true
 z_index = 95
 _sections_unfolded = [ "Z Index" ]
@@ -551,23 +570,23 @@ reverb_bus_enable = false
 reverb_bus_name = "Master"
 reverb_bus_amount = 0.0
 reverb_bus_uniformity = 0.0
-script = ExtResource( 19 )
+script = ExtResource( 21 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="col" type="CollisionShape" parent="scene" index="0"]
 transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
-shape = SubResource( 10 )
+shape = SubResource( 11 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 
-[node name="Area" parent="scene" index="1" instance=ExtResource( 20 )]
+[node name="Area" parent="scene" index="1" instance=ExtResource( 22 )]
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="effects" type="Node" parent="." index="8"]
 
 [node name="blurfx" type="TextureRect" parent="effects" index="0"]
 show_behind_parent = true
-material = SubResource( 12 )
+material = SubResource( 13 )
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -578,7 +597,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 2
-texture = ExtResource( 21 )
+texture = ExtResource( 23 )
 expand = true
 stretch_mode = 0
 _sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Hint", "Margin", "Material", "Mouse", "Rect", "Size Flags", "Visibility" ]
@@ -591,7 +610,7 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="player" parent="." index="9" instance=ExtResource( 22 )]
+[node name="player" parent="." index="9" instance=ExtResource( 24 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0621125, 0 )
 
 [node name="rotation_helper" parent="player" index="2"]

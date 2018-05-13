@@ -10,7 +10,7 @@ var blockingUI = false
 var dialogueRunning = false
 var noMoveOnClick = false
 
-var day = 0
+var day = 2
 var time = 0
 var month = 6
 var dayOfMonth = 1
