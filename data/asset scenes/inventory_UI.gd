@@ -35,34 +35,54 @@ func pop_inventory():
 			item.set_name("deleted")
 		
 		if tab_tab == 1:
+			var row = 0
+			var rtrn = 0
 			for i in range(global.inventoryData.tools.size()):
+				if i == 5 or i == 10 or i == 15 or i == 20 or i == 25 or i == 30:
+					row += 64
+					rtrn += 350
 				var node = inventory_node.instance()
 				node.set_name(global.inventoryData.tools[i].id)
-				node.set_position(Vector2(160 + i*70, 260))
+				node.set_position(Vector2(160 + i*70 - rtrn, 260 + row))
 				$inventory_items.add_child(node)
 				var image = load("res://data/graphics/inv_" + global.inventoryData.tools[i].id + ".png")
 				$inventory_items.get_node(global.inventoryData.tools[i].id).set_texture(image)
 		elif tab_tab == 2:
+			var row = 0
+			var rtrn = 0
 			for i in range(global.inventoryData.gifts.size()):
+				if i == 5 or i == 10 or i == 15 or i == 20 or i == 25 or i == 30:
+					row += 64
+					rtrn += 350
 				var node = inventory_node.instance()
 				node.set_name(global.inventoryData.gifts[i].id)
-				node.set_position(Vector2(160 + i*70, 260))
+				node.set_position(Vector2(160 + i*70 - rtrn, 260 + row))
 				$inventory_items.add_child(node)
 				var image = load("res://data/graphics/inv_" + global.inventoryData.gifts[i].id + ".png")
 				$inventory_items.get_node(global.inventoryData.gifts[i].id).set_texture(image)
 		elif tab_tab == 3:
+			var row = 0
+			var rtrn = 0
 			for i in range(global.inventoryData.misc.size()):
+				if i == 5 or i == 10 or i == 15 or i == 20 or i == 25 or i == 30:
+					row += 64
+					rtrn += 350		
 				var node = inventory_node.instance()
 				node.set_name(global.inventoryData.misc[i].id)
-				node.set_position(Vector2(160 + i*70, 260))
+				node.set_position(Vector2(160 + i*70 - rtrn, 260 + row))
 				$inventory_items.add_child(node)
 				var image = load("res://data/graphics/inv_" + global.inventoryData.misc[i].id + ".png")
 				$inventory_items.get_node(global.inventoryData.misc[i].id).set_texture(image)
 		elif tab_tab == 4:
+			var row = 0
+			var rtrn = 0
 			for i in range(global.inventoryData.junk.size()):
+				if i == 5 or i == 10 or i == 15 or i == 20 or i == 25 or i == 30:
+					row += 64
+					rtrn += 350
 				var node = inventory_node.instance()
 				node.set_name(global.inventoryData.junk[i].id)
-				node.set_position(Vector2(160 + i*70, 260))
+				node.set_position(Vector2(160 + i*70 - rtrn, 260 + row))
 				$inventory_items.add_child(node)
 				var image = load("res://data/graphics/inv_" + global.inventoryData.junk[i].id + ".png")
 				$inventory_items.get_node(global.inventoryData.junk[i].id).set_texture(image)
