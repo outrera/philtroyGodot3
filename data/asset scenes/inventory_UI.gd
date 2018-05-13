@@ -3,6 +3,7 @@ extends Area2D
 var tab = null
 
 var inventoryData
+var tab_tab = 1
 
 var tabTexTools = preload("res://data/graphics/inventory_tab_tools.png")
 var tabTexGifts = preload("res://data/graphics/inventory_tab_gifts.png")
@@ -32,6 +33,24 @@ func _input(event):
 			if tab == "junk":
 				$container/panel/tabs/tex_tab.set_texture(tabTexJunk)
 				inventoryData = global.inventoryData.junk
+
+	if event.is_action_pressed("ui_focus_next"):
+		if tab_tab != 4:
+			tab_tab += 1
+		else:
+			tab_tab = 1
+		if tab_tab == 1:
+			$container/panel/tabs/tex_tab.set_texture(tabTexTools)
+			inventoryData = global.inventoryData.tools
+		if tab_tab == 2:
+			$container/panel/tabs/tex_tab.set_texture(tabTexGifts)
+			inventoryData = global.inventoryData.tools
+		if tab_tab == 3:
+			$container/panel/tabs/tex_tab.set_texture(tabTexMisc)
+			inventoryData = global.inventoryData.tools
+		if tab_tab == 4:
+			$container/panel/tabs/tex_tab.set_texture(tabTexJunk)
+			inventoryData = global.inventoryData.tools
 
 func _on_tools_mouse_entered():
 	$container/panel/debug.set_text("tools")
