@@ -1,6 +1,7 @@
 extends StaticBody
 
 signal look_at(a)
+signal highlight(a)
 signal dialogue(a,b)
 
 #will just carry character name, all other data will be moved to charData in global.gd
@@ -13,11 +14,12 @@ func _ready():
 func _on_npc_trigger_mouse_enter():
 	var cursor = load("res://data/graphics/cursor_talk.png")
 	Input.set_custom_mouse_cursor(cursor)
-	emit_signal("look_at", identity)
+	emit_signal("highlight", identity)
 
 func _on_npc_trigger_mouse_exit():
 	var cursor = load("res://data/graphics/cursor_default.png")
 	Input.set_custom_mouse_cursor(cursor)
+	emit_signal("highlight", "")
 	emit_signal("look_at", "")
 
 func _on_npc_trigger_input_event(camera, event, click_position, click_normal, shape_idx):

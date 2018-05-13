@@ -16,6 +16,7 @@ var dayOfMonth = 1
 var sceneData = {}
 
 onready var descriptionLabel = $"ui/descriptionLabel"
+onready var lookatLabel = $"ui/lookatLabel"
 
 onready var screenBlur = $"effects/blurfx"
 
@@ -27,6 +28,8 @@ func _ready():
 	
 	set_process(true)
 	set_process_input(true)
+	print($player.translation)
+	print($Camera.unproject_position($player.translation))
 		
 	$"ui/dateLabel".set_text(global.gameData.time[time] + ", " + global.gameData.weekday[day] + ", " + global.gameData.month[month])	
 	
@@ -44,6 +47,8 @@ func connect():
 		object.connect("look_at", self, "_look_at")
 	for object in get_node("npcs").get_children():
 		object.connect("dialogue", get_node("dialogue"), "_talk_to")
+	for object in get_node("npcs").get_children():
+		object.connect("highlight", self, "_highlight")
 
 func _process(delta):
 	pass
@@ -59,6 +64,11 @@ func _input(event):
 	pass
 
 func _look_at(text):
+	lookatLabel.set_position($Camera.unproject_position($player.translation) - Vector2(60,230))
+	lookatLabel.set_text(text)
+	
+func _highlight(text):
+#	descriptionLabel.set_position($Camera.unproject_position($player.translation) - Vector2(60,230))
 	descriptionLabel.set_text(text)
 
 

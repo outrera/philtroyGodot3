@@ -43,7 +43,7 @@ func _ready():
 	
 	gameday = 1
 	day= 1
-	weekday = "monday"
+	weekday = "wednesday"
 	timeofday = "morning"
 	month=7
 	
@@ -75,7 +75,7 @@ func load_scene(sceneLocation): #change this first, see if any conflicts
 
 	var player = load("res://data/asset scenes/player.tscn")
 	player = player.instance()
-	player.set_translation(Vector3(0,0.46,0))
+	player.set_translation(Vector3(0,1,0))
 	player.set_rotation(Vector3(-0,0,-0))
 	player.set_name("player")
 	player.set_script(playerScript)
