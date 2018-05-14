@@ -32,7 +32,7 @@ func _ready():
 	print($player.translation)
 	print($Camera.unproject_position($player.translation))
 		
-	$"ui/dateLabel".set_text(global.gameData.time[time] + ", " + global.gameData.weekday[day] + ", " + global.gameData.month[month])	
+	$"ui/dateLabel".set_text(global.gameData.time[time] + ", " + global.gameData.weekday[day])	
 	
 	global.scene = "schoolyard"
 	#Why? WHY does the below affect rotation of the NPC if I remove it?!
@@ -52,7 +52,8 @@ func connect():
 		object.connect("highlight", self, "_highlight")
 
 func _process(delta):
-		lookatLabel.set_position($Camera.unproject_position((get_node("player").translation) + Vector3(0,4.6,0)) - Vector2(30,0))
+		if global.gameType == "Adventure Game":
+			lookatLabel.set_position($Camera.unproject_position((get_node("player").translation) + Vector3(0,4.6,0)) - Vector2(30,0))
 
 func change_location(location):
 	global.scene = location

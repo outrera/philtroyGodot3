@@ -1,5 +1,7 @@
 extends Node
 
+var gameType
+
 var day
 var gameday
 var weekday
@@ -68,36 +70,11 @@ func goto_scene(scene):
 
 func load_scene(sceneLocation): #change this first, see if any conflicts
 	currentLocation = sceneLocation
-	var gameRoot = get_tree().get_root().get_node("world")
-#	
-	gameRoot.get_node("player").queue_free()
-	gameRoot.get_node("player").set_name("DELETED")
-
-	var player = load("res://data/asset scenes/player.tscn")
-	player = player.instance()
-	player.set_translation(Vector3(0,1,0))
-	player.set_rotation(Vector3(-0,0,-0))
-	player.set_name("player")
-	player.set_script(playerScript)
-	gameRoot.get_node("scene").connect("input_event", player,"_on_scene_input_event")
-	gameRoot.add_child(player)
-
-	for child in gameRoot.get_node("scene").get_children():
-		#check that we delete everything but the collision node
-		if child.name != "col":
-			child.set_name("DELETED")
-			child.queue_free()
-	for child in gameRoot.get_node("npcs").get_children():
-		child.set_name("DELETED")
-		child.queue_free()
-
-	var scene = load("res://data/locations/" + sceneLocation + ".tscn")
-	scene = scene.instance()
-	gameRoot.get_node("scene").add_child(scene)
-
 	var location = sceneData[sceneLocation][weekday][timeofday]
+	
+	var gameRoot = get_tree().get_root().get_node("world")
 
-	#if today has event - override
+#if today has event - override
 	if eventData["date"].has(str(gameday)) and eventData["date"][str(gameday)][0].has(timeofday):
 		if eventData["type"] == "persistent":
 			pass
@@ -107,6 +84,40 @@ func load_scene(sceneLocation): #change this first, see if any conflicts
 			eventOverride = load_json("events/" + eventData["date"][str(gameday)][0][timeofday]["name"] + ".json")
 	else:
 		pass
+	
+	gameRoot.get_node("player").queue_free()
+	gameRoot.get_node("player").set_name("DELETED")
+
+	for child in gameRoot.get_node("scene").get_children():
+		#check that we delete everything but the collision node
+		if child.name != "col":
+			child.set_name("DELETED")
+			child.queue_free()
+			
+	var scene = load("res://data/locations/" + sceneLocation + ".tscn")
+	scene = scene.instance()
+	gameRoot.get_node("scene").add_child(scene)
+	
+#	Determine if we´re doing a 3d adventure game or Visual Novel-style game, by checking for type of fisrt node in scene (Area/Area2D)
+#	This is just the first preparation. Still TODO: code currently assumes 3d meshes when placing NPCs and Objects (Using a Vector3) - need to
+#	allow for Vector2 position
+
+	if scene.is_class("Area"):
+		gameType = "Adventure Game"
+		var player = load("res://data/asset scenes/player.tscn")
+		player = player.instance()
+		player.set_translation(Vector3(0,1,0))
+		player.set_rotation(Vector3(-0,0,-0))
+		player.set_name("player")
+		player.set_script(playerScript)
+		gameRoot.get_node("scene").connect("input_event", player,"_on_scene_input_event")
+		gameRoot.add_child(player)
+	else:
+		gameType = "Visual Novel"
+
+	for child in gameRoot.get_node("npcs").get_children():
+		child.set_name("DELETED")
+		child.queue_free()
 		
 #	if eventOverride == null: 
 #		print("null")
