@@ -12,13 +12,18 @@ func _ready():
 	pass
 	
 func _on_npc_trigger_mouse_enter():
-	var cursor = load("res://data/graphics/cursor_talk.png")
-	Input.set_custom_mouse_cursor(cursor)
-	emit_signal("highlight", identity)
+	if global.itemInHand == false:
+		var cursor = load("res://data/graphics/cursor_talk.png")
+		Input.set_custom_mouse_cursor(cursor)
+	if global.itemInHand == false:
+		emit_signal("highlight", identity)
+	else:
+		emit_signal("highlight", "Give to " + identity + "?")
 
 func _on_npc_trigger_mouse_exit():
-	var cursor = load("res://data/graphics/cursor_default.png")
-	Input.set_custom_mouse_cursor(cursor)
+	if global.itemInHand == false:
+		var cursor = load("res://data/graphics/cursor_default.png")
+		Input.set_custom_mouse_cursor(cursor)
 	emit_signal("highlight", "")
 	emit_signal("look_at", "")
 

@@ -67,10 +67,10 @@ func _input(event):
 
 func _look_at(text):
 	if text != "":
-		lookatLabel.get_node("bubble").show()
+		lookatLabel.show()
 		isLookingAt = false
 	else:
-		lookatLabel.get_node("bubble").hide()
+		lookatLabel.hide()
 		isLookingAt = true
 	lookatLabel.add_color_override("font_color", Color(0,0,0,1))
 	lookatLabel.set_text(text)

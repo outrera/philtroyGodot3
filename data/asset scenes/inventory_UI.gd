@@ -28,8 +28,7 @@ func _ready():
 
 func pop_inventory():
 	if !global.inventoryData.junk.empty():
-		print("Cool! It´s not empty. I could find " + str(global.inventoryData.junk.size()) + " items here.")
-		
+
 		for item in $inventory_items.get_children():
 			item.queue_free()
 			item.set_name("deleted")
@@ -42,11 +41,14 @@ func pop_inventory():
 					row += 64
 					rtrn += 350
 				var node = inventory_node.instance()
+				node.id = global.inventoryData.tools[i].id
 				node.set_name(global.inventoryData.tools[i].id)
 				node.set_position(Vector2(155 + i*70 - rtrn, 260 + row))
+				node.connect("change_cursor", get_node("/root/world/ui"), "item_in_hand")
 				$inventory_items.add_child(node)
 				var image = load("res://data/graphics/inv_" + global.inventoryData.tools[i].id + ".png")
 				$inventory_items.get_node(global.inventoryData.tools[i].id).set_texture(image)
+				
 		elif tab_tab == 2:
 			var row = 0
 			var rtrn = 0
@@ -55,11 +57,14 @@ func pop_inventory():
 					row += 64
 					rtrn += 350
 				var node = inventory_node.instance()
+				node.id = global.inventoryData.gifts[i].id
 				node.set_name(global.inventoryData.gifts[i].id)
 				node.set_position(Vector2(155 + i*70 - rtrn, 260 + row))
+				node.connect("change_cursor", get_node("/root/world/ui"), "item_in_hand")
 				$inventory_items.add_child(node)
 				var image = load("res://data/graphics/inv_" + global.inventoryData.gifts[i].id + ".png")
 				$inventory_items.get_node(global.inventoryData.gifts[i].id).set_texture(image)
+
 		elif tab_tab == 3:
 			var row = 0
 			var rtrn = 0
@@ -68,11 +73,14 @@ func pop_inventory():
 					row += 64
 					rtrn += 350		
 				var node = inventory_node.instance()
+				node.id = global.inventoryData.misc[i].id
 				node.set_name(global.inventoryData.misc[i].id)
 				node.set_position(Vector2(155 + i*70 - rtrn, 260 + row))
+				node.connect("change_cursor", get_node("/root/world/ui"), "item_in_hand")
 				$inventory_items.add_child(node)
 				var image = load("res://data/graphics/inv_" + global.inventoryData.misc[i].id + ".png")
 				$inventory_items.get_node(global.inventoryData.misc[i].id).set_texture(image)
+
 		elif tab_tab == 4:
 			var row = 0
 			var rtrn = 0
@@ -81,11 +89,14 @@ func pop_inventory():
 					row += 64
 					rtrn += 350
 				var node = inventory_node.instance()
+				node.id = global.inventoryData.junk[i].id	
 				node.set_name(global.inventoryData.junk[i].id)
 				node.set_position(Vector2(155 + i*70 - rtrn, 260 + row))
+				node.connect("change_cursor", get_node("/root/world/ui"), "item_in_hand")
 				$inventory_items.add_child(node)
 				var image = load("res://data/graphics/inv_" + global.inventoryData.junk[i].id + ".png")
 				$inventory_items.get_node(global.inventoryData.junk[i].id).set_texture(image)
+
 	else:
 		print("Damn! It´s empty..")
 

@@ -9,6 +9,7 @@ var hoverNode = null
 var blockingUI = false
 var dialogueRunning = false
 var noMoveOnClick = false
+var itemInHand = false
 
 var day = 2
 var time = 0
@@ -58,7 +59,15 @@ func _process(delta):
 	#if dialogue is running and we press ui_exit, exit dialogue and delete dialogue nodes
 	if Input.is_action_pressed("ui_exit"):
 		ui_exit()
-		
+
+func item_in_hand(a,b):
+	$item_in_hand.show()				
+	var tempTex = load(b)
+	Input.set_custom_mouse_cursor(tempTex)
+#	$item_in_hand.set_texture(tempTex)
+	global.itemInHand = true
+#	ui_exit()
+	
 func load_map_location(location):
 	get_parent().change_location(location)
 	ui_exit()
@@ -102,6 +111,13 @@ func _input(event):
 			toggle_ui_map()
 		else:
 			hide_map_ui()
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_RIGHT:
+			if event.pressed:
+				if global.itemInHand == true:
+					global.itemInHand = false
+					var cursor = load("res://data/graphics/cursor_default.png")
+					Input.set_custom_mouse_cursor(cursor)
 	if hoverNode:
 		if hoverNode.get_name() == "phone":	
 			if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():
@@ -150,63 +166,70 @@ func _input(event):
 
 #the below functions handle hover animations for UI icons. This could probably be handled more efficiently in one generic function, not sure how
 func _on_phone_mouse_entered():
-	var cursor = load("res://data/graphics/cursor_look.png")
-	Input.set_custom_mouse_cursor(cursor)
+	if global.itemInHand == false:
+		var cursor = load("res://data/graphics/cursor_look.png")
+		Input.set_custom_mouse_cursor(cursor)
 	ui_hover("phone", get_node("phone/Sprite"), Vector2(1.1, 1.1), true)
 	hoverNode = get_node("phone")
 	#if mouse over a UI icon, disable the scene collision shape, preventing player move
 	sceneCol.disabled = true
 
 func _on_phone_mouse_exited():
-	var cursor = load("res://data/graphics/cursor_default.png")
-	Input.set_custom_mouse_cursor(cursor)
-	Input.set_custom_mouse_cursor(cursor)
+	if global.itemInHand == false:
+		var cursor = load("res://data/graphics/cursor_default.png")
+		Input.set_custom_mouse_cursor(cursor)
 	ui_hover("", get_node("phone/Sprite"), Vector2(1.0, 1.0), false)
 	hoverNode = null
 	sceneCol.disabled = false
 
 func _on_schoolbag_mouse_entered():
-	var cursor = load("res://data/graphics/cursor_look.png")
-	Input.set_custom_mouse_cursor(cursor)
+	if global.itemInHand == false:
+		var cursor = load("res://data/graphics/cursor_look.png")
+		Input.set_custom_mouse_cursor(cursor)
 	ui_hover("school bag", get_node("schoolbag/Sprite"), Vector2(1.1, 1.1), true)
 	hoverNode = get_node("schoolbag")
 	sceneCol.disabled = true
 
 func _on_schoolbag_mouse_exited():
-	var cursor = load("res://data/graphics/cursor_default.png")
-	Input.set_custom_mouse_cursor(cursor)
+	if global.itemInHand == false:
+		var cursor = load("res://data/graphics/cursor_default.png")
+		Input.set_custom_mouse_cursor(cursor)
 	ui_hover("", get_node("schoolbag/Sprite"), Vector2(1.0, 1.0), false)
 	hoverNode = null
 	sceneCol.disabled = false
 
 func _on_map_mouse_entered():
-	var cursor = load("res://data/graphics/cursor_look.png")
-	Input.set_custom_mouse_cursor(cursor)
+	if global.itemInHand == false:
+		var cursor = load("res://data/graphics/cursor_look.png")
+		Input.set_custom_mouse_cursor(cursor)
 	ui_hover("map", get_node("map/Sprite"), Vector2(1.1, 1.1), true)
 	hoverNode = get_node("map")
 	sceneCol.disabled = true
 
 func _on_map_mouse_exited():
-	var cursor = load("res://data/graphics/cursor_default.png")
-	Input.set_custom_mouse_cursor(cursor)
+	if global.itemInHand == false:
+		var cursor = load("res://data/graphics/cursor_default.png")
+		Input.set_custom_mouse_cursor(cursor)
 	ui_hover("", get_node("map/Sprite"), Vector2(1.0, 1.0), false)
 	hoverNode = null
 	sceneCol.disabled = false
 
 func _on_calendar_mouse_entered():
-	var cursor = load("res://data/graphics/cursor_look.png")
-	Input.set_custom_mouse_cursor(cursor)
+	if global.itemInHand == false:
+		var cursor = load("res://data/graphics/cursor_look.png")
+		Input.set_custom_mouse_cursor(cursor)
 	ui_hover("calendar", get_node("calendar/Sprite"), Vector2(1.1, 1.1), true)
 	hoverNode = get_node("calendar")
-#	global.blocking_ui = true
+	#global.blocking_ui = true
 	sceneCol.disabled = true
 
 func _on_calendar_mouse_exited():
-	var cursor = load("res://data/graphics/cursor_default.png")
-	Input.set_custom_mouse_cursor(cursor)
+	if global.itemInHand == false:
+		var cursor = load("res://data/graphics/cursor_default.png")
+		Input.set_custom_mouse_cursor(cursor)
 	ui_hover("", get_node("calendar/Sprite"), Vector2(1.0, 1.0), false)
 	hoverNode = null
-#	global.blocking_ui = false
+	#global.blocking_ui = false
 	sceneCol.disabled = false
 
 #play effects when hovering over UI icons

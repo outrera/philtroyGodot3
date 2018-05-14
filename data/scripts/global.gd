@@ -19,6 +19,7 @@ var inventoryData = {}
 var dialogue_running
 var blocking_ui = false
 var is_moving = false
+var itemInHand = false
 
 var scene
 var locations = []
