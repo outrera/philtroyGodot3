@@ -66,7 +66,7 @@ func item_in_hand(a,b):
 	Input.set_custom_mouse_cursor(tempTex)
 #	$item_in_hand.set_texture(tempTex)
 	global.itemInHand = true
-#	ui_exit()
+	ui_exit()
 	
 func load_map_location(location):
 	get_parent().change_location(location)
