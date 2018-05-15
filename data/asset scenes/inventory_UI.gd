@@ -19,6 +19,7 @@ var inventory_node = preload("res://data/asset scenes/inventory_node.tscn")
 
 func _ready():
 #	inventoryData = global.inventoryData.tools
+#	TODO: needs to be run every time the inventory UI is toggled, to update removed and added items for the open tab
 	pop_inventory()
 
 #func _process(delta):
