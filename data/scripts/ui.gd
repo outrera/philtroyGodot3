@@ -92,6 +92,31 @@ func ui_exit():
 func change_cursor(id):
 	var cursor = load("res://data/graphics/cursor_" + id + ".png")
 	Input.set_custom_mouse_cursor(cursor)
+
+func advance_time():
+	#keep track of day, week and month
+	time += 1
+	if time == 4:
+		time = 0
+		day +=1
+		dayOfMonth += 1
+		if day == 7:
+			day = 0
+		if dayOfMonth == 30:
+			dayOfMonth = 1
+			month += 1
+			if month == 12:
+				month = 0
+	global.day = day
+	global.gameday += 1 # replace the above with this, remove day from global.gameData
+	global.month = global.gameData["month"][month]
+	global.weekday = global.gameData["weekday"][day]
+	global.timeofday = global.gameData["time"][time]
+	global.load_scene(global.scene)
+
+	get_parent().connect()
+
+	get_node("dateLabel").set_text(global.gameData.time[time] + ", " + global.gameData.weekday[day])		
 		
 func _input(event):
 	#these need checks so you can´t press the same key twice, or the overlays will continue upwards
@@ -136,29 +161,7 @@ func _input(event):
 			if event is InputEventMouseButton:
 				if event.button_index == BUTTON_LEFT:
 					if event.is_pressed():
-						#keep track of day, week and month
-						time += 1
-						if time == 4:
-							time = 0
-							day +=1
-							dayOfMonth += 1
-							if day == 7:
-								day = 0
-							if dayOfMonth > 30:
-								dayOfMonth = 1
-								month += 1
-								if month > 12:
-									month = 0
-						global.day = day
-						global.gameday += 1 # replace the above with this, remove day from global.gameData
-						global.month = global.gameData["month"][month]
-						global.weekday = global.gameData["weekday"][day]
-						global.timeofday = global.gameData["time"][time]
-						global.load_scene(global.scene)
-
-						get_parent().connect()
-
-						get_node("dateLabel").set_text(global.gameData.time[time] + ", " + global.gameData.weekday[day] + ", " + global.gameData.month[month])		
+						advance_time()	
 
 			if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT and event.is_pressed():
 				toggle_ui_overlay("calendar_ui", "show", calendarShowPos)
@@ -302,15 +305,6 @@ func toggle_game_settings():
 #	effectBlurUI.interpolate_property(gameSettings, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	toggle_ui_icons("hide")
 #	ui_hide_show(gameSettings, Vector2(0,-1000), Tween.TRANS_QUAD, Tween.EASE_OUT)
-
-#func hide_calendar_ui():
-#	global.blocking_ui = false
-#	calendarOpen = false
-#	effectBlurUI.interpolate_property(screenBlur, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
-#	var positionDelta = calendarHidePos - get_node("calendar_ui").get_position()
-#	ui_hide_show(get_node("calendar_ui"), Vector2(0,positionDelta.y), Tween.TRANS_QUAD, Tween.EASE_OUT)
-#	toggle_ui_icons("show")
-#	change_cursor("default")
 
 func hide_game_settings():
 	global.blocking_ui = false
