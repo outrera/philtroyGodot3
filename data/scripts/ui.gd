@@ -86,6 +86,10 @@ func ui_exit():
 		hide_map_ui()
 	if gameSettingsOpen == true:
 		hide_game_settings()
+
+func change_cursor(id):
+	var cursor = load("res://data/graphics/cursor_" + id + ".png")
+	Input.set_custom_mouse_cursor(cursor)
 		
 func _input(event):
 	#these need checks so you can´t press the same key twice, or the overlays will continue upwards
@@ -115,8 +119,7 @@ func _input(event):
 			if event.pressed:
 				if global.itemInHand == true:
 					global.itemInHand = false
-					var cursor = load("res://data/graphics/cursor_default.png")
-					Input.set_custom_mouse_cursor(cursor)
+					change_cursor("default")
 	if hoverNode:
 		if hoverNode.get_name() == "phone":	
 			if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():
@@ -166,8 +169,7 @@ func _input(event):
 #the below functions handle hover animations for UI icons. This could probably be handled more efficiently in one generic function, not sure how
 func _on_phone_mouse_entered():
 	if global.itemInHand == false and global.blocking_ui!=true:
-		var cursor = load("res://data/graphics/cursor_look.png")
-		Input.set_custom_mouse_cursor(cursor)
+		change_cursor("look")
 	ui_hover("phone", get_node("phone/Sprite"), Vector2(1.1, 1.1), true)
 	hoverNode = get_node("phone")
 	#if mouse over a UI icon, disable the scene collision shape, preventing player move
@@ -175,48 +177,42 @@ func _on_phone_mouse_entered():
 
 func _on_phone_mouse_exited():
 	if global.itemInHand == false and global.blocking_ui!=true:
-		var cursor = load("res://data/graphics/cursor_default.png")
-		Input.set_custom_mouse_cursor(cursor)
+		change_cursor("default")
 	ui_hover("", get_node("phone/Sprite"), Vector2(1.0, 1.0), false)
 	hoverNode = null
 	sceneCol.disabled = false
 
 func _on_schoolbag_mouse_entered():
 	if global.itemInHand == false and global.blocking_ui!=true:
-		var cursor = load("res://data/graphics/cursor_look.png")
-		Input.set_custom_mouse_cursor(cursor)
+		change_cursor("look")
 	ui_hover("school bag", get_node("schoolbag/Sprite"), Vector2(1.1, 1.1), true)
 	hoverNode = get_node("schoolbag")
 	sceneCol.disabled = true
 
 func _on_schoolbag_mouse_exited():
 	if global.itemInHand == false and global.blocking_ui!=true:
-		var cursor = load("res://data/graphics/cursor_default.png")
-		Input.set_custom_mouse_cursor(cursor)
+		change_cursor("default")
 	ui_hover("", get_node("schoolbag/Sprite"), Vector2(1.0, 1.0), false)
 	hoverNode = null
 	sceneCol.disabled = false
 
 func _on_map_mouse_entered():
 	if global.itemInHand == false and global.blocking_ui!=true:
-		var cursor = load("res://data/graphics/cursor_look.png")
-		Input.set_custom_mouse_cursor(cursor)
+		change_cursor("look")
 	ui_hover("map", get_node("map/Sprite"), Vector2(1.1, 1.1), true)
 	hoverNode = get_node("map")
 	sceneCol.disabled = true
 
 func _on_map_mouse_exited():
 	if global.itemInHand == false and global.blocking_ui!=true:
-		var cursor = load("res://data/graphics/cursor_default.png")
-		Input.set_custom_mouse_cursor(cursor)
+		change_cursor("default")
 	ui_hover("", get_node("map/Sprite"), Vector2(1.0, 1.0), false)
 	hoverNode = null
 	sceneCol.disabled = false
 
 func _on_calendar_mouse_entered():
 	if global.itemInHand == false and global.blocking_ui!=true:
-		var cursor = load("res://data/graphics/cursor_look.png")
-		Input.set_custom_mouse_cursor(cursor)
+		change_cursor("look")
 	ui_hover("calendar", get_node("calendar/Sprite"), Vector2(1.1, 1.1), true)
 	hoverNode = get_node("calendar")
 	#global.blocking_ui = true
@@ -224,8 +220,7 @@ func _on_calendar_mouse_entered():
 
 func _on_calendar_mouse_exited():
 	if global.itemInHand == false and global.blocking_ui!=true:
-		var cursor = load("res://data/graphics/cursor_default.png")
-		Input.set_custom_mouse_cursor(cursor)
+		change_cursor("default")
 	ui_hover("", get_node("calendar/Sprite"), Vector2(1.0, 1.0), false)
 	hoverNode = null
 	#global.blocking_ui = false
@@ -299,8 +294,7 @@ func hide_phone_ui():
 	ui_hide_show(get_node("phone_ui"), Vector2(0,positionDelta.y), Tween.TRANS_QUAD, Tween.EASE_OUT)
 	toggle_ui_icons("show")
 	if global.itemInHand == false:
-		var cursor = load("res://data/graphics/cursor_default.png")
-		Input.set_custom_mouse_cursor(cursor)
+		change_cursor("default")
 
 func hide_inventory_ui():
 	global.blocking_ui = false
@@ -310,8 +304,7 @@ func hide_inventory_ui():
 	ui_hide_show(get_node("schoolbag_ui"), Vector2(0,positionDelta.y), Tween.TRANS_QUAD, Tween.EASE_OUT)
 	toggle_ui_icons("show")
 	if global.itemInHand == false:
-		var cursor = load("res://data/graphics/cursor_default.png")
-		Input.set_custom_mouse_cursor(cursor)
+		change_cursor("default")
 
 func hide_map_ui():
 	global.blocking_ui = false
@@ -320,8 +313,7 @@ func hide_map_ui():
 	var positionDelta = calendarHidePos - get_node("map_ui").get_position()
 	ui_hide_show(get_node("map_ui"), Vector2(0,positionDelta.y), Tween.TRANS_QUAD, Tween.EASE_OUT)
 	toggle_ui_icons("show")
-	var cursor = load("res://data/graphics/cursor_defaul.png")
-	Input.set_custom_mouse_cursor(cursor)
+	change_cursor("default")
 	
 func hide_calendar_ui():
 	global.blocking_ui = false
@@ -330,8 +322,7 @@ func hide_calendar_ui():
 	var positionDelta = calendarHidePos - get_node("calendar_ui").get_position()
 	ui_hide_show(get_node("calendar_ui"), Vector2(0,positionDelta.y), Tween.TRANS_QUAD, Tween.EASE_OUT)
 	toggle_ui_icons("show")
-	var cursor = load("res://data/graphics/cursor_default.png")
-	Input.set_custom_mouse_cursor(cursor)
+	change_cursor("default")
 
 func hide_game_settings():
 	global.blocking_ui = false
@@ -341,6 +332,5 @@ func hide_game_settings():
 #	$settings.queue_free()
 #	$settings.name = "deleted"
 	toggle_ui_icons("show")
-	var cursor = load("res://data/graphics/cursor_default.png")
-	Input.set_custom_mouse_cursor(cursor)
+	change_cursor("default")
 
