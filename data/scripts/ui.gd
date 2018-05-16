@@ -125,17 +125,17 @@ func _input(event):
 			if global.dialogue_running!=true:
 				if gameSettingsOpen!=true:
 					toggle_game_settings()
-	if event.is_action_pressed("ui_inventory"):
+	if event.is_action_pressed("ui_inventory") and !mapOpen and !phoneOpen and !calendarOpen and !gameSettingsOpen:
 		if schoolbagOpen!=true:
 			toggle_ui_overlay("schoolbag_ui", "show", schoolbagShowPos)
 		else:
 			toggle_ui_overlay("schoolbag_ui", "hide", schoolbagHidePos)
-	if event.is_action_pressed("ui_mobile"):
+	if event.is_action_pressed("ui_mobile") and !schoolbagOpen and !mapOpen and !calendarOpen and !gameSettingsOpen:
 		if phoneOpen!=true:
 			toggle_ui_overlay("phone_ui", "show", phoneShowPos)
 		else:
 			toggle_ui_overlay("phone_ui", "hide", phoneHidePos)
-	if event.is_action_pressed("ui_map"):
+	if event.is_action_pressed("ui_map") and !schoolbagOpen and !phoneOpen and !calendarOpen and !gameSettingsOpen:
 		if mapOpen!=true:
 			toggle_ui_overlay("map_ui", "show", mapShowPos)
 		else:
