@@ -10,11 +10,6 @@ var tabTexGifts = preload("res://data/graphics/inventory_tab_gifts.png")
 var tabTexMisc = preload("res://data/graphics/inventory_tab_misc.png")
 var tabTexJunk = preload("res://data/graphics/inventory_tab_junk.png")
 
-var inv_rose = preload("res://data/graphics/inv_rose.png")
-var inv_shoe = preload("res://data/graphics/inv_shoe.png")
-var inv_wrench = preload("res://data/graphics/inv_wrench.png")
-var inv_ticket = preload("res://data/graphics/inv_ticket.png")
-
 var inventory_node = preload("res://data/asset scenes/inventory_node.tscn")
 
 func _ready():
@@ -28,78 +23,43 @@ func _ready():
 #	pass
 
 func pop_inventory():
-	if !global.inventoryData.junk.empty():
+	var category
 
-		for item in $inventory_items.get_children():
-			item.queue_free()
-			item.set_name("deleted")
-		
-		if tab_tab == 1:
-			var row = 0
-			var rtrn = 0
-			for i in range(global.inventoryData.tools.size()):
-				if i == 5 or i == 10 or i == 15 or i == 20 or i == 25 or i == 30:
-					row += 64
-					rtrn += 350
-				var node = inventory_node.instance()
-				node.id = global.inventoryData.tools[i].id
-				node.set_name(global.inventoryData.tools[i].id)
-				node.set_position(Vector2(155 + i*70 - rtrn, 260 + row))
-				node.connect("change_cursor", get_node("/root/world/ui"), "item_in_hand")
-				$inventory_items.add_child(node)
-				var image = load("res://data/graphics/inv_" + global.inventoryData.tools[i].id + ".png")
-				$inventory_items.get_node(global.inventoryData.tools[i].id).set_texture(image)
-				
-		elif tab_tab == 2:
-			var row = 0
-			var rtrn = 0
-			for i in range(global.inventoryData.gifts.size()):
-				if i == 5 or i == 10 or i == 15 or i == 20 or i == 25 or i == 30:
-					row += 64
-					rtrn += 350
-				var node = inventory_node.instance()
-				node.id = global.inventoryData.gifts[i].id
-				node.set_name(global.inventoryData.gifts[i].id)
-				node.set_position(Vector2(155 + i*70 - rtrn, 260 + row))
-				node.connect("change_cursor", get_node("/root/world/ui"), "item_in_hand")
-				$inventory_items.add_child(node)
-				var image = load("res://data/graphics/inv_" + global.inventoryData.gifts[i].id + ".png")
-				$inventory_items.get_node(global.inventoryData.gifts[i].id).set_texture(image)
+	for item in $inventory_items.get_children():
+		item.queue_free()
+		item.set_name("deleted")
+			
+	if tab_tab == 1:
+		category = "tools"
+	elif tab_tab == 2:
+		category = "gifts"
+	elif tab_tab == 3:
+		category = "misc"
+	elif tab_tab == 4:
+		category = "junk"
 
-		elif tab_tab == 3:
-			var row = 0
-			var rtrn = 0
-			for i in range(global.inventoryData.misc.size()):
-				if i == 5 or i == 10 or i == 15 or i == 20 or i == 25 or i == 30:
-					row += 64
-					rtrn += 350		
-				var node = inventory_node.instance()
-				node.id = global.inventoryData.misc[i].id
-				node.set_name(global.inventoryData.misc[i].id)
-				node.set_position(Vector2(155 + i*70 - rtrn, 260 + row))
-				node.connect("change_cursor", get_node("/root/world/ui"), "item_in_hand")
-				$inventory_items.add_child(node)
-				var image = load("res://data/graphics/inv_" + global.inventoryData.misc[i].id + ".png")
-				$inventory_items.get_node(global.inventoryData.misc[i].id).set_texture(image)
-
-		elif tab_tab == 4:
-			var row = 0
-			var rtrn = 0
-			for i in range(global.inventoryData.junk.size()):
-				if i == 5 or i == 10 or i == 15 or i == 20 or i == 25 or i == 30:
-					row += 64
-					rtrn += 350
-				var node = inventory_node.instance()
-				node.id = global.inventoryData.junk[i].id	
-				node.set_name(global.inventoryData.junk[i].id)
-				node.set_position(Vector2(155 + i*70 - rtrn, 260 + row))
-				node.connect("change_cursor", get_node("/root/world/ui"), "item_in_hand")
-				$inventory_items.add_child(node)
-				var image = load("res://data/graphics/inv_" + global.inventoryData.junk[i].id + ".png")
-				$inventory_items.get_node(global.inventoryData.junk[i].id).set_texture(image)
+	var row = 0
+	var rtrn = 0
+	print("category: " + category)
+	print(global.inventoryData[category].size())
+	if !global.inventoryData[category].empty():
+		for count in range(global.inventoryData[category].size()):
+			if count == 5 or count == 10 or count == 15 or count == 20 or count == 25 or count == 30:
+				row += 64
+				rtrn += 350
+			print("item #" + str(count+1) + ": " + global.inventoryData[category][count].id)
+			var node = inventory_node.instance()
+			node.id = global.inventoryData[category][count].id
+			node.set_name(global.inventoryData[category][count].id)
+			node.set_position(Vector2(155 + count*70 - rtrn, 260 + row))
+			node.connect("change_cursor", get_node("/root/world/ui"), "item_in_hand")
+			$inventory_items.add_child(node)
+			var image = load("res://data/graphics/inv_" + global.inventoryData[category][count].id + ".png")
+			$inventory_items.get_node(global.inventoryData[category][count].id).set_texture(image)
+					
 
 	else:
-		print("Damn! It´s empty..")
+		pass
 
 func _input(event):
 	if tab != null:
