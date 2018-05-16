@@ -90,8 +90,9 @@ func ui_exit():
 		hide_game_settings()
 
 func change_cursor(id):
-	var cursor = load("res://data/graphics/cursor_" + id + ".png")
-	Input.set_custom_mouse_cursor(cursor)
+	if global.itemInHand == false and global.blocking_ui!=true:
+		var cursor = load("res://data/graphics/cursor_" + id + ".png")
+		Input.set_custom_mouse_cursor(cursor)
 
 func advance_time():
 	#keep track of day, week and month
@@ -113,9 +114,7 @@ func advance_time():
 	global.weekday = global.gameData["weekday"][day]
 	global.timeofday = global.gameData["time"][time]
 	global.load_scene(global.scene)
-
 	get_parent().connect()
-
 	get_node("dateLabel").set_text(global.gameData.time[time] + ", " + global.gameData.weekday[day])		
 		
 func _input(event):
@@ -162,76 +161,51 @@ func _input(event):
 				if event.button_index == BUTTON_LEFT:
 					if event.is_pressed():
 						advance_time()	
-
 			if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT and event.is_pressed():
 				toggle_ui_overlay("calendar_ui", "show", calendarShowPos)
 
 #the below functions handle hover animations for UI icons. This could probably be handled more efficiently in one generic function, not sure how
 func _on_phone_mouse_entered():
-	if global.itemInHand == false and global.blocking_ui!=true:
-		change_cursor("look")
-	ui_hover("phone", get_node("phone/Sprite"), Vector2(1.1, 1.1), true)
-	hoverNode = get_node("phone")
-	#if mouse over a UI icon, disable the scene collision shape, preventing player move
-	sceneCol.disabled = true
+	change_cursor("look")
+	ui_hover("phone", get_node("phone/Sprite"), Vector2(1.1, 1.1), true, get_node("phone"))
 
 func _on_phone_mouse_exited():
-	if global.itemInHand == false and global.blocking_ui!=true:
-		change_cursor("default")
-	ui_hover("", get_node("phone/Sprite"), Vector2(1.0, 1.0), false)
-	hoverNode = null
-	sceneCol.disabled = false
+	change_cursor("default")
+	ui_hover("", get_node("phone/Sprite"), Vector2(1.0, 1.0), false, null)
 
 func _on_schoolbag_mouse_entered():
-	if global.itemInHand == false and global.blocking_ui!=true:
-		change_cursor("look")
-	ui_hover("school bag", get_node("schoolbag/Sprite"), Vector2(1.1, 1.1), true)
-	hoverNode = get_node("schoolbag")
-	sceneCol.disabled = true
+	change_cursor("look")
+	ui_hover("school bag", get_node("schoolbag/Sprite"), Vector2(1.1, 1.1), true, get_node("schoolbag"))
 
 func _on_schoolbag_mouse_exited():
-	if global.itemInHand == false and global.blocking_ui!=true:
-		change_cursor("default")
-	ui_hover("", get_node("schoolbag/Sprite"), Vector2(1.0, 1.0), false)
-	hoverNode = null
-	sceneCol.disabled = false
+	change_cursor("default")
+	ui_hover("", get_node("schoolbag/Sprite"), Vector2(1.0, 1.0), false, null)
 
 func _on_map_mouse_entered():
-	if global.itemInHand == false and global.blocking_ui!=true:
-		change_cursor("look")
-	ui_hover("map", get_node("map/Sprite"), Vector2(1.1, 1.1), true)
-	hoverNode = get_node("map")
-	sceneCol.disabled = true
+	change_cursor("look")
+	ui_hover("map", get_node("map/Sprite"), Vector2(1.1, 1.1), true, get_node("map"))
 
 func _on_map_mouse_exited():
-	if global.itemInHand == false and global.blocking_ui!=true:
-		change_cursor("default")
-	ui_hover("", get_node("map/Sprite"), Vector2(1.0, 1.0), false)
-	hoverNode = null
-	sceneCol.disabled = false
+	change_cursor("default")
+	ui_hover("", get_node("map/Sprite"), Vector2(1.0, 1.0), false, null)
 
 func _on_calendar_mouse_entered():
-	if global.itemInHand == false and global.blocking_ui!=true:
-		change_cursor("look")
-	ui_hover("calendar", get_node("calendar/Sprite"), Vector2(1.1, 1.1), true)
-	hoverNode = get_node("calendar")
-	#global.blocking_ui = true
-	sceneCol.disabled = true
+	change_cursor("look")
+	ui_hover("calendar", get_node("calendar/Sprite"), Vector2(1.1, 1.1), true, get_node("calendar"))
 
 func _on_calendar_mouse_exited():
-	if global.itemInHand == false and global.blocking_ui!=true:
-		change_cursor("default")
-	ui_hover("", get_node("calendar/Sprite"), Vector2(1.0, 1.0), false)
-	hoverNode = null
-	#global.blocking_ui = false
-	sceneCol.disabled = false
+	change_cursor("default")
+	ui_hover("", get_node("calendar/Sprite"), Vector2(1.0, 1.0), false, null)
 
 #play effects when hovering over UI icons
-func ui_hover(name, gui_node, scale, move):
+func ui_hover(name, gui_node, scale, move, node):
 	descriptionLabel.set_text(name)
 	noMoveOnClick = move
 	effectHoverUI.interpolate_property (gui_node, "scale", gui_node.scale, scale, 1, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
 	effectHoverUI.start()
+	hoverNode = node
+	#if mouse over a UI icon, disable the scene collision shape, preventing player move
+	sceneCol.disabled = move
 
 func toggle_ui_icons(toggle):
 	var startPos = get_node("map").position.y
