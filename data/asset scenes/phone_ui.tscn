@@ -1,14 +1,15 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://data/asset scenes/phone_ui.gd" type="Script" id=1]
 [ext_resource path="res://data/graphics/phone_ui.png" type="Texture" id=2]
-[ext_resource path="res://data/graphics/phone_call.png" type="Texture" id=3]
-[ext_resource path="res://data/graphics/phone_mail.png" type="Texture" id=4]
-[ext_resource path="res://data/graphics/phone_internet.png" type="Texture" id=5]
-[ext_resource path="res://data/graphics/phone_archive.png" type="Texture" id=6]
-[ext_resource path="res://data/graphics/phone_time.png" type="Texture" id=7]
+[ext_resource path="res://data/graphics/phone_time.png" type="Texture" id=3]
+[ext_resource path="res://data/graphics/phone_call.png" type="Texture" id=4]
+[ext_resource path="res://data/graphics/phone_mail.png" type="Texture" id=5]
+[ext_resource path="res://data/graphics/phone_internet.png" type="Texture" id=6]
+[ext_resource path="res://data/graphics/phone_archive.png" type="Texture" id=7]
 [ext_resource path="res://data/graphics/phone_calendar.png" type="Texture" id=8]
 [ext_resource path="res://data/graphics/phone_games.png" type="Texture" id=9]
+[ext_resource path="res://data/fonts/ReemKufi-Regular.ttf" type="DynamicFontData" id=10]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -40,6 +41,16 @@ extents = Vector2( 31.9663, 28.0093 )
 custom_solver_bias = 0.0
 radius = 32.844
 
+[sub_resource type="DynamicFont" id=7]
+
+size = 20
+outline_size = 0
+outline_color = Color( 1, 1, 1, 1 )
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 10 )
+_sections_unfolded = [ "Font", "Settings" ]
+
 [node name="phone_ui" type="Area2D" index="0"]
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -50,42 +61,21 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="." index="0"]
+[node name="homescreen" type="Sprite" parent="." index="0"]
+editor/display_folded = true
 position = Vector2( 961.087, 1855.43 )
 texture = ExtResource( 2 )
 
-[node name="area" type="Area2D" parent="Sprite" index="0"]
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-
-[node name="col" type="CollisionShape2D" parent="Sprite/area" index="0"]
-
-[node name="phone" type="Sprite" parent="." index="1"]
-position = Vector2( 836.598, 2117.72 )
+[node name="time" type="Sprite" parent="homescreen" index="0"]
+position = Vector2( 0.71344, -182.663 )
 texture = ExtResource( 3 )
 
-[node name="phone" type="Area2D" parent="phone" index="0"]
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-
-[node name="col" type="CollisionShape2D" parent="phone/phone" index="0"]
-shape = SubResource( 1 )
-
-[node name="mail" type="Sprite" parent="." index="2"]
-position = Vector2( 918.361, 2116.83 )
+[node name="phone" type="Sprite" parent="homescreen" index="1"]
+editor/display_folded = true
+position = Vector2( -124.489, 262.294 )
 texture = ExtResource( 4 )
 
-[node name="mail" type="Area2D" parent="mail" index="0"]
+[node name="phone" type="Area2D" parent="homescreen/phone" index="0"]
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -94,14 +84,15 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 
-[node name="col" type="CollisionShape2D" parent="mail/mail" index="0"]
-shape = SubResource( 2 )
+[node name="col" type="CollisionShape2D" parent="homescreen/phone/phone" index="0"]
+shape = SubResource( 1 )
 
-[node name="internet" type="Sprite" parent="." index="3"]
-position = Vector2( 1002.32, 2116.55 )
+[node name="mail" type="Sprite" parent="homescreen" index="2"]
+editor/display_folded = true
+position = Vector2( -42.7255, 261.395 )
 texture = ExtResource( 5 )
 
-[node name="internet" type="Area2D" parent="internet" index="0"]
+[node name="mail" type="Area2D" parent="homescreen/mail" index="0"]
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -110,14 +101,15 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 
-[node name="col" type="CollisionShape2D" parent="internet/internet" index="0"]
-shape = SubResource( 3 )
+[node name="col" type="CollisionShape2D" parent="homescreen/mail/mail" index="0"]
+shape = SubResource( 2 )
 
-[node name="archive" type="Sprite" parent="." index="4"]
-position = Vector2( 914.879, 1806.36 )
+[node name="internet" type="Sprite" parent="homescreen" index="3"]
+editor/display_folded = true
+position = Vector2( 41.2285, 261.116 )
 texture = ExtResource( 6 )
 
-[node name="archive" type="Area2D" parent="archive" index="0"]
+[node name="internet" type="Area2D" parent="homescreen/internet" index="0"]
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -126,18 +118,32 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 
-[node name="col" type="CollisionShape2D" parent="archive/archive" index="0"]
-shape = SubResource( 4 )
+[node name="col" type="CollisionShape2D" parent="homescreen/internet/internet" index="0"]
+shape = SubResource( 3 )
 
-[node name="time" type="Sprite" parent="." index="5"]
-position = Vector2( 961.8, 1672.77 )
+[node name="archive" type="Sprite" parent="homescreen" index="4"]
+editor/display_folded = true
+position = Vector2( -46.2083, -49.0651 )
 texture = ExtResource( 7 )
 
-[node name="calendar" type="Sprite" parent="." index="6"]
-position = Vector2( 1081.03, 2116.01 )
+[node name="archive" type="Area2D" parent="homescreen/archive" index="0"]
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="col" type="CollisionShape2D" parent="homescreen/archive/archive" index="0"]
+shape = SubResource( 4 )
+
+[node name="calendar" type="Sprite" parent="homescreen" index="5"]
+editor/display_folded = true
+position = Vector2( 119.947, 260.579 )
 texture = ExtResource( 8 )
 
-[node name="calendar" type="Area2D" parent="calendar" index="0"]
+[node name="calendar" type="Area2D" parent="homescreen/calendar" index="0"]
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -146,14 +152,15 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 
-[node name="col" type="CollisionShape2D" parent="calendar/calendar" index="0"]
+[node name="col" type="CollisionShape2D" parent="homescreen/calendar/calendar" index="0"]
 shape = SubResource( 5 )
 
-[node name="games" type="Sprite" parent="." index="7"]
-position = Vector2( 834.279, 1804.17 )
+[node name="games" type="Sprite" parent="homescreen" index="6"]
+editor/display_folded = true
+position = Vector2( -126.808, -51.2596 )
 texture = ExtResource( 9 )
 
-[node name="games" type="Area2D" parent="games" index="0"]
+[node name="games" type="Area2D" parent="homescreen/games" index="0"]
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -162,24 +169,321 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 
-[node name="col" type="CollisionShape2D" parent="games/games" index="0"]
+[node name="col" type="CollisionShape2D" parent="homescreen/games/games" index="0"]
 shape = SubResource( 6 )
 
-[connection signal="input_event" from="phone/phone" to="." method="_on_phone_input_event"]
-[connection signal="mouse_entered" from="phone/phone" to="." method="_on_phone_mouse_entered"]
-[connection signal="mouse_exited" from="phone/phone" to="." method="_on_phone_mouse_exited"]
-[connection signal="input_event" from="mail/mail" to="." method="_on_mail_input_event"]
-[connection signal="mouse_entered" from="mail/mail" to="." method="_on_mail_mouse_entered"]
-[connection signal="mouse_exited" from="mail/mail" to="." method="_on_mail_mouse_exited"]
-[connection signal="input_event" from="internet/internet" to="." method="_on_internet_input_event"]
-[connection signal="mouse_entered" from="internet/internet" to="." method="_on_internet_mouse_entered"]
-[connection signal="mouse_exited" from="internet/internet" to="." method="_on_internet_mouse_exited"]
-[connection signal="input_event" from="archive/archive" to="." method="_on_archive_input_event"]
-[connection signal="mouse_entered" from="archive/archive" to="." method="_on_archive_mouse_entered"]
-[connection signal="mouse_exited" from="archive/archive" to="." method="_on_archive_mouse_exited"]
-[connection signal="input_event" from="calendar/calendar" to="." method="_on_calendar_input_event"]
-[connection signal="mouse_entered" from="calendar/calendar" to="." method="_on_calendar_mouse_entered"]
-[connection signal="mouse_exited" from="calendar/calendar" to="." method="_on_calendar_mouse_exited"]
-[connection signal="input_event" from="games/games" to="." method="_on_games_input_event"]
-[connection signal="mouse_entered" from="games/games" to="." method="_on_games_mouse_entered"]
-[connection signal="mouse_exited" from="games/games" to="." method="_on_games_mouse_exited"]
+[node name="ui_phone" type="Panel" parent="." index="1"]
+editor/display_folded = true
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 783.0
+margin_top = 1551.0
+margin_right = 1139.0
+margin_bottom = 2168.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="header" type="Label" parent="ui_phone" index="0"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 144.0
+margin_top = 47.8871
+margin_right = 199.0
+margin_bottom = 61.8871
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Contacts"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ui_mail" type="Panel" parent="." index="2"]
+editor/display_folded = true
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 783.0
+margin_top = 1551.0
+margin_right = 1139.0
+margin_bottom = 2168.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="header" type="Label" parent="ui_mail" index="0"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 144.0
+margin_top = 47.8871
+margin_right = 199.0
+margin_bottom = 61.8871
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "YooMail"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ui_internet" type="Panel" parent="." index="3"]
+editor/display_folded = true
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 783.0
+margin_top = 1551.0
+margin_right = 1139.0
+margin_bottom = 2168.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="header" type="Label" parent="ui_internet" index="0"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 144.0
+margin_top = 47.8871
+margin_right = 199.0
+margin_bottom = 61.8871
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "YooBrowser"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ui_archive" type="Panel" parent="." index="4"]
+editor/display_folded = true
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 783.0
+margin_top = 1551.0
+margin_right = 1139.0
+margin_bottom = 2168.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="header" type="Label" parent="ui_archive" index="0"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 144.0
+margin_top = 47.8871
+margin_right = 199.0
+margin_bottom = 61.8871
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Archive"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ui_calendar" type="Panel" parent="." index="5"]
+editor/display_folded = true
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 783.0
+margin_top = 1551.0
+margin_right = 1139.0
+margin_bottom = 2168.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="header" type="Label" parent="ui_calendar" index="0"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 144.0
+margin_top = 47.8871
+margin_right = 199.0
+margin_bottom = 61.8871
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "YooCalendar"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ui_games" type="Panel" parent="." index="6"]
+editor/display_folded = true
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 783.0
+margin_top = 1551.0
+margin_right = 1139.0
+margin_bottom = 2168.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="header" type="Label" parent="ui_games" index="0"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 144.0
+margin_top = 47.8871
+margin_right = 199.0
+margin_bottom = 61.8871
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Games"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="notification_bar" type="Panel" parent="." index="7"]
+editor/display_folded = true
+modulate = Color( 0.133333, 0.596078, 0.701961, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 783.0
+margin_top = 1551.0
+margin_right = 1139.0
+margin_bottom = 1591.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Visibility" ]
+
+[node name="network" type="Label" parent="notification_bar" index="0"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 2.05334
+margin_top = 2.56665
+margin_right = 48.0533
+margin_bottom = 16.5667
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "YooNet"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="battery" type="Label" parent="notification_bar" index="1"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 309.277
+margin_top = 5.63354
+margin_right = 355.277
+margin_bottom = 35.6335
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 7 )
+text = "99%"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="fx" type="Tween" parent="." index="8"]
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[connection signal="input_event" from="homescreen/phone/phone" to="." method="_on_phone_input_event"]
+[connection signal="mouse_entered" from="homescreen/phone/phone" to="." method="_on_phone_mouse_entered"]
+[connection signal="mouse_exited" from="homescreen/phone/phone" to="." method="_on_phone_mouse_exited"]
+[connection signal="input_event" from="homescreen/mail/mail" to="." method="_on_mail_input_event"]
+[connection signal="mouse_entered" from="homescreen/mail/mail" to="." method="_on_mail_mouse_entered"]
+[connection signal="mouse_exited" from="homescreen/mail/mail" to="." method="_on_mail_mouse_exited"]
+[connection signal="input_event" from="homescreen/internet/internet" to="." method="_on_internet_input_event"]
+[connection signal="mouse_entered" from="homescreen/internet/internet" to="." method="_on_internet_mouse_entered"]
+[connection signal="mouse_exited" from="homescreen/internet/internet" to="." method="_on_internet_mouse_exited"]
+[connection signal="input_event" from="homescreen/archive/archive" to="." method="_on_archive_input_event"]
+[connection signal="mouse_entered" from="homescreen/archive/archive" to="." method="_on_archive_mouse_entered"]
+[connection signal="mouse_exited" from="homescreen/archive/archive" to="." method="_on_archive_mouse_exited"]
+[connection signal="input_event" from="homescreen/calendar/calendar" to="." method="_on_calendar_input_event"]
+[connection signal="mouse_entered" from="homescreen/calendar/calendar" to="." method="_on_calendar_mouse_entered"]
+[connection signal="mouse_exited" from="homescreen/calendar/calendar" to="." method="_on_calendar_mouse_exited"]
+[connection signal="input_event" from="homescreen/games/games" to="." method="_on_games_input_event"]
+[connection signal="mouse_entered" from="homescreen/games/games" to="." method="_on_games_mouse_entered"]
+[connection signal="mouse_exited" from="homescreen/games/games" to="." method="_on_games_mouse_exited"]
