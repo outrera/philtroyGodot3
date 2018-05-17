@@ -29,7 +29,6 @@ func _on_npc_trigger_mouse_exit():
 
 func _on_npc_trigger_input_event(camera, event, click_position, click_normal, shape_idx):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
-		print(global.itemInHand)
 		if event.is_pressed():
 			if global.itemInHand == false:	
 				emit_signal("dialogue", identity, self.get_transform().origin)

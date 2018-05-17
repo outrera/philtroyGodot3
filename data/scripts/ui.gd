@@ -51,8 +51,6 @@ func _ready():
 	calendarHidePos = $calendar_ui.position
 	calendarShowPos =  calendarHidePos - Vector2(0, 1000)
 	
-	print (schoolbagShowPos)
-	
 	screenBlur.modulate = Color(1, 1, 1, 0)
 	
 	$map_ui.connect("location_chosen", self, "load_map_location")
@@ -274,7 +272,6 @@ func toggle_game_settings():
 	gameSettings.name = "game_settings"
 	gameSettings.set_position(Vector2(400,300))
 	self.add_child(gameSettings)
-	print($game_settings)
 	mytween.interpolate_property($game_settings, "modulate", Color(1,1,1,0), Color(1,1,1,1), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 #	effectBlurUI.interpolate_property(gameSettings, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	toggle_ui_icons("hide")

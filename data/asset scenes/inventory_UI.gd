@@ -40,14 +40,12 @@ func pop_inventory():
 
 	var row = 0
 	var rtrn = 0
-	print("category: " + category)
-	print(global.inventoryData[category].size())
+	
 	if !global.inventoryData[category].empty():
 		for count in range(global.inventoryData[category].size()):
 			if count == 5 or count == 10 or count == 15 or count == 20 or count == 25 or count == 30:
 				row += 64
 				rtrn += 350
-			print("item #" + str(count+1) + ": " + global.inventoryData[category][count].id)
 			var node = inventory_node.instance()
 			node.id = global.inventoryData[category][count].id
 			node.set_name(global.inventoryData[category][count].id)

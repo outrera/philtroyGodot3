@@ -29,8 +29,6 @@ func _ready():
 	
 	set_process(true)
 	set_process_input(true)
-	print($player.translation)
-	print($Camera.unproject_position($player.translation))
 		
 	$"ui/dateLabel".set_text(global.gameData.time[time] + ", " + global.gameData.weekday[day])	
 	

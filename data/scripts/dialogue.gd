@@ -50,29 +50,35 @@ func event_handler():
 
 func _input(event):
 	if global.dialogue_running == true and replyMouseover == "FALSE":
-		#TODO/BUG: make so these aren´t triggered unless dialogue is actually open. Will crash Godot.
+		#TODO: This cycles through reply choices with W(ui_up) and S(ui_down) butno way of confirming selection yet
 		if event.is_action_pressed("ui_down") and replyCurrent != numReplies-1:
 			replyCurrent += 1
 			for reply in replyContainer:
-				$reply.add_color_override("font_color", Color(1,1,1))
-			$replyContainer[replyCurrent].add_color_override("font_color", Color(1,0,1))
+				var node = get_node(reply)
+				node.add_color_override("font_color", Color(1,1,1))
+			get_node(replyContainer[replyCurrent]).add_color_override("font_color", Color(1,0,1))
 		if event.is_action_pressed("ui_up") and replyCurrent != 0:
 			replyCurrent -= 1
 			for reply in replyContainer:
-				$reply.add_color_override("font_color", Color(1,1,1))
-			$replyContainer[replyCurrent].add_color_override("font_color", Color(1,0,1))
+				var node = get_node(reply)
+				node.add_color_override("font_color", Color(1,1,1))
+			get_node(replyContainer[replyCurrent]).add_color_override("font_color", Color(1,0,1))
 		#TODO: not working like it should. Look over, old code.
-#		if event.is_action_pressed("ui_exit"):
-#			if replyCurrent != -1:
-#				_pick_reply(replyCurrent)
-#			if pageIndex < numDialogueText-1:    
-#				pageIndex += 1
-#				start_dialogue(charData[npc]["dialogue"])
-#			if pageIndex < numDialogueText-1:    
-#				pageIndex += 1
-#				start_dialogue(charData[npc]["dialogue"])
-#			if pageIndex == numDialogueText-1 and numReplies == 0:
-#				kill_dialogue()
+		if event.is_action_pressed("ui_accept"):
+			if replyCurrent != -1:
+				if get_node(replyContainer[replyCurrent]).text == "exit dialogue":
+					effectBlurUI.interpolate_property(screenBlur, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+					kill_dialogue()
+				else:
+					_pick_reply(replyCurrent)
+			if pageIndex < numDialogueText-1:    
+				pageIndex += 1
+				start_dialogue(charData[npc]["dialogue"])
+			if pageIndex < numDialogueText-1:    
+				pageIndex += 1
+				start_dialogue(charData[npc]["dialogue"])
+			if pageIndex == numDialogueText-1 and numReplies == 0:
+				kill_dialogue()
 			
 func _dialogue_clicked():
 	if pageIndex < numDialogueText-1:    
@@ -182,7 +188,6 @@ func _reply_mouseover(mouseover, reply):
 func start_dialogue(json):
 #	TODO: when calling a dialogue, call start_dialogue("ellie_date_0" + str(global.chardata["relationship"]) + ".json")
 	global.dialogue_running = true
-	print(global.dialogue_running)
 	talkData = global.load_json(json)
 	
 	branch = talkData["dialogue"][charData[npc]["branch"]]
@@ -236,8 +241,6 @@ func start_dialogue(json):
 		for n in range(0,numReplies):
 			replyContainer.push_back("ui_dialogue/reply" + str(n+1))
 			get_node("ui_dialogue/reply" + str(n+1)).set_text(replies[n]["reply"])
-			
-	print(global.dialogue_running)
 		
 func setup_dialogue_window():
 		
