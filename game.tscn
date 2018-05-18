@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://data/scripts/world.gd" type="Script" id=1]
 [ext_resource path="res://data/scripts/ui.gd" type="Script" id=2]
@@ -17,13 +17,14 @@
 [ext_resource path="res://data/asset scenes/schoolbag_UI.tscn" type="PackedScene" id=15]
 [ext_resource path="res://data/asset scenes/map_ui.tscn" type="PackedScene" id=16]
 [ext_resource path="res://data/asset scenes/calendar_UI.tscn" type="PackedScene" id=17]
-[ext_resource path="res://data/npcs/ellie.tscn" type="PackedScene" id=18]
-[ext_resource path="res://data/asset scenes/object.tscn" type="PackedScene" id=19]
-[ext_resource path="res://data/asset scenes/dialogue.tscn" type="PackedScene" id=20]
-[ext_resource path="res://data/scripts/scene.gd" type="Script" id=21]
-[ext_resource path="res://data/locations/schoolyard.tscn" type="PackedScene" id=22]
-[ext_resource path="res://data/graphics/white.png" type="Texture" id=23]
-[ext_resource path="res://data/asset scenes/player.tscn" type="PackedScene" id=24]
+[ext_resource path="res://data/asset scenes/game_settings.tscn" type="PackedScene" id=18]
+[ext_resource path="res://data/npcs/ellie.tscn" type="PackedScene" id=19]
+[ext_resource path="res://data/asset scenes/object.tscn" type="PackedScene" id=20]
+[ext_resource path="res://data/asset scenes/dialogue.tscn" type="PackedScene" id=21]
+[ext_resource path="res://data/scripts/scene.gd" type="Script" id=22]
+[ext_resource path="res://data/locations/schoolyard.tscn" type="PackedScene" id=23]
+[ext_resource path="res://data/graphics/white.png" type="Texture" id=24]
+[ext_resource path="res://data/asset scenes/player.tscn" type="PackedScene" id=25]
 
 [sub_resource type="Environment" id=1]
 
@@ -499,8 +500,6 @@ shape = SubResource( 10 )
 
 [node name="phone_ui" parent="ui" index="12" instance=ExtResource( 14 )]
 z_index = 99
-audio_bus_override = false
-audio_bus_name = "Master"
 _sections_unfolded = [ "Z Index" ]
 
 [node name="schoolbag_ui" parent="ui" index="13" instance=ExtResource( 15 )]
@@ -534,17 +533,23 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 _sections_unfolded = [ "Rect" ]
 
+[node name="game_settings" parent="ui" index="17" instance=ExtResource( 18 )]
+margin_left = 702.392
+margin_top = 362.525
+margin_right = 1202.39
+margin_bottom = 712.525
+
 [node name="npcs" type="Node" parent="." index="4"]
 
-[node name="npc" parent="npcs" index="0" instance=ExtResource( 18 )]
+[node name="npc" parent="npcs" index="0" instance=ExtResource( 19 )]
 
 [node name="objects" type="Node" parent="." index="5"]
 editor/display_folded = true
 
-[node name="object" parent="objects" index="0" instance=ExtResource( 19 )]
+[node name="object" parent="objects" index="0" instance=ExtResource( 20 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.122, 1.70829, 0 )
 
-[node name="dialogue" parent="." index="6" instance=ExtResource( 20 )]
+[node name="dialogue" parent="." index="6" instance=ExtResource( 21 )]
 editor/display_folded = true
 z_index = 95
 _sections_unfolded = [ "Z Index" ]
@@ -572,7 +577,7 @@ reverb_bus_enable = false
 reverb_bus_name = "Master"
 reverb_bus_amount = 0.0
 reverb_bus_uniformity = 0.0
-script = ExtResource( 21 )
+script = ExtResource( 22 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="col" type="CollisionShape" parent="scene" index="0"]
@@ -581,7 +586,7 @@ shape = SubResource( 11 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 
-[node name="Area" parent="scene" index="1" instance=ExtResource( 22 )]
+[node name="Area" parent="scene" index="1" instance=ExtResource( 23 )]
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="effects" type="Node" parent="." index="8"]
@@ -599,7 +604,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 2
-texture = ExtResource( 23 )
+texture = ExtResource( 24 )
 expand = true
 stretch_mode = 0
 _sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Hint", "Margin", "Material", "Mouse", "Rect", "Size Flags", "Visibility" ]
@@ -612,7 +617,7 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="player" parent="." index="9" instance=ExtResource( 24 )]
+[node name="player" parent="." index="9" instance=ExtResource( 25 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0621125, 0 )
 
 [node name="rotation_helper" parent="player" index="2"]

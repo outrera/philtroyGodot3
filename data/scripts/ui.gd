@@ -57,8 +57,9 @@ func _ready():
 
 func _process(delta):
 	#if dialogue is running and we press ui_exit, exit dialogue and delete dialogue nodes
-	if Input.is_action_pressed("ui_exit"):
-		ui_exit()
+	if Input.is_action_just_pressed("ui_exit"):
+		if !global.phone_app_running:
+			ui_exit()
 
 func item_in_hand(a,b):			
 	var tempTex = load(b)
@@ -84,8 +85,8 @@ func ui_exit():
 		toggle_ui_overlay("calendar_ui", "hide", calendarHidePos)
 	if mapOpen == true:	
 		toggle_ui_overlay("map_ui", "hide", mapHidePos)
-	if gameSettingsOpen == true:
-		hide_game_settings()
+#	if gameSettingsOpen == true:
+#		hide_game_settings()
 
 func change_cursor(id):
 	if global.itemInHand == false and global.blocking_ui!=true:
@@ -119,10 +120,8 @@ func _input(event):
 	#these need checks so you can´t press the same key twice, or the overlays will continue upwards
 	#pressing a second time should hide the overlays again 
 	if event.is_action_pressed("ui_exit"):
-		if global.blocking_ui!=true:
-			if global.dialogue_running!=true:
-				if gameSettingsOpen!=true:
-					toggle_game_settings()
+		if !mapOpen and !schoolbagOpen and !phoneOpen and !calendarOpen and !global.dialogue_running:
+			toggle_game_settings()
 	if event.is_action_pressed("ui_inventory") and !mapOpen and !phoneOpen and !calendarOpen and !gameSettingsOpen and !global.dialogue_running:
 		if schoolbagOpen!=true:
 			toggle_ui_overlay("schoolbag_ui", "show", schoolbagShowPos)
@@ -266,24 +265,35 @@ func ui_hide_show(gui_node, move_delta, method1, method2):
 	
 func toggle_game_settings():
 	var mytween = get_parent().get_node("effects/tween")
-	global.blocking_ui = true
-	gameSettingsOpen = true
-	var gameSettings = gameSettingsUI.instance()
-	gameSettings.name = "game_settings"
-	gameSettings.set_position(Vector2(400,300))
-	self.add_child(gameSettings)
-	mytween.interpolate_property($game_settings, "modulate", Color(1,1,1,0), Color(1,1,1,1), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-#	effectBlurUI.interpolate_property(gameSettings, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
-	toggle_ui_icons("hide")
-#	ui_hide_show(gameSettings, Vector2(0,-1000), Tween.TRANS_QUAD, Tween.EASE_OUT)
 
-func hide_game_settings():
-	global.blocking_ui = false
-	gameSettingsOpen = false
-	var mytween = get_parent().get_node("effects/tween")
-	mytween.interpolate_property($game_settings, "modulate", Color(1,1,1,1), Color(1,1,1,0), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-#	$settings.queue_free()
-#	$settings.name = "deleted"
-	toggle_ui_icons("show")
-	change_cursor("default")
+#	var gameSettings = gameSettingsUI.instance()
+#	gameSettings.name = "game_settings"
+#	gameSettings.set_position(Vector2(400,300))
+#	self.add_child(gameSettings)
+	if !global.blocking_ui and !gameSettingsOpen:
+		print("show game settings")
+		global.blocking_ui = true
+		gameSettingsOpen = true
+		mytween.interpolate_property($game_settings, "modulate", Color(1,1,1,0), Color(1,1,1,1), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+#		effectBlurUI.interpolate_property(gameSettings, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+		toggle_ui_icons("hide")
+#		ui_hide_show(gameSettings, Vector2(0,-1000), Tween.TRANS_QUAD, Tween.EASE_OUT)
+	else:
+		print("hide game settings")
+		global.blocking_ui = false
+		gameSettingsOpen = false
+		mytween.interpolate_property($game_settings, "modulate", Color(1,1,1,1), Color(1,1,1,0), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+#		effectBlurUI.interpolate_property(gameSettings, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+		toggle_ui_icons("show")
+		
+
+#func hide_game_settings():
+#	global.blocking_ui = false
+#	gameSettingsOpen = false
+#	var mytween = get_parent().get_node("effects/tween")
+#	mytween.interpolate_property($game_settings, "modulate", Color(1,1,1,1), Color(1,1,1,0), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+##	$settings.queue_free()
+##	$settings.name = "deleted"
+#	toggle_ui_icons("show")
+#	change_cursor("default")
 

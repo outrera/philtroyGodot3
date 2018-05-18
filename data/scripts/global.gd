@@ -18,6 +18,7 @@ var inventoryData = {}
 
 var dialogue_running
 var blocking_ui = false
+var phone_app_running = false
 var is_moving = false
 var itemInHand = false
 

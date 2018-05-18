@@ -1,6 +1,6 @@
 [gd_scene format=2]
 
-[node name="Panel" type="Panel"]
+[node name="game_settings" type="Panel" index="0"]
 modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.0
 anchor_top = 0.0

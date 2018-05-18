@@ -1,107 +1,85 @@
 extends Area2D
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
-
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here.
 	pass
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+func _input(event):
+	if event is InputEventKey:
+		if event.scancode == KEY_Q:
+			if global.phone_app_running == true:
+				if event.is_pressed():
+					for app in $apps.get_children():
+						app.hide()			
+					global.phone_app_running = false
 
 func icon_fx(node, scale):
 	$fx.interpolate_property (node, "scale", node.scale, scale, 0.5, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
 	$fx.start()
 
+func start_phone_app(app, event):
+    if event is InputEventMouseButton:
+        if event.button_index == BUTTON_LEFT:
+            if event.is_pressed():
+                get_node("apps/ui_phone").show()
+				global.phone_app_running = true
+				
 func _on_phone_mouse_entered():
 	icon_fx($homescreen/phone, Vector2(0.9, 0.9))
-
 
 func _on_phone_mouse_exited():
 	icon_fx($homescreen/phone, Vector2(1, 1))
 
 func _on_phone_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
-			if event.is_pressed():
-				$ui_phone.show()
+	if event : start_phone_app("phone", event)
 
 
 func _on_mail_mouse_entered():
 	icon_fx($homescreen/mail, Vector2(0.9, 0.9))
 
-
 func _on_mail_mouse_exited():
 	icon_fx($homescreen/mail, Vector2(1, 1))
 
-
 func _on_mail_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
-			if event.is_pressed():
-				$ui_phone.show()
+	if event : start_phone_app("mail", event)
 
 
 func _on_internet_mouse_entered():
 	icon_fx($homescreen/internet, Vector2(0.9, 0.9))
 
-
 func _on_internet_mouse_exited():
 	icon_fx($homescreen/internet, Vector2(1, 1))
 
-
 func _on_internet_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
-			if event.is_pressed():
-				$ui_internet.show()
+	if event : start_phone_app("internet", event)
 
 
 func _on_archive_mouse_entered():
+	print("internet in")
 	icon_fx($homescreen/archive, Vector2(0.9, 0.9))
 
-
 func _on_archive_mouse_exited():
+	print("internet out")
 	icon_fx($homescreen/archive, Vector2(1, 1))
 
-
 func _on_archive_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
-			if event.is_pressed():
-				$ui_archive.show()
+	if event : start_phone_app("archive", event)
 
 
 func _on_calendar_mouse_entered():
 	icon_fx($homescreen/calendar, Vector2(0.9, 0.9))
 
-
 func _on_calendar_mouse_exited():
 	icon_fx($homescreen/calendar, Vector2(1, 1))
 
-
 func _on_calendar_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
-			if event.is_pressed():
-				$ui_calendar.show()
+	if event : start_phone_app("calendar", event)
 
 
 func _on_games_mouse_entered():
 	icon_fx($homescreen/games, Vector2(0.9, 0.9))
 
-
 func _on_games_mouse_exited():
 	icon_fx($homescreen/games, Vector2(1, 1))
 
-
 func _on_games_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
-			if event.is_pressed():
-				$ui_games.show()
+	if event : start_phone_app("games", event)
