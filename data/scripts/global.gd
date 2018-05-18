@@ -15,6 +15,19 @@ var eventData = {}
 var charData = {}
 var gameVars = {}
 var inventoryData = {}
+var contactData = {
+	"c1" : "Ellie - 894 569 235",
+	"c2" : "Bobby - 867 465 876",
+	"c3" : "Mom - 657 689 576"
+}
+var archiveData = {
+	"img01" : "res://data/graphics/img01.png",
+	"img02" : "res://data/graphics/img02.png",
+	"img03" : "res://data/graphics/img03.png",
+	"img04" : "res://data/graphics/img04.png",
+	"img05" : "res://data/graphics/img05.png",
+	"img06" : "res://data/graphics/img06.png",
+}
 
 var dialogue_running
 var blocking_ui = false

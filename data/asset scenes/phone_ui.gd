@@ -17,10 +17,21 @@ func icon_fx(node, scale):
 	$fx.start()
 
 func start_phone_app(app, event):
-    if event is InputEventMouseButton:
-        if event.button_index == BUTTON_LEFT:
-            if event.is_pressed():
-                get_node("apps/ui_phone").show()
+	if app == "phone":
+		for contact in range(global.contactData.size()):
+			var node = "apps/ui_phone/Label"
+			get_node(node + str(contact+1)).set_text(global.contactData["c" + str(contact+1)])
+			
+	if app == "archive":
+		for contact in range(global.archiveData.size()):
+			var node = "apps/ui_archive/Sprite"
+			var image = load("res://data/graphics/img0" + str(contact+1) + ".png")
+			get_node(node + str(contact+1)).set_texture(image)
+		
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			if event.is_pressed():
+				get_node("apps/ui_" + app).show()
 				global.phone_app_running = true
 				
 func _on_phone_mouse_entered():

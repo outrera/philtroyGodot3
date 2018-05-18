@@ -58,8 +58,7 @@ func _ready():
 func _process(delta):
 	#if dialogue is running and we press ui_exit, exit dialogue and delete dialogue nodes
 	if Input.is_action_just_pressed("ui_exit"):
-		if !global.phone_app_running:
-			ui_exit()
+		ui_exit()			
 
 func item_in_hand(a,b):			
 	var tempTex = load(b)
@@ -130,6 +129,8 @@ func _input(event):
 	if event.is_action_pressed("ui_mobile") and !schoolbagOpen and !mapOpen and !calendarOpen and !gameSettingsOpen and !global.dialogue_running:
 		if phoneOpen!=true:
 			toggle_ui_overlay("phone_ui", "show", phoneShowPos)
+			for app in $phone_ui/apps.get_children():
+				app.hide()			
 		else:
 			toggle_ui_overlay("phone_ui", "hide", phoneHidePos)
 	if event.is_action_pressed("ui_map") and !schoolbagOpen and !phoneOpen and !calendarOpen and !gameSettingsOpen and !global.dialogue_running:
@@ -147,6 +148,8 @@ func _input(event):
 		if hoverNode.get_name() == "phone":	
 			if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():
 				toggle_ui_overlay("phone_ui", "show", phoneShowPos)
+				for app in $phone_ui/apps.get_children():
+					app.hide()	
 		elif hoverNode.get_name() == "schoolbag":	
 			if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():
 				toggle_ui_overlay("schoolbag_ui", "show", schoolbagShowPos)
