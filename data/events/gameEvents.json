@@ -3,6 +3,7 @@
 		"4": [{
 			"evening":{
 				"event": "party_laura",
+				"icon" : "char3.png",
 				"fail": {
 					"noshow": "none",
 					"cancel": "none"
@@ -12,6 +13,7 @@
 		"11": [{
 			"evening":{
 				"event": "party_sam",
+				"icon" : "char2.png",
 				"fail": {
 					"noshow": "none",
 					"cancel": "none"
@@ -21,6 +23,7 @@
 		"18": [{
 			"evening":{
 				"event": "date_ellie",
+				"icon" : "char1.png",
 				"fail": {
 					"noshow": "date_ellie_noshow",
 					"cancel": "date_ellie_cancel"
@@ -30,6 +33,7 @@
 		"25": [{
 			"evening":{
 				"event": "party_bobby",
+				"icon" : "party_bobby",
 				"fail": {
 					"noshow": "none",
 					"cancel": "none"
@@ -39,6 +43,7 @@
 		"32": [{
 			"evening":{
 				"event": "party_halloween",
+				"icon" : "party_halloween",
 				"fail": {
 					"noshow": "none",
 					"cancel": "none"

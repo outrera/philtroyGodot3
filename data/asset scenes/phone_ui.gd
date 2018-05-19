@@ -25,7 +25,7 @@ func start_phone_app(app, event):
 	if app == "archive":
 		for contact in range(global.archiveData.size()):
 			var node = "apps/ui_archive/Sprite"
-			var image = load("res://data/graphics/img0" + str(contact+1) + ".png")
+			var image = load("res://data/graphics/gallery/img0" + str(contact+1) + ".png")
 			get_node(node + str(contact+1)).set_texture(image)
 		
 	if event is InputEventMouseButton:

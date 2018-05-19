@@ -1,13 +1,70 @@
-[gd_scene format=2]
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://data/fonts/ReemKufi-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://data/graphics/saves/save1.png" type="Texture" id=2]
+[ext_resource path="res://data/graphics/saves/save2.png" type="Texture" id=3]
+[ext_resource path="res://data/graphics/saves/save3.png" type="Texture" id=4]
+[ext_resource path="res://data/graphics/saves/save4.png" type="Texture" id=5]
+[ext_resource path="res://data/graphics/saves/save5.png" type="Texture" id=6]
+[ext_resource path="res://data/graphics/saves/save6.png" type="Texture" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+
+size = 60
+outline_size = 0
+outline_color = Color( 0.913725, 0.219608, 0.219608, 1 )
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 1 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=2]
+
+size = 60
+outline_size = 0
+outline_color = Color( 1, 1, 1, 1 )
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 1 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=3]
+
+size = 60
+outline_size = 0
+outline_color = Color( 1, 1, 1, 1 )
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 1 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=4]
+
+size = 60
+outline_size = 0
+outline_color = Color( 1, 1, 1, 1 )
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 1 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=5]
+
+size = 60
+outline_size = 0
+outline_color = Color( 1, 1, 1, 1 )
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 1 )
+_sections_unfolded = [ "Font", "Settings" ]
 
 [node name="game_settings" type="Panel" index="0"]
-modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 500.0
-margin_bottom = 350.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -15,4 +72,166 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 _sections_unfolded = [ "Material", "Rect", "Visibility" ]
+
+[node name="header" type="Label" parent="." index="0"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 91.2408
+margin_top = 75.1161
+margin_right = 280.241
+margin_bottom = 165.116
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+text = "MENU"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Visibility", "custom_colors", "custom_constants", "custom_fonts", "custom_styles" ]
+
+[node name="(L)oad Game" type="Label" parent="." index="1"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 94.4481
+margin_top = 200.07
+margin_right = 301.448
+margin_bottom = 260.07
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
+text = "Load Game"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="(S)ave game" type="Label" parent="." index="2"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 95.2988
+margin_top = 303.0
+margin_right = 398.299
+margin_bottom = 393.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 3 )
+text = "Save Game"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="Exit Game" type="Label" parent="." index="3"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 94.3815
+margin_top = 405.285
+margin_right = 370.381
+margin_bottom = 495.285
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 4 )
+text = "Exit Game"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="Patreon" type="Label" parent="." index="4"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 98.0828
+margin_top = 882.745
+margin_right = 315.083
+margin_bottom = 972.745
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 5 )
+text = "Patreon"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="savegames" type="Container" parent="." index="5"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -21.4282
+margin_top = 1.948
+margin_right = 18.5718
+margin_bottom = 41.948
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="save1" type="Sprite" parent="savegames" index="0"]
+position = Vector2( 693.884, 341.585 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="save2" type="Sprite" parent="savegames" index="1"]
+position = Vector2( 1183.13, 341.488 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="save3" type="Sprite" parent="savegames" index="2"]
+position = Vector2( 1669.74, 343.728 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="save4" type="Sprite" parent="savegames" index="3"]
+position = Vector2( 693.495, 637.002 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="save5" type="Sprite" parent="savegames" index="4"]
+position = Vector2( 1184.4, 635.054 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 6 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="save6" type="Sprite" parent="savegames" index="5"]
+position = Vector2( 1669.45, 635.054 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 7 )
+_sections_unfolded = [ "Transform" ]
 

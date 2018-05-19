@@ -19,6 +19,8 @@ var dayOfMonth = 1
 onready var effectHoverUI = $"../effects/tween"
 onready var effectToggleUI = $"../effects/tween"
 onready var effectBlurUI = $"../effects/tween"
+onready var fade_in = $"../effects/fade_in"
+onready var fade_out = $"../effects/fade_out"
 onready var descriptionLabel = $descriptionLabel
 onready var sceneCol = $"../scene/col"
 
@@ -243,9 +245,13 @@ func toggle_ui_overlay(id, mode, deltaPos):
 		if mode == "show":
 			phoneOpen = true
 			ui_hide_show(get_node(id), Vector2(-positionDelta), Tween.TRANS_QUAD, Tween.EASE_OUT)
+			fade_in.interpolate_property(get_node(id + "/homescreen"), "modulate", Color(1,1,1,0), Color(1,1,1,1), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			fade_in.start()
 		else:
 			phoneOpen = false
 			ui_hide_show(get_node(id), Vector2(0,positionDelta.y), Tween.TRANS_QUAD, Tween.EASE_OUT)
+			fade_out.interpolate_property(get_node(id + "/homescreen"), "modulate", Color(1,1,1,1), Color(1,1,1,0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			fade_out.start()
 	if id == "map_ui":
 		if mode == "show":
 			mapOpen = true
@@ -267,36 +273,21 @@ func ui_hide_show(gui_node, move_delta, method1, method2):
 	effectToggleUI.start()
 	
 func toggle_game_settings():
-	var mytween = get_parent().get_node("effects/tween")
 
-#	var gameSettings = gameSettingsUI.instance()
-#	gameSettings.name = "game_settings"
-#	gameSettings.set_position(Vector2(400,300))
-#	self.add_child(gameSettings)
 	if !global.blocking_ui and !gameSettingsOpen:
-		print("show game settings")
+		$game_settings.show()
 		global.blocking_ui = true
 		gameSettingsOpen = true
-		mytween.interpolate_property($game_settings, "modulate", Color(1,1,1,0), Color(1,1,1,1), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-#		effectBlurUI.interpolate_property(gameSettings, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
-		toggle_ui_icons("hide")
-#		ui_hide_show(gameSettings, Vector2(0,-1000), Tween.TRANS_QUAD, Tween.EASE_OUT)
+		fade_in.interpolate_property($game_settings, "modulate", Color(1,1,1,0), Color(1,1,1,1), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		fade_in.start()
+#		toggle_ui_icons("hide")
+
 	else:
-		print("hide game settings")
 		global.blocking_ui = false
 		gameSettingsOpen = false
-		mytween.interpolate_property($game_settings, "modulate", Color(1,1,1,1), Color(1,1,1,0), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-#		effectBlurUI.interpolate_property(gameSettings, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
-		toggle_ui_icons("show")
-		
+		fade_out.interpolate_property($game_settings, "modulate", Color(1,1,1,1), Color(1,1,1,0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		fade_out.start()
+#		toggle_ui_icons("show")
 
-#func hide_game_settings():
-#	global.blocking_ui = false
-#	gameSettingsOpen = false
-#	var mytween = get_parent().get_node("effects/tween")
-#	mytween.interpolate_property($game_settings, "modulate", Color(1,1,1,1), Color(1,1,1,0), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-##	$settings.queue_free()
-##	$settings.name = "deleted"
-#	toggle_ui_icons("show")
-#	change_cursor("default")
-
+func _on_fade_out_tween_completed(object, key):
+	$game_settings.hide()

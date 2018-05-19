@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://data/asset scenes/phone_ui.gd" type="Script" id=1]
 [ext_resource path="res://data/graphics/phone_ui.png" type="Texture" id=2]
@@ -11,7 +11,9 @@
 [ext_resource path="res://data/graphics/phone_games.png" type="Texture" id=9]
 [ext_resource path="res://data/fonts/ReemKufi-Regular.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://data/graphics/phone_home.png" type="Texture" id=11]
-[ext_resource path="res://data/graphics/img01.png" type="Texture" id=12]
+[ext_resource path="res://data/graphics/gallery/img01.png" type="Texture" id=12]
+[ext_resource path="res://data/graphics/gallery/img01.png" type="Texture" id=13]
+
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -685,27 +687,27 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite2" type="Sprite" parent="apps/ui_archive" index="3"]
 position = Vector2( 260, 140 )
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite3" type="Sprite" parent="apps/ui_archive" index="4"]
 position = Vector2( 100.992, 289.409 )
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite4" type="Sprite" parent="apps/ui_archive" index="5"]
 position = Vector2( 260.77, 290.917 )
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite5" type="Sprite" parent="apps/ui_archive" index="6"]
 position = Vector2( 104.006, 438.636 )
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite6" type="Sprite" parent="apps/ui_archive" index="7"]
 position = Vector2( 262.277, 440.144 )
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="ui_calendar" type="Panel" parent="apps" index="4"]

@@ -83,3 +83,7 @@ func _highlight(text):
 
 
 
+
+
+func _on_tween_tween_completed():
+	pass # replace with function body

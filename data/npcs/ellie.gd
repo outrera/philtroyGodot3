@@ -8,6 +8,12 @@ signal dialogue(a,b)
 var identity = "ellie"
 var branch = "a"
 
+var inventory = [
+	"clothes",
+	"glasses",
+	"bag"
+]
+
 func _ready():
 	pass
 		

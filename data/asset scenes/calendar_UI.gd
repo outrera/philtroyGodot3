@@ -19,33 +19,43 @@ func _ready():
 		var node = header_node.instance()
 		node.set_name(global.gameData["weekday"][i])
 		node.set_position(Vector2(125 + offsetX,85 + offsetY))
-		self.add_child(node)
-		get_node(global.gameData["weekday"][i] +"/label").set_text(global.gameData["weekday"][i])
+		$nodes.add_child(node)
+		get_node("nodes/" + global.gameData["weekday"][i] +"/label").set_text(global.gameData["weekday"][i])
 #		print(get_node(global.gameData["weekday"][i]).name)
 	
 	#setup the calendar cells (where days and events are displayed)
 	for i in range(35):
 		event_label = ""
+		offsetX = i*165 - new_week
+		
+		var node = calendar_node.instance()
+		node.set_name(str(i))
+		node.set_position(Vector2(125 + offsetX,130 + offsetY))
+		$nodes.add_child(node)
+		
 		if i > offsetDay-2 and i<30 + offsetDay - 1:
 			if global.eventData["date"].has(str(i-(offsetDay-2))):
+				var date = global.eventData["date"][str(i-(offsetDay-2))][0]["evening"]
 				current_month.push_back("event")
-				event_label = global.eventData["date"][str(i-(offsetDay-2))][0]["evening"]["event"]
+				event_label = date["event"]
 #				current_month[i-1] = "event"
+				var icon = Sprite.new()
+				var texture = load("res://data/graphics/" + date.icon)
+				icon.set_position(Vector2(200 + offsetX,200 + offsetY))
+				icon.set_scale(Vector2(0.5, 0.5))
+				icon. set_texture(texture)
+				$nodes.add_child(icon)
 			else:
 				current_month.push_back("blank")
 				event_label = ""
 #				current_month[i-1] = "blank"
-		offsetX = i*165 - new_week
-		var node = calendar_node.instance()
-		node.set_name(str(i))
-		node.set_position(Vector2(125 + offsetX,130 + offsetY))
-		self.add_child(node)
+		
 		if (i - (offsetDay-2)) > 0 and (i - (offsetDay-2)) < 31:
-			get_node(str(i)+"/label_day").set_text(str(i - (offsetDay-2)))
-			get_node(str(i)+"/label_event").set_text(event_label)
+			get_node("nodes/"+str(i)+"/label_day").set_text(str(i - (offsetDay-2)))
+#			get_node("nodes/"+str(i)+"/label_event").set_text(event_label)
 		#this is just to test the color override. TODO: need to figure out how to check if calendar day is the same as global.gameDay
 		if global.day == i - (offsetDay-2):
-			get_node(str(i)+"/label_day").add_color_override("font_color", Color(1,0,0,1))
+			get_node("nodes/"+str(i)+"/label_day").add_color_override("font_color", Color(1,0,0,1))
 #		print(global.day)
 #		print(i - (offsetDay-2))
 		if i==6 or i==13 or i==20 or i==27:
