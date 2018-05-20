@@ -1,7 +1,18 @@
 extends Area2D
 
+var folder = []
+var gallery = []
+var gallery_thumbs = []
+var gallery_page = 1
+
 func _ready():
-	pass
+	folder = global.list_files_in_directory("res://data/graphics/gallery/")
+#	print(gallery)
+	for item in folder:
+		if "thumb" in item:
+			gallery_thumbs.push_back(item)
+		else:
+			gallery.push_back(item)
 
 func _input(event):
 	if event is InputEventKey:
@@ -23,10 +34,15 @@ func start_phone_app(app, event):
 			get_node(node + str(contact+1)).set_text(global.contactData["c" + str(contact+1)])
 			
 	if app == "archive":
-		for contact in range(global.archiveData.size()):
-			var node = "apps/ui_archive/Sprite"
-			var image = load("res://data/graphics/gallery/img0" + str(contact+1) + ".png")
-			get_node(node + str(contact+1)).set_texture(image)
+		var node = "apps/ui_archive/Sprite"
+		var i = 1
+		var slot = 1
+		for thumb in gallery_thumbs:
+			if i < gallery_page * 6 +1 and i > gallery_page * 6 - 6:
+				var image = load("res://data/graphics/gallery/" + thumb)
+				get_node(node + str(slot)).set_texture(image)
+				slot += 1
+			i = i+1
 		
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
@@ -65,11 +81,9 @@ func _on_internet_input_event(viewport, event, shape_idx):
 
 
 func _on_archive_mouse_entered():
-	print("internet in")
 	icon_fx($homescreen/archive, Vector2(0.9, 0.9))
 
 func _on_archive_mouse_exited():
-	print("internet out")
 	icon_fx($homescreen/archive, Vector2(1, 1))
 
 func _on_archive_input_event(viewport, event, shape_idx):

@@ -56,7 +56,7 @@ var dialogue_running
 var blocking_ui = false
 var phone_app_running = false
 var is_moving = false
-var itemInHand = false
+var itemInHand = ""
 
 var scene
 var locations = []
@@ -90,8 +90,6 @@ func _ready():
 	month=7
 	
 	eventOverride = null
-	
-	print(list_files_in_directory("res://data/graphics/gallery"))
 
 func _process(delta):
 	if Input.is_action_pressed("ui_reload"):

@@ -9,7 +9,7 @@ var hoverNode = null
 var blockingUI = false
 var dialogueRunning = false
 var noMoveOnClick = false
-var itemInHand = false
+var itemInHand = ""
 
 var day = 2
 var time = 0
@@ -66,7 +66,6 @@ func item_in_hand(a,b):
 	var tempTex = load(b)
 	Input.set_custom_mouse_cursor(tempTex)
 #	$item_in_hand.set_texture(tempTex)
-	global.itemInHand = true
 	ui_exit()
 	
 func load_map_location(location):
@@ -90,7 +89,7 @@ func ui_exit():
 #		hide_game_settings()
 
 func change_cursor(id):
-	if global.itemInHand == false and global.blocking_ui!=true:
+	if global.itemInHand != "" and global.blocking_ui!=true:
 		var cursor = load("res://data/graphics/cursor_" + id + ".png")
 		Input.set_custom_mouse_cursor(cursor)
 
@@ -143,8 +142,8 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_RIGHT:
 			if event.pressed:
-				if global.itemInHand == true:
-					global.itemInHand = false
+				if global.itemInHand != "":
+					global.itemInHand = ""
 					change_cursor("default")
 	if hoverNode:
 		if hoverNode.get_name() == "phone":	
@@ -230,7 +229,7 @@ func toggle_ui_overlay(id, mode, deltaPos):
 	else:
 		global.blocking_ui = false
 		toggle_ui_icons("show")
-		if global.itemInHand == false:
+		if global.itemInHand == "":
 			change_cursor("default")
 		effectBlurUI.interpolate_property(screenBlur, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 		positionDelta = deltaPos - ui_node.position

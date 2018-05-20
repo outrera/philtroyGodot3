@@ -18,6 +18,7 @@ func _input(event):
 			if event.button_index == BUTTON_LEFT:
 				if event.pressed:
 					emit_signal("change_cursor", "hand", "res://data/graphics/inv_" + id + ".png")
+					global.itemInHand = id
 			
 func _on_area_mouse_entered():
 	hovering = true

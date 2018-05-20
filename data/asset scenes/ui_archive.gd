@@ -1,12 +1,6 @@
 extends Panel
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
-
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here.
 	pass
 
 #func _process(delta):
@@ -15,7 +9,6 @@ func _ready():
 #	pass
 
 func icon_fx(photo, scale):
-	print(photo.name)
 	$fx.interpolate_property (photo, "scale", photo.scale, scale, 0.3, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$fx.start()
 

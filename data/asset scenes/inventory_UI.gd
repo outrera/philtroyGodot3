@@ -115,7 +115,7 @@ func _on_gifts_mouse_exited():
 	tab = null
 
 func _on_gifts_input_event(camera, event, click_position, click_normal, shape_idx):
-	print("gifts clicked")
+	pass
 
 func _on_misc_mouse_entered():
 	$container/panel/debug.set_text("misc")
