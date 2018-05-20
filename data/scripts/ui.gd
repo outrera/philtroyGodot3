@@ -274,6 +274,7 @@ func ui_hide_show(gui_node, move_delta, method1, method2):
 func toggle_game_settings():
 
 	if !global.blocking_ui and !gameSettingsOpen:
+		global.grab_screen()
 		$game_settings.show()
 		global.blocking_ui = true
 		gameSettingsOpen = true

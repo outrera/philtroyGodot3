@@ -100,6 +100,20 @@ func _process(delta):
 # original code found here: https://godotengine.org/qa/5175/how-to-get-all-the-files-inside-a-folder
 # using this code we don´t need to depend on file numbers do iterate through files, we just read and load the files alphabetically 
 # this also eliminates problems when deleting a file
+
+func grab_screen():
+	var capture = get_viewport().get_texture().get_data()
+	
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	capture.flip_y()
+	capture.convert(5)
+
+	capture.save_png("res://data/graphics/saves/screenshot.png")
+
+	capture.resize(640,400,1)
+	capture.save_png("res://data/graphics/saves/screenshot - thumb.png")
+
 func list_files_in_directory(path):
     var dir = Directory.new()
     dir.open(path)

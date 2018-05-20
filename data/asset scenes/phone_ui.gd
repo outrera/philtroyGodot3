@@ -38,6 +38,7 @@ func start_phone_app(app, event):
 		var i = 1
 		var slot = 1
 		for thumb in gallery_thumbs:
+			#Assign thumb textures corresponding to gallery page. If page is 3, assign textures in gallery_thumbs[13] to[18] 
 			if i < gallery_page * 6 +1 and i > gallery_page * 6 - 6:
 				var image = load("res://data/graphics/gallery/" + thumb)
 				get_node(node + str(slot)).set_texture(image)
