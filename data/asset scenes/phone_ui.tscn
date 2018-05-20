@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://data/asset scenes/phone_ui.gd" type="Script" id=1]
 [ext_resource path="res://data/graphics/phone_ui.png" type="Texture" id=2]
@@ -11,9 +11,8 @@
 [ext_resource path="res://data/graphics/phone_games.png" type="Texture" id=9]
 [ext_resource path="res://data/fonts/ReemKufi-Regular.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://data/graphics/phone_home.png" type="Texture" id=11]
-[ext_resource path="res://data/graphics/gallery/img01.png" type="Texture" id=12]
+[ext_resource path="res://data/asset scenes/ui_archive.gd" type="Script" id=12]
 [ext_resource path="res://data/graphics/gallery/img01.png" type="Texture" id=13]
-
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -59,6 +58,36 @@ _sections_unfolded = [ "Font", "Settings" ]
 
 custom_solver_bias = 0.0
 extents = Vector2( 27.6513, 26.2312 )
+
+[sub_resource type="RectangleShape2D" id=9]
+
+custom_solver_bias = 0.0
+extents = Vector2( 64.321, 64.5651 )
+
+[sub_resource type="RectangleShape2D" id=10]
+
+custom_solver_bias = 0.0
+extents = Vector2( 64.321, 64.5651 )
+
+[sub_resource type="RectangleShape2D" id=11]
+
+custom_solver_bias = 0.0
+extents = Vector2( 63.5472, 63.7911 )
+
+[sub_resource type="RectangleShape2D" id=12]
+
+custom_solver_bias = 0.0
+extents = Vector2( 63.5471, 63.7911 )
+
+[sub_resource type="RectangleShape2D" id=13]
+
+custom_solver_bias = 0.0
+extents = Vector2( 64.321, 64.5649 )
+
+[sub_resource type="RectangleShape2D" id=14]
+
+custom_solver_bias = 0.0
+extents = Vector2( 64.321, 63.7911 )
 
 [node name="phone_ui" type="Area2D" index="0"]
 input_pickable = false
@@ -204,7 +233,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-_sections_unfolded = [ "Visibility" ]
+_sections_unfolded = [ "Mouse", "Visibility" ]
 
 [node name="network" type="Label" parent="homescreen/notification_bar" index="0"]
 anchor_left = 0.0
@@ -257,6 +286,7 @@ playback/repeat = false
 playback/speed = 1.0
 
 [node name="home" type="Sprite" parent="." index="2"]
+editor/display_folded = true
 visible = false
 position = Vector2( 960.912, 2130.09 )
 z_index = 50
@@ -291,6 +321,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 
 [node name="ui_phone" type="Panel" parent="apps" index="0"]
+editor/display_folded = true
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
@@ -634,10 +665,11 @@ margin_right = 1139.0
 margin_bottom = 2168.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
-mouse_filter = 0
+mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+script = ExtResource( 12 )
 _sections_unfolded = [ "Focus", "Hint", "Mouse", "Visibility" ]
 
 [node name="header" type="Label" parent="apps/ui_archive" index="0"]
@@ -682,33 +714,126 @@ max_lines_visible = -1
 
 [node name="Sprite1" type="Sprite" parent="apps/ui_archive" index="2"]
 position = Vector2( 100, 140 )
-texture = ExtResource( 12 )
-_sections_unfolded = [ "Transform" ]
+z_index = 99
+texture = ExtResource( 13 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="sprite1" type="Area2D" parent="apps/ui_archive/Sprite1" index="0"]
+z_index = 99
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Pickable", "Visibility", "Z Index" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="apps/ui_archive/Sprite1/sprite1" index="0"]
+shape = SubResource( 9 )
 
 [node name="Sprite2" type="Sprite" parent="apps/ui_archive" index="3"]
 position = Vector2( 260, 140 )
 texture = ExtResource( 13 )
 _sections_unfolded = [ "Transform" ]
 
+[node name="sprite2" type="Area2D" parent="apps/ui_archive/Sprite2" index="0"]
+position = Vector2( -160, 0 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="apps/ui_archive/Sprite2/sprite2" index="0"]
+position = Vector2( 159.399, -0.773804 )
+shape = SubResource( 10 )
+
 [node name="Sprite3" type="Sprite" parent="apps/ui_archive" index="4"]
 position = Vector2( 100.992, 289.409 )
 texture = ExtResource( 13 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="sprite3" type="Area2D" parent="apps/ui_archive/Sprite3" index="0"]
+position = Vector2( -0.992004, -149.409 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="apps/ui_archive/Sprite3/sprite3" index="0"]
+position = Vector2( 0, 148.566 )
+shape = SubResource( 11 )
 
 [node name="Sprite4" type="Sprite" parent="apps/ui_archive" index="5"]
 position = Vector2( 260.77, 290.917 )
 texture = ExtResource( 13 )
 _sections_unfolded = [ "Transform" ]
 
+[node name="sprite4" type="Area2D" parent="apps/ui_archive/Sprite4" index="0"]
+position = Vector2( -160.77, -150.917 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="apps/ui_archive/Sprite4/sprite4" index="0"]
+position = Vector2( 160.947, 150.887 )
+shape = SubResource( 12 )
+
 [node name="Sprite5" type="Sprite" parent="apps/ui_archive" index="6"]
 position = Vector2( 104.006, 438.636 )
 texture = ExtResource( 13 )
 _sections_unfolded = [ "Transform" ]
 
+[node name="sprite5" type="Area2D" parent="apps/ui_archive/Sprite5" index="0"]
+position = Vector2( -4.00598, -298.636 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="apps/ui_archive/Sprite5/sprite5" index="0"]
+position = Vector2( 4.6427, 299.453 )
+shape = SubResource( 13 )
+
 [node name="Sprite6" type="Sprite" parent="apps/ui_archive" index="7"]
 position = Vector2( 262.277, 440.144 )
 texture = ExtResource( 13 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="sprite6" type="Area2D" parent="apps/ui_archive/Sprite6" index="0"]
+position = Vector2( -162.277, -300.144 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="apps/ui_archive/Sprite6/sprite6" index="0"]
+position = Vector2( 162.494, 299.453 )
+shape = SubResource( 14 )
+
+[node name="fx" type="Tween" parent="apps/ui_archive" index="8"]
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
 
 [node name="ui_calendar" type="Panel" parent="apps" index="4"]
 editor/display_folded = true
@@ -845,3 +970,21 @@ max_lines_visible = -1
 [connection signal="input_event" from="homescreen/games/games" to="." method="_on_games_input_event"]
 [connection signal="mouse_entered" from="homescreen/games/games" to="." method="_on_games_mouse_entered"]
 [connection signal="mouse_exited" from="homescreen/games/games" to="." method="_on_games_mouse_exited"]
+[connection signal="input_event" from="apps/ui_archive/Sprite1/sprite1" to="apps/ui_archive" method="_on_sprite1_input_event"]
+[connection signal="mouse_entered" from="apps/ui_archive/Sprite1/sprite1" to="apps/ui_archive" method="_on_sprite1_mouse_entered"]
+[connection signal="mouse_exited" from="apps/ui_archive/Sprite1/sprite1" to="apps/ui_archive" method="_on_sprite1_mouse_exited"]
+[connection signal="input_event" from="apps/ui_archive/Sprite2/sprite2" to="apps/ui_archive" method="_on_sprite2_input_event"]
+[connection signal="mouse_entered" from="apps/ui_archive/Sprite2/sprite2" to="apps/ui_archive" method="_on_sprite2_mouse_entered"]
+[connection signal="mouse_exited" from="apps/ui_archive/Sprite2/sprite2" to="apps/ui_archive" method="_on_sprite2_mouse_exited"]
+[connection signal="input_event" from="apps/ui_archive/Sprite3/sprite3" to="apps/ui_archive" method="_on_sprite3_input_event"]
+[connection signal="mouse_entered" from="apps/ui_archive/Sprite3/sprite3" to="apps/ui_archive" method="_on_sprite3_mouse_entered"]
+[connection signal="mouse_exited" from="apps/ui_archive/Sprite3/sprite3" to="apps/ui_archive" method="_on_sprite3_mouse_exited"]
+[connection signal="input_event" from="apps/ui_archive/Sprite4/sprite4" to="apps/ui_archive" method="_on_sprite4_input_event"]
+[connection signal="mouse_entered" from="apps/ui_archive/Sprite4/sprite4" to="apps/ui_archive" method="_on_sprite4_mouse_entered"]
+[connection signal="mouse_exited" from="apps/ui_archive/Sprite4/sprite4" to="apps/ui_archive" method="_on_sprite4_mouse_exited"]
+[connection signal="input_event" from="apps/ui_archive/Sprite5/sprite5" to="apps/ui_archive" method="_on_sprite5_input_event"]
+[connection signal="mouse_entered" from="apps/ui_archive/Sprite5/sprite5" to="apps/ui_archive" method="_on_sprite5_mouse_entered"]
+[connection signal="mouse_exited" from="apps/ui_archive/Sprite5/sprite5" to="apps/ui_archive" method="_on_sprite5_mouse_exited"]
+[connection signal="input_event" from="apps/ui_archive/Sprite6/sprite6" to="apps/ui_archive" method="_on_sprite6_input_event"]
+[connection signal="mouse_entered" from="apps/ui_archive/Sprite6/sprite6" to="apps/ui_archive" method="_on_sprite6_mouse_entered"]
+[connection signal="mouse_exited" from="apps/ui_archive/Sprite6/sprite6" to="apps/ui_archive" method="_on_sprite6_mouse_exited"]

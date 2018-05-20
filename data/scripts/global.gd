@@ -29,6 +29,29 @@ var archiveData = {
 	"img06" : "res://data/graphics/img06.png",
 }
 
+var saveData = {
+	"1": {
+		"id" : "01",
+		"thumb" : "01",
+		"data" : []
+	},
+	"2": {
+		"id" : "02",
+		"thumb" : "02",
+		"data" : []
+	},
+	"3": {
+		"id" : "03",
+		"thumb" : "03",
+		"data" : []
+	},
+	"4": {
+		"id" : "04",
+		"thumb" : "04",
+		"data" : []
+	}
+}
+
 var dialogue_running
 var blocking_ui = false
 var phone_app_running = false
@@ -39,6 +62,8 @@ var scene
 var locations = []
 var currentLocation
 var eventOverride = {}
+
+var files = []
 	
 var playerScript = preload("res://data/scripts/player.gd")
 
@@ -65,13 +90,34 @@ func _ready():
 	month=7
 	
 	eventOverride = null
+	
+	print(list_files_in_directory("res://data/graphics/gallery"))
 
 func _process(delta):
 	if Input.is_action_pressed("ui_reload"):
 		get_tree().reload_current_scene()
 	if Input.is_action_pressed("ui_quit"):
 		get_tree().quit()
+		
+# original code found here: https://godotengine.org/qa/5175/how-to-get-all-the-files-inside-a-folder
+# using this code we don´t need to depend on file numbers do iterate through files, we just read and load the files alphabetically 
+# this also eliminates problems when deleting a file
+func list_files_in_directory(path):
+    var dir = Directory.new()
+    dir.open(path)
+    dir.list_dir_begin()
 
+    while true:
+        var file = dir.get_next()
+        if file == "":
+            break
+        elif not file.begins_with(".") and !file.ends_with("import"):
+            files.append(file)
+
+    dir.list_dir_end()
+
+    return files
+	
 func load_json(json):
 	var file = File.new()
 	file.open(json, File.READ)
