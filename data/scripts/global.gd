@@ -58,6 +58,8 @@ var phone_app_running = false
 var is_moving = false
 var itemInHand = ""
 
+var gallery_page = 1
+var save_page = 1
 var scene
 var locations = []
 var currentLocation

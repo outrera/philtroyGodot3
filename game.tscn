@@ -642,6 +642,9 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
+[node name="cuttlefish" type="Sprite" parent="effects" index="5"]
+visible = false
+
 [node name="player" parent="." index="9" instance=ExtResource( 25 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0621125, 0 )
 

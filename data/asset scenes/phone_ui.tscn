@@ -873,6 +873,7 @@ playback/repeat = false
 playback/speed = 1.0
 
 [node name="page1" type="Area2D" parent="apps/ui_archive" index="9"]
+editor/display_folded = true
 position = Vector2( -2.3327, 0 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -912,6 +913,7 @@ position = Vector2( 55.3, 541.801 )
 shape = SubResource( 15 )
 
 [node name="page2" type="Area2D" parent="apps/ui_archive" index="10"]
+editor/display_folded = true
 position = Vector2( 48.9868, 0 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -951,6 +953,7 @@ position = Vector2( 56.0501, 541.501 )
 shape = SubResource( 16 )
 
 [node name="page3" type="Area2D" parent="apps/ui_archive" index="11"]
+editor/display_folded = true
 position = Vector2( 101.473, 0 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -990,6 +993,7 @@ position = Vector2( 56.05, 541.5 )
 shape = SubResource( 17 )
 
 [node name="page4" type="Area2D" parent="apps/ui_archive" index="12"]
+editor/display_folded = true
 position = Vector2( 152.792, 0 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -1029,6 +1033,7 @@ position = Vector2( 57.0001, 541.5 )
 shape = SubResource( 18 )
 
 [node name="page5" type="Area2D" parent="apps/ui_archive" index="13"]
+editor/display_folded = true
 position = Vector2( 202.945, 0 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -1068,6 +1073,7 @@ position = Vector2( 57.0002, 540.551 )
 shape = SubResource( 19 )
 
 [node name="page6" type="Area2D" parent="apps/ui_archive" index="14"]
+editor/display_folded = true
 position = Vector2( 255.431, 0 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -1259,13 +1265,13 @@ max_lines_visible = -1
 [connection signal="input_event" from="apps/ui_archive/Sprite6/sprite6" to="apps/ui_archive" method="_on_sprite6_input_event"]
 [connection signal="mouse_entered" from="apps/ui_archive/Sprite6/sprite6" to="apps/ui_archive" method="_on_sprite6_mouse_entered"]
 [connection signal="mouse_exited" from="apps/ui_archive/Sprite6/sprite6" to="apps/ui_archive" method="_on_sprite6_mouse_exited"]
-[connection signal="input_event" from="apps/ui_archive/page1" to="apps/ui_archive" method="_on_page1_input_event"]
+[connection signal="input_event" from="apps/ui_archive/page1" to="." method="_on_page1_input_event"]
 [connection signal="mouse_entered" from="apps/ui_archive/page1" to="apps/ui_archive" method="_on_page1_mouse_entered"]
 [connection signal="mouse_exited" from="apps/ui_archive/page1" to="apps/ui_archive" method="_on_page1_mouse_exited"]
-[connection signal="input_event" from="apps/ui_archive/page2" to="apps/ui_archive" method="_on_page2_input_event"]
+[connection signal="input_event" from="apps/ui_archive/page2" to="." method="_on_page2_input_event"]
 [connection signal="mouse_entered" from="apps/ui_archive/page2" to="apps/ui_archive" method="_on_page2_mouse_entered"]
 [connection signal="mouse_exited" from="apps/ui_archive/page2" to="apps/ui_archive" method="_on_page2_mouse_exited"]
-[connection signal="input_event" from="apps/ui_archive/page3" to="apps/ui_archive" method="_on_page3_input_event"]
+[connection signal="input_event" from="apps/ui_archive/page3" to="." method="_on_page3_input_event"]
 [connection signal="mouse_entered" from="apps/ui_archive/page3" to="apps/ui_archive" method="_on_page3_mouse_entered"]
 [connection signal="mouse_exited" from="apps/ui_archive/page3" to="apps/ui_archive" method="_on_page3_mouse_exited"]
 [connection signal="input_event" from="apps/ui_archive/page4" to="apps/ui_archive" method="_on_page4_input_event"]

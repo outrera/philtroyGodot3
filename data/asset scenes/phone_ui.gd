@@ -3,7 +3,6 @@ extends Area2D
 var folder = []
 var gallery = []
 var gallery_thumbs = []
-var gallery_page = 1
 
 func _ready():
 	folder = global.list_files_in_directory("res://data/graphics/gallery/")
@@ -37,17 +36,32 @@ func start_phone_app(app, event):
 			
 	if app == "archive":
 		var node = "apps/ui_archive/Sprite"
+		var page_number = "apps/ui_archive/page"
 		var i = 1
 		var slot = 1
+		
+		var pagenumbers_shown = ceil(float(gallery_thumbs.size())/6)
+		
+		
+		#first hide all images and page numbers
+		for i in range(6):
+			get_node(node + str(i+1)).hide()
+			if i < pagenumbers_shown:
+				get_node(page_number + str(i+1)).show()
+			else:
+				get_node(page_number + str(i+1)).hide()
+		
+		#now only show the image slots assigned images
 		for thumb in gallery_thumbs:
 			#Assign thumb textures corresponding to gallery page. If page is 3, assign textures in gallery_thumbs[13] to[18] 
-			if i < gallery_page * 6 +1 and i > gallery_page * 6 - 6:
+			if i < global.gallery_page * 6 +1 and i > global.gallery_page * 6 - 6:
 				var image = load("res://data/graphics/gallery/" + thumb)
 				get_node(node + str(slot)).set_texture(image)
+				get_node(node + str(slot)).show()
 				slot += 1
 			i = i+1
 		
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and !global.phone_app_running:
 		if event.button_index == BUTTON_LEFT:
 			if event.is_pressed():
 				get_node("apps/ui_" + app).show()
@@ -111,3 +125,27 @@ func _on_games_mouse_exited():
 
 func _on_games_input_event(viewport, event, shape_idx):
 	if event : start_phone_app("games", event)
+
+
+func _on_page1_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			if event.is_pressed():
+				global.gallery_page = 1
+				start_phone_app("archive", event)
+
+
+func _on_page2_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			if event.is_pressed():
+				global.gallery_page = 2
+				start_phone_app("archive", event)	
+
+
+func _on_page3_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			if event.is_pressed():
+				global.gallery_page = 3
+				start_phone_app("archive", event)

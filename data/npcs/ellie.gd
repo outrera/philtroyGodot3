@@ -39,11 +39,22 @@ func _on_npc_trigger_input_event(camera, event, click_position, click_normal, sh
 			if global.itemInHand == "":	
 				emit_signal("dialogue", identity, self.get_transform().origin)
 			else:
-				print("You gave a " + global.itemInHand + " to Ellie! :D")
 				var keys = global.inventoryData.keys()
 				var cursor = load("res://data/graphics/cursor_default.png")
 				Input.set_custom_mouse_cursor(cursor)
 				global.inventoryData["junk"].remove(0)
+				
+				#TODO: this is hardcoded, and should be handled by script
+				if global.itemInHand == "rose":
+					var heart = get_tree().get_root().get_node("world").get_node("effects").get_node("cuttlefish")
+					var texture = load("res://data/graphics/UI/heart.png")
+					var heartTween = get_tree().get_root().get_node("world").get_node("effects").get_node("tween")
+					heart.set_texture(texture)
+					heart.set_position(Vector2(650, 270))
+					heart.show()
+					heartTween.interpolate_property(heart, "modulate", Color(1,1,1,1), Color(1,1,1,0), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+					heartTween.interpolate_property(heart, "position", heart.position, Vector2(700, 170), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+					
 				global.itemInHand = ""
 				
 # TODO: This turned into a mess... too make my life easier, assign a number to every item for simpler iteration of items. Will need to change 
