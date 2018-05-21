@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://data/asset scenes/phone_ui.gd" type="Script" id=1]
 [ext_resource path="res://data/graphics/phone_ui.png" type="Texture" id=2]
@@ -13,7 +13,7 @@
 [ext_resource path="res://data/graphics/phone_home.png" type="Texture" id=11]
 [ext_resource path="res://data/asset scenes/ui_archive.gd" type="Script" id=12]
 [ext_resource path="res://data/graphics/gallery/img01 - thumb.png" type="Texture" id=13]
-
+[ext_resource path="res://data/graphics/UI/gallery_page_highlight.png" type="Texture" id=14]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -89,6 +89,36 @@ extents = Vector2( 64.321, 64.5649 )
 
 custom_solver_bias = 0.0
 extents = Vector2( 64.321, 63.7911 )
+
+[sub_resource type="CircleShape2D" id=15]
+
+custom_solver_bias = 0.0
+radius = 16.8418
+
+[sub_resource type="CircleShape2D" id=16]
+
+custom_solver_bias = 0.0
+radius = 16.6479
+
+[sub_resource type="CircleShape2D" id=17]
+
+custom_solver_bias = 0.0
+radius = 16.1838
+
+[sub_resource type="CircleShape2D" id=18]
+
+custom_solver_bias = 0.0
+radius = 17.0277
+
+[sub_resource type="CircleShape2D" id=19]
+
+custom_solver_bias = 0.0
+radius = 16.3567
+
+[sub_resource type="CircleShape2D" id=20]
+
+custom_solver_bias = 0.0
+radius = 15.9418
 
 [node name="phone_ui" type="Area2D" index="0"]
 input_pickable = false
@@ -714,6 +744,7 @@ lines_skipped = 0
 max_lines_visible = -1
 
 [node name="Sprite1" type="Sprite" parent="apps/ui_archive" index="2"]
+editor/display_folded = true
 position = Vector2( 100, 140 )
 z_index = 99
 texture = ExtResource( 13 )
@@ -734,6 +765,7 @@ _sections_unfolded = [ "Pickable", "Visibility", "Z Index" ]
 shape = SubResource( 9 )
 
 [node name="Sprite2" type="Sprite" parent="apps/ui_archive" index="3"]
+editor/display_folded = true
 position = Vector2( 260, 140 )
 texture = ExtResource( 13 )
 _sections_unfolded = [ "Transform" ]
@@ -753,6 +785,7 @@ position = Vector2( 159.399, -0.773804 )
 shape = SubResource( 10 )
 
 [node name="Sprite3" type="Sprite" parent="apps/ui_archive" index="4"]
+editor/display_folded = true
 position = Vector2( 100.992, 289.409 )
 texture = ExtResource( 13 )
 _sections_unfolded = [ "Transform" ]
@@ -772,6 +805,7 @@ position = Vector2( 0, 148.566 )
 shape = SubResource( 11 )
 
 [node name="Sprite4" type="Sprite" parent="apps/ui_archive" index="5"]
+editor/display_folded = true
 position = Vector2( 260.77, 290.917 )
 texture = ExtResource( 13 )
 _sections_unfolded = [ "Transform" ]
@@ -791,6 +825,7 @@ position = Vector2( 160.947, 150.887 )
 shape = SubResource( 12 )
 
 [node name="Sprite5" type="Sprite" parent="apps/ui_archive" index="6"]
+editor/display_folded = true
 position = Vector2( 104.006, 438.636 )
 texture = ExtResource( 13 )
 _sections_unfolded = [ "Transform" ]
@@ -810,6 +845,7 @@ position = Vector2( 4.6427, 299.453 )
 shape = SubResource( 13 )
 
 [node name="Sprite6" type="Sprite" parent="apps/ui_archive" index="7"]
+editor/display_folded = true
 position = Vector2( 262.277, 440.144 )
 texture = ExtResource( 13 )
 _sections_unfolded = [ "Transform" ]
@@ -835,6 +871,240 @@ playback_speed = 1.0
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
+
+[node name="page1" type="Area2D" parent="apps/ui_archive" index="9"]
+position = Vector2( -2.3327, 0 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="highlight" type="Sprite" parent="apps/ui_archive/page1" index="0"]
+visible = false
+position = Vector2( 55.9849, 541.188 )
+texture = ExtResource( 14 )
+
+[node name="num" type="Label" parent="apps/ui_archive/page1" index="1"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 52.0
+margin_top = 534.0
+margin_right = 60.0
+margin_bottom = 548.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "1"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="col" type="CollisionShape2D" parent="apps/ui_archive/page1" index="2"]
+position = Vector2( 55.3, 541.801 )
+shape = SubResource( 15 )
+
+[node name="page2" type="Area2D" parent="apps/ui_archive" index="10"]
+position = Vector2( 48.9868, 0 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="highlight" type="Sprite" parent="apps/ui_archive/page2" index="0"]
+visible = false
+position = Vector2( 55.9849, 541.188 )
+texture = ExtResource( 14 )
+
+[node name="num" type="Label" parent="apps/ui_archive/page2" index="1"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 52.0
+margin_top = 535.0
+margin_right = 60.0
+margin_bottom = 549.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "2"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="col" type="CollisionShape2D" parent="apps/ui_archive/page2" index="2"]
+position = Vector2( 56.0501, 541.501 )
+shape = SubResource( 16 )
+
+[node name="page3" type="Area2D" parent="apps/ui_archive" index="11"]
+position = Vector2( 101.473, 0 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="highlight" type="Sprite" parent="apps/ui_archive/page3" index="0"]
+visible = false
+position = Vector2( 55.9849, 541.188 )
+texture = ExtResource( 14 )
+
+[node name="num" type="Label" parent="apps/ui_archive/page3" index="1"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 52.0
+margin_top = 535.0
+margin_right = 60.0
+margin_bottom = 549.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "3"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="col" type="CollisionShape2D" parent="apps/ui_archive/page3" index="2"]
+position = Vector2( 56.05, 541.5 )
+shape = SubResource( 17 )
+
+[node name="page4" type="Area2D" parent="apps/ui_archive" index="12"]
+position = Vector2( 152.792, 0 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="highlight" type="Sprite" parent="apps/ui_archive/page4" index="0"]
+visible = false
+position = Vector2( 55.9849, 541.188 )
+texture = ExtResource( 14 )
+
+[node name="num" type="Label" parent="apps/ui_archive/page4" index="1"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 52.0
+margin_top = 535.0
+margin_right = 60.0
+margin_bottom = 549.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "4"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="col" type="CollisionShape2D" parent="apps/ui_archive/page4" index="2"]
+position = Vector2( 57.0001, 541.5 )
+shape = SubResource( 18 )
+
+[node name="page5" type="Area2D" parent="apps/ui_archive" index="13"]
+position = Vector2( 202.945, 0 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="highlight" type="Sprite" parent="apps/ui_archive/page5" index="0"]
+visible = false
+position = Vector2( 55.9849, 541.188 )
+texture = ExtResource( 14 )
+
+[node name="num" type="Label" parent="apps/ui_archive/page5" index="1"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 52.0
+margin_top = 535.0
+margin_right = 60.0
+margin_bottom = 549.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "5"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="col" type="CollisionShape2D" parent="apps/ui_archive/page5" index="2"]
+position = Vector2( 57.0002, 540.551 )
+shape = SubResource( 19 )
+
+[node name="page6" type="Area2D" parent="apps/ui_archive" index="14"]
+position = Vector2( 255.431, 0 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="highlight" type="Sprite" parent="apps/ui_archive/page6" index="0"]
+visible = false
+position = Vector2( 55.9849, 541.188 )
+texture = ExtResource( 14 )
+
+[node name="num" type="Label" parent="apps/ui_archive/page6" index="1"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 52.0
+margin_top = 535.0
+margin_right = 60.0
+margin_bottom = 549.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "6"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="col" type="CollisionShape2D" parent="apps/ui_archive/page6" index="2"]
+position = Vector2( 56.05, 541.5 )
+shape = SubResource( 20 )
 
 [node name="ui_calendar" type="Panel" parent="apps" index="4"]
 editor/display_folded = true
@@ -989,3 +1259,21 @@ max_lines_visible = -1
 [connection signal="input_event" from="apps/ui_archive/Sprite6/sprite6" to="apps/ui_archive" method="_on_sprite6_input_event"]
 [connection signal="mouse_entered" from="apps/ui_archive/Sprite6/sprite6" to="apps/ui_archive" method="_on_sprite6_mouse_entered"]
 [connection signal="mouse_exited" from="apps/ui_archive/Sprite6/sprite6" to="apps/ui_archive" method="_on_sprite6_mouse_exited"]
+[connection signal="input_event" from="apps/ui_archive/page1" to="apps/ui_archive" method="_on_page1_input_event"]
+[connection signal="mouse_entered" from="apps/ui_archive/page1" to="apps/ui_archive" method="_on_page1_mouse_entered"]
+[connection signal="mouse_exited" from="apps/ui_archive/page1" to="apps/ui_archive" method="_on_page1_mouse_exited"]
+[connection signal="input_event" from="apps/ui_archive/page2" to="apps/ui_archive" method="_on_page2_input_event"]
+[connection signal="mouse_entered" from="apps/ui_archive/page2" to="apps/ui_archive" method="_on_page2_mouse_entered"]
+[connection signal="mouse_exited" from="apps/ui_archive/page2" to="apps/ui_archive" method="_on_page2_mouse_exited"]
+[connection signal="input_event" from="apps/ui_archive/page3" to="apps/ui_archive" method="_on_page3_input_event"]
+[connection signal="mouse_entered" from="apps/ui_archive/page3" to="apps/ui_archive" method="_on_page3_mouse_entered"]
+[connection signal="mouse_exited" from="apps/ui_archive/page3" to="apps/ui_archive" method="_on_page3_mouse_exited"]
+[connection signal="input_event" from="apps/ui_archive/page4" to="apps/ui_archive" method="_on_page4_input_event"]
+[connection signal="mouse_entered" from="apps/ui_archive/page4" to="apps/ui_archive" method="_on_page4_mouse_entered"]
+[connection signal="mouse_exited" from="apps/ui_archive/page4" to="apps/ui_archive" method="_on_page4_mouse_exited"]
+[connection signal="input_event" from="apps/ui_archive/page5" to="apps/ui_archive" method="_on_page5_input_event"]
+[connection signal="mouse_entered" from="apps/ui_archive/page5" to="apps/ui_archive" method="_on_page5_mouse_entered"]
+[connection signal="mouse_exited" from="apps/ui_archive/page5" to="apps/ui_archive" method="_on_page5_mouse_exited"]
+[connection signal="input_event" from="apps/ui_archive/page6" to="apps/ui_archive" method="_on_page6_input_event"]
+[connection signal="mouse_entered" from="apps/ui_archive/page6" to="apps/ui_archive" method="_on_page6_mouse_entered"]
+[connection signal="mouse_exited" from="apps/ui_archive/page6" to="apps/ui_archive" method="_on_page6_mouse_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://data/asset scenes/game_settings.gd" type="Script" id=1]
 [ext_resource path="res://data/fonts/ReemKufi-Regular.ttf" type="DynamicFontData" id=2]
@@ -29,12 +29,12 @@ use_filter = false
 font_data = ExtResource( 2 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
 extents = Vector2( 155.017, 27.8606 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 
 size = 60
 outline_size = 0
@@ -44,12 +44,27 @@ use_filter = false
 font_data = ExtResource( 2 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=5]
 
 custom_solver_bias = 0.0
 extents = Vector2( 150.721, 23.5647 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=6]
+
+size = 60
+outline_size = 0
+outline_color = Color( 1, 1, 1, 1 )
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 2 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="RectangleShape2D" id=7]
+
+custom_solver_bias = 0.0
+extents = Vector2( 133.537, 22.1328 )
+
+[sub_resource type="DynamicFont" id=8]
 
 size = 60
 outline_size = 0
@@ -62,29 +77,29 @@ _sections_unfolded = [ "Font", "Settings" ]
 [sub_resource type="RectangleShape2D" id=9]
 
 custom_solver_bias = 0.0
-extents = Vector2( 133.537, 22.1328 )
+extents = Vector2( 103.466, 22.1328 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="RectangleShape2D" id=10]
 
-size = 60
+custom_solver_bias = 0.0
+extents = Vector2( 251.05, 142.891 )
+
+[sub_resource type="DynamicFont" id=11]
+
+size = 36
 outline_size = 0
 outline_color = Color( 1, 1, 1, 1 )
 use_mipmaps = false
 use_filter = false
 font_data = ExtResource( 2 )
-_sections_unfolded = [ "Font", "Settings" ]
+_sections_unfolded = [ "Font", "Resource", "Settings" ]
 
-[sub_resource type="RectangleShape2D" id=10]
-
-custom_solver_bias = 0.0
-extents = Vector2( 103.466, 22.1328 )
-
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=12]
 
 custom_solver_bias = 0.0
-extents = Vector2( 251.05, 142.891 )
+extents = Vector2( 19.8512, 19.4919 )
 
-[node name="game_settings" type="Panel" index="0"]
+[node name="game_settings" type="Panel"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -116,13 +131,14 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 1 )
-text = "MENU"
+text = "DIE Game Engine"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Visibility", "custom_colors", "custom_constants", "custom_fonts", "custom_styles" ]
 
 [node name="load game" type="Label" parent="." index="1"]
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -155,9 +171,10 @@ audio_bus_name = "Master"
 
 [node name="col" type="CollisionShape2D" parent="load game/load" index="0"]
 position = Vector2( 158.949, 44.3912 )
-shape = SubResource( 7 )
+shape = SubResource( 3 )
 
 [node name="save game" type="Label" parent="." index="2"]
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -172,7 +189,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Save Game"
 percent_visible = 1.0
 lines_skipped = 0
@@ -190,9 +207,10 @@ audio_bus_name = "Master"
 
 [node name="col" type="CollisionShape2D" parent="save game/save" index="0"]
 position = Vector2( 153.653, 45.9251 )
-shape = SubResource( 8 )
+shape = SubResource( 5 )
 
 [node name="exit game" type="Label" parent="." index="3"]
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -207,7 +225,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 text = "Exit Game"
 percent_visible = 1.0
 lines_skipped = 0
@@ -225,24 +243,25 @@ audio_bus_name = "Master"
 
 [node name="col" type="CollisionShape2D" parent="exit game/exit" index="0"]
 position = Vector2( 138.901, 47.0272 )
-shape = SubResource( 9 )
+shape = SubResource( 7 )
 
 [node name="patreon" type="Label" parent="." index="4"]
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 98.0828
-margin_top = 882.745
-margin_right = 315.083
-margin_bottom = 972.745
+margin_left = 98.0
+margin_top = 799.869
+margin_right = 315.0
+margin_bottom = 889.869
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 8 )
 text = "Patreon"
 percent_visible = 1.0
 lines_skipped = 0
@@ -260,17 +279,17 @@ audio_bus_name = "Master"
 
 [node name="col" type="CollisionShape2D" parent="patreon/patreon" index="0"]
 position = Vector2( 109.126, 46.874 )
-shape = SubResource( 10 )
+shape = SubResource( 9 )
 
 [node name="savegames" type="Container" parent="." index="5"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = -21.4282
-margin_top = 1.948
-margin_right = 18.5718
-margin_bottom = 41.948
+margin_left = -22.0
+margin_top = 102.117
+margin_right = 18.0
+margin_bottom = 142.117
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -280,6 +299,7 @@ size_flags_vertical = 1
 _sections_unfolded = [ "Mouse" ]
 
 [node name="save1" type="Sprite" parent="savegames" index="0"]
+editor/display_folded = true
 modulate = Color( 1, 1, 1, 0.501961 )
 position = Vector2( 693.884, 341.585 )
 scale = Vector2( 0.9, 0.9 )
@@ -297,10 +317,11 @@ audio_bus_name = "Master"
 _sections_unfolded = [ "Pickable" ]
 
 [node name="col" type="CollisionShape2D" parent="savegames/save1/save1" index="0"]
-shape = SubResource( 6 )
+shape = SubResource( 10 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="save2" type="Sprite" parent="savegames" index="1"]
+editor/display_folded = true
 modulate = Color( 1, 1, 1, 0.501961 )
 position = Vector2( 1183.13, 341.488 )
 scale = Vector2( 0.9, 0.9 )
@@ -319,9 +340,10 @@ audio_bus_name = "Master"
 
 [node name="col" type="CollisionShape2D" parent="savegames/save2/save2" index="0"]
 position = Vector2( 542.016, -7.19489 )
-shape = SubResource( 6 )
+shape = SubResource( 10 )
 
 [node name="save3" type="Sprite" parent="savegames" index="2"]
+editor/display_folded = true
 modulate = Color( 1, 1, 1, 0.501961 )
 position = Vector2( 1669.74, 343.728 )
 scale = Vector2( 0.9, 0.9 )
@@ -340,9 +362,10 @@ audio_bus_override = false
 audio_bus_name = "Master"
 
 [node name="col" type="CollisionShape2D" parent="savegames/save3/save3" index="0"]
-shape = SubResource( 6 )
+shape = SubResource( 10 )
 
 [node name="save4" type="Sprite" parent="savegames" index="3"]
+editor/display_folded = true
 modulate = Color( 1, 1, 1, 0.501961 )
 position = Vector2( 693.495, 637.002 )
 scale = Vector2( 0.9, 0.9 )
@@ -361,9 +384,10 @@ audio_bus_name = "Master"
 
 [node name="col" type="CollisionShape2D" parent="savegames/save4/save4" index="0"]
 position = Vector2( -2.39825, 328.567 )
-shape = SubResource( 6 )
+shape = SubResource( 10 )
 
 [node name="save5" type="Sprite" parent="savegames" index="4"]
+editor/display_folded = true
 modulate = Color( 1, 1, 1, 0.501961 )
 position = Vector2( 1184.4, 635.054 )
 scale = Vector2( 0.9, 0.9 )
@@ -382,9 +406,10 @@ audio_bus_name = "Master"
 
 [node name="col" type="CollisionShape2D" parent="savegames/save5/save5" index="0"]
 position = Vector2( 549.211, 321.372 )
-shape = SubResource( 6 )
+shape = SubResource( 10 )
 
 [node name="save6" type="Sprite" parent="savegames" index="5"]
+editor/display_folded = true
 modulate = Color( 1, 1, 1, 0.501961 )
 position = Vector2( 1669.45, 635.054 )
 scale = Vector2( 0.9, 0.9 )
@@ -403,7 +428,464 @@ audio_bus_name = "Master"
 
 [node name="col" type="CollisionShape2D" parent="savegames/save6/save6" index="0"]
 position = Vector2( 1084.03, 323.77 )
-shape = SubResource( 6 )
+shape = SubResource( 10 )
+
+[node name="page1" type="Area2D" parent="savegames" index="6"]
+editor/display_folded = true
+position = Vector2( 469.045, 114.063 )
+scale = Vector2( 1.5, 1.5 )
+z_index = 99
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="label_background" type="Panel" parent="savegames/page1" index="0"]
+modulate = Color( 0.445268, 2.16864, 2.21, 1 )
+self_modulate = Color( 0.741176, 0.811765, 0.862745, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Material", "Mouse", "Theme", "Visibility", "custom_styles" ]
+
+[node name="page_number" type="Label" parent="savegames/page1" index="1"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 15.0799
+margin_top = -7.89911
+margin_right = 55.0799
+margin_bottom = 47.1009
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 11 )
+text = "1"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Anchor", "custom_colors", "custom_fonts" ]
+
+[node name="col" type="CollisionShape2D" parent="savegames/page1" index="2"]
+position = Vector2( 19.8132, 20.1734 )
+z_index = 100
+shape = SubResource( 12 )
+_sections_unfolded = [ "Z Index" ]
+
+[node name="page2" type="Area2D" parent="savegames" index="7"]
+editor/display_folded = true
+position = Vector2( 534.045, 114.063 )
+scale = Vector2( 1.5, 1.5 )
+z_index = 99
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="label_background" type="Panel" parent="savegames/page2" index="0"]
+modulate = Color( 0.445268, 2.16864, 2.21, 1 )
+self_modulate = Color( 0.741176, 0.811765, 0.862745, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Material", "Mouse", "Theme", "Visibility", "custom_styles" ]
+
+[node name="page_number" type="Label" parent="savegames/page2" index="1"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 9.0
+margin_top = -8.0
+margin_right = 49.0
+margin_bottom = 47.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 11 )
+text = "2"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Anchor", "custom_colors", "custom_fonts" ]
+
+[node name="col" type="CollisionShape2D" parent="savegames/page2" index="2"]
+position = Vector2( 19.8132, 20.1734 )
+shape = SubResource( 12 )
+
+[node name="page3" type="Area2D" parent="savegames" index="8"]
+editor/display_folded = true
+position = Vector2( 599.045, 114.063 )
+scale = Vector2( 1.5, 1.5 )
+z_index = 99
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="label_background" type="Panel" parent="savegames/page3" index="0"]
+modulate = Color( 0.445268, 2.16864, 2.21, 1 )
+self_modulate = Color( 0.741176, 0.811765, 0.862745, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Material", "Mouse", "Theme", "Visibility", "custom_styles" ]
+
+[node name="page_number" type="Label" parent="savegames/page3" index="1"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 10.3333
+margin_top = -8.0
+margin_right = 50.3333
+margin_bottom = 47.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 11 )
+text = "3"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Anchor", "custom_colors", "custom_fonts" ]
+
+[node name="col" type="CollisionShape2D" parent="savegames/page3" index="2"]
+position = Vector2( 19.8132, 20.1734 )
+shape = SubResource( 12 )
+
+[node name="page4" type="Area2D" parent="savegames" index="9"]
+position = Vector2( 664.045, 114.063 )
+scale = Vector2( 1.5, 1.5 )
+z_index = 99
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="label_background" type="Panel" parent="savegames/page4" index="0"]
+modulate = Color( 0.445268, 2.16864, 2.21, 1 )
+self_modulate = Color( 0.741176, 0.811765, 0.862745, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Material", "Mouse", "Theme", "Visibility", "custom_styles" ]
+
+[node name="page_number" type="Label" parent="savegames/page4" index="1"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 9.66666
+margin_top = -8.0
+margin_right = 49.6667
+margin_bottom = 47.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 11 )
+text = "4"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Anchor", "custom_colors", "custom_fonts" ]
+
+[node name="col" type="CollisionShape2D" parent="savegames/page4" index="2"]
+position = Vector2( 19.8132, 20.1734 )
+shape = SubResource( 12 )
+
+[node name="page5" type="Area2D" parent="savegames" index="10"]
+editor/display_folded = true
+position = Vector2( 729.045, 114.063 )
+scale = Vector2( 1.5, 1.5 )
+z_index = 99
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="label_background" type="Panel" parent="savegames/page5" index="0"]
+modulate = Color( 0.445268, 2.16864, 2.21, 1 )
+self_modulate = Color( 0.741176, 0.811765, 0.862745, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Material", "Mouse", "Theme", "Visibility", "custom_styles" ]
+
+[node name="page_number" type="Label" parent="savegames/page5" index="1"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 10.3333
+margin_top = -8.0
+margin_right = 50.3333
+margin_bottom = 47.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 11 )
+text = "5"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Anchor", "custom_colors", "custom_fonts" ]
+
+[node name="col" type="CollisionShape2D" parent="savegames/page5" index="2"]
+position = Vector2( 19.8132, 20.1734 )
+shape = SubResource( 12 )
+
+[node name="page6" type="Area2D" parent="savegames" index="11"]
+editor/display_folded = true
+position = Vector2( 794.045, 114.063 )
+scale = Vector2( 1.5, 1.5 )
+z_index = 99
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="label_background" type="Panel" parent="savegames/page6" index="0"]
+modulate = Color( 0.445268, 2.16864, 2.21, 1 )
+self_modulate = Color( 0.741176, 0.811765, 0.862745, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Material", "Mouse", "Theme", "Visibility", "custom_styles" ]
+
+[node name="page_number" type="Label" parent="savegames/page6" index="1"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 10.3333
+margin_top = -8.0
+margin_right = 50.3333
+margin_bottom = 47.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 11 )
+text = "6"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Anchor", "custom_colors", "custom_fonts" ]
+
+[node name="col" type="CollisionShape2D" parent="savegames/page6" index="2"]
+position = Vector2( 19.8132, 20.1734 )
+shape = SubResource( 12 )
+
+[node name="page7" type="Area2D" parent="savegames" index="12"]
+editor/display_folded = true
+position = Vector2( 859.045, 114.063 )
+scale = Vector2( 1.5, 1.5 )
+z_index = 99
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="label_background" type="Panel" parent="savegames/page7" index="0"]
+modulate = Color( 0.445268, 2.16864, 2.21, 1 )
+self_modulate = Color( 0.741176, 0.811765, 0.862745, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Material", "Mouse", "Theme", "Visibility", "custom_styles" ]
+
+[node name="page_number" type="Label" parent="savegames/page7" index="1"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 11.0
+margin_top = -8.0
+margin_right = 51.0
+margin_bottom = 47.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 11 )
+text = "7"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Anchor", "custom_colors", "custom_fonts" ]
+
+[node name="col" type="CollisionShape2D" parent="savegames/page7" index="2"]
+position = Vector2( 19.8132, 20.1734 )
+shape = SubResource( 12 )
+
+[node name="page8" type="Area2D" parent="savegames" index="13"]
+editor/display_folded = true
+position = Vector2( 924.045, 114.063 )
+scale = Vector2( 1.5, 1.5 )
+z_index = 99
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="label_background" type="Panel" parent="savegames/page8" index="0"]
+modulate = Color( 0.445268, 2.16864, 2.21, 1 )
+self_modulate = Color( 0.741176, 0.811765, 0.862745, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Material", "Mouse", "Theme", "Visibility", "custom_styles" ]
+
+[node name="page_number" type="Label" parent="savegames/page8" index="1"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 9.0
+margin_top = -8.0
+margin_right = 49.0
+margin_bottom = 47.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 11 )
+text = "8"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Anchor", "custom_colors", "custom_fonts" ]
+
+[node name="col" type="CollisionShape2D" parent="savegames/page8" index="2"]
+position = Vector2( 19.8132, 20.1734 )
+shape = SubResource( 12 )
 
 [node name="fx" type="Tween" parent="." index="6"]
 repeat = false
@@ -443,3 +925,27 @@ playback/speed = 1.0
 [connection signal="input_event" from="savegames/save6/save6" to="." method="_on_save6_input_event"]
 [connection signal="mouse_entered" from="savegames/save6/save6" to="." method="_on_save6_mouse_entered"]
 [connection signal="mouse_exited" from="savegames/save6/save6" to="." method="_on_save6_mouse_exited"]
+[connection signal="input_event" from="savegames/page1" to="." method="_on_page1_input_event"]
+[connection signal="mouse_entered" from="savegames/page1" to="." method="_on_page1_mouse_entered"]
+[connection signal="mouse_exited" from="savegames/page1" to="." method="_on_page1_mouse_exited"]
+[connection signal="input_event" from="savegames/page2" to="." method="_on_page2_input_event"]
+[connection signal="mouse_entered" from="savegames/page2" to="." method="_on_page2_mouse_entered"]
+[connection signal="mouse_exited" from="savegames/page2" to="." method="_on_page2_mouse_exited"]
+[connection signal="input_event" from="savegames/page3" to="." method="_on_page3_input_event"]
+[connection signal="mouse_entered" from="savegames/page3" to="." method="_on_page3_mouse_entered"]
+[connection signal="mouse_exited" from="savegames/page3" to="." method="_on_page3_mouse_exited"]
+[connection signal="input_event" from="savegames/page4" to="." method="_on_page4_input_event"]
+[connection signal="mouse_entered" from="savegames/page4" to="." method="_on_page4_mouse_entered"]
+[connection signal="mouse_exited" from="savegames/page4" to="." method="_on_page4_mouse_exited"]
+[connection signal="input_event" from="savegames/page5" to="." method="_on_page5_input_event"]
+[connection signal="mouse_entered" from="savegames/page5" to="." method="_on_page5_mouse_entered"]
+[connection signal="mouse_exited" from="savegames/page5" to="." method="_on_page5_mouse_exited"]
+[connection signal="input_event" from="savegames/page6" to="." method="_on_page6_input_event"]
+[connection signal="mouse_entered" from="savegames/page6" to="." method="_on_page6_mouse_entered"]
+[connection signal="mouse_exited" from="savegames/page6" to="." method="_on_page6_mouse_exited"]
+[connection signal="input_event" from="savegames/page7" to="." method="_on_page7_input_event"]
+[connection signal="mouse_entered" from="savegames/page7" to="." method="_on_page7_mouse_entered"]
+[connection signal="mouse_exited" from="savegames/page7" to="." method="_on_page7_mouse_exited"]
+[connection signal="input_event" from="savegames/page8" to="." method="_on_page8_input_event"]
+[connection signal="mouse_entered" from="savegames/page8" to="." method="_on_page8_mouse_entered"]
+[connection signal="mouse_exited" from="savegames/page8" to="." method="_on_page8_mouse_exited"]

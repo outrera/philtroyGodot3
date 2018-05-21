@@ -73,6 +73,8 @@ onready var sceneCol = get_tree().get_root().get_node("world").get_node("scene")
 
 onready var transition = get_tree().get_root().get_node("world").get_node("transition")
 
+onready var audio = get_tree().get_root().get_node("world").get_node("audio")
+
 func _ready():
 	set_process(true)
 	
@@ -96,6 +98,8 @@ func _ready():
 	transition.hide()
 	
 	eventOverride = null
+	
+	audio.playing = true
 
 func _process(delta):
 	if Input.is_action_pressed("ui_reload"):

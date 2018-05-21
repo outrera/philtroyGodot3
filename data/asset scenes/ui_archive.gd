@@ -65,3 +65,63 @@ func _on_sprite6_mouse_exited():
 
 func _on_sprite6_input_event():
 	pass # replace with function body
+
+
+func _on_page1_mouse_entered():
+	$page1/highlight.show()
+
+func _on_page1_mouse_exited():
+	$page1/highlight.hide()
+
+func _on_page1_input_event():
+	pass # replace with function body
+
+
+func _on_page2_mouse_entered():
+	$page2/highlight.show()
+
+func _on_page2_mouse_exited():
+	$page2/highlight.hide()
+
+func _on_page2_input_event():
+	pass # replace with function body
+
+
+func _on_page3_mouse_entered():
+	$page3/highlight.show()
+
+func _on_page3_mouse_exited():
+	$page3/highlight.hide()
+
+func _on_page3_input_event():
+	pass # replace with function body
+
+
+func _on_page4_mouse_entered():
+	$page4/highlight.show()
+
+func _on_page4_mouse_exited():
+	$page4/highlight.hide()
+
+func _on_page4_input_event():
+	pass # replace with function body
+
+
+func _on_page5_mouse_entered():
+	$page5/highlight.show()
+
+func _on_page5_mouse_exited():
+	$page5/highlight.hide()
+
+func _on_page5_input_event():
+	pass # replace with function body
+
+
+func _on_page6_mouse_entered():
+	$page6/highlight.show()
+
+func _on_page6_mouse_exited():
+	$page6/highlight.hide()
+
+func _on_page6_input_event(area):
+	pass # replace with function body

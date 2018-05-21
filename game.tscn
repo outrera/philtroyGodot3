@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://data/scripts/world.gd" type="Script" id=1]
 [ext_resource path="res://data/scripts/ui.gd" type="Script" id=2]
@@ -26,6 +26,7 @@
 [ext_resource path="res://data/graphics/white.png" type="Texture" id=24]
 [ext_resource path="res://data/asset scenes/player.tscn" type="PackedScene" id=25]
 [ext_resource path="res://data/graphics/saves/screenshot.png" type="Texture" id=26]
+[ext_resource path="res://data/audio/ambient/FromHere.ogg" type="AudioStream" id=27]
 
 [sub_resource type="Environment" id=1]
 
@@ -652,6 +653,14 @@ position = Vector2( 959.313, 530.007 )
 z_index = 99
 texture = ExtResource( 26 )
 _sections_unfolded = [ "Z Index" ]
+
+[node name="audio" type="AudioStreamPlayer" parent="." index="11"]
+stream = ExtResource( 27 )
+volume_db = -35.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 [connection signal="mouse_entered" from="ui/schoolbag" to="ui" method="_on_schoolbag_mouse_entered"]
 [connection signal="mouse_exited" from="ui/schoolbag" to="ui" method="_on_schoolbag_mouse_exited"]

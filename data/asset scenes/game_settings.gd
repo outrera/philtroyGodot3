@@ -124,3 +124,83 @@ func _on_patreon_mouse_exited():
 
 func _on_patreon_input_event():
 	pass # replace with function body
+
+
+func _on_page1_mouse_entered():
+	$savegames/page1/label_background.hide()
+
+func _on_page1_mouse_exited():
+	$savegames/page1/label_background.show()
+
+func _on_page1_input_event(viewport, event, shape_idx):
+	pass # replace with function body
+
+
+func _on_page2_mouse_entered():
+	$savegames/page2/label_background.hide()
+
+func _on_page2_mouse_exited():
+	$savegames/page2/label_background.show()
+
+func _on_page2_input_event(viewport, event, shape_idx):
+	pass # replace with function body
+
+
+func _on_page3_mouse_entered():
+	$savegames/page3/label_background.hide()
+
+func _on_page3_mouse_exited():
+	$savegames/page3/label_background.show()
+
+func _on_page3_input_event(viewport, event, shape_idx):
+	pass # replace with function body
+
+
+func _on_page4_mouse_entered():
+	$savegames/page4/label_background.hide()
+	
+func _on_page4_mouse_exited():
+	$savegames/page4/label_background.show()
+
+func _on_page4_input_event():
+	pass # replace with function body
+
+
+func _on_page5_mouse_entered():
+	$savegames/page5/label_background.hide()
+
+func _on_page5_mouse_exited():
+	$savegames/page5/label_background.show()
+
+func _on_page5_input_event(viewport, event, shape_idx):
+	pass # replace with function body
+
+
+func _on_page6_mouse_entered():
+	$savegames/page6/label_background.hide()
+
+func _on_page6_mouse_exited():
+	$savegames/page6/label_background.show()
+
+func _on_page6_input_event(viewport, event, shape_idx):
+	pass # replace with function body
+
+
+func _on_page7_mouse_entered():
+	$savegames/page7/label_background.hide()
+
+func _on_page7_mouse_exited():
+	$savegames/page7/label_background.show()
+
+func _on_page7_input_event(viewport, event, shape_idx):
+	pass # replace with function body
+
+
+func _on_page8_mouse_entered():
+	$savegames/page8/label_background.hide()
+
+func _on_page8_mouse_exited():
+	$savegames/page8/label_background.show()
+
+func _on_page8_input_event(viewport, event, shape_idx):
+	pass # replace with function body
