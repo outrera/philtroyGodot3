@@ -7,7 +7,7 @@ var gallery_page = 1
 
 func _ready():
 	folder = global.list_files_in_directory("res://data/graphics/gallery/")
-#	print(gallery)
+	#list all files in given directory and sort into fullsized photos (gallery) and thumbnails (gallery_thumbs) 
 	for item in folder:
 		if "thumb" in item:
 			gallery_thumbs.push_back(item)
@@ -16,6 +16,7 @@ func _ready():
 
 func _input(event):
 	if event is InputEventKey:
+		#if any phone app is running and we press Q, close the app and return to homescreen
 		if event.scancode == KEY_Q:
 			if global.phone_app_running == true:
 				if event.is_pressed():
@@ -29,6 +30,7 @@ func icon_fx(node, scale):
 
 func start_phone_app(app, event):
 	if app == "phone":
+		#display phone contacts
 		for contact in range(global.contactData.size()):
 			var node = "apps/ui_phone/Label"
 			get_node(node + str(contact+1)).set_text(global.contactData["c" + str(contact+1)])

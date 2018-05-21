@@ -23,6 +23,7 @@ onready var fade_in = $"../effects/fade_in"
 onready var fade_out = $"../effects/fade_out"
 onready var descriptionLabel = $descriptionLabel
 onready var sceneCol = $"../scene/col"
+onready var transFX = $"../effects/scene_transition"
 
 var phoneOpen = false
 var schoolbagOpen = false
@@ -112,6 +113,12 @@ func advance_time():
 	global.month = global.gameData["month"][month]
 	global.weekday = global.gameData["weekday"][day]
 	global.timeofday = global.gameData["time"][time]
+	
+	global.transition.show()
+	print(global.transition)
+	transFX.interpolate_property(global.transition, "modulate", Color(1,1,1,1), Color(1,1,1,0), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	transFX.start()
+	
 	global.load_scene(global.scene)
 	get_parent().connect()
 	get_node("dateLabel").set_text(global.gameData.time[time] + ", " + global.gameData.weekday[day])		
@@ -272,22 +279,22 @@ func ui_hide_show(gui_node, move_delta, method1, method2):
 	effectToggleUI.start()
 	
 func toggle_game_settings():
-
 	if !global.blocking_ui and !gameSettingsOpen:
 		global.grab_screen()
 		$game_settings.show()
 		global.blocking_ui = true
 		gameSettingsOpen = true
-		fade_in.interpolate_property($game_settings, "modulate", Color(1,1,1,0), Color(1,1,1,1), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		fade_in.interpolate_property($game_settings, "modulate", Color(1,1,1,0), Color(1,1,1,1), 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		fade_in.start()
 #		toggle_ui_icons("hide")
 
 	else:
 		global.blocking_ui = false
 		gameSettingsOpen = false
-		fade_out.interpolate_property($game_settings, "modulate", Color(1,1,1,1), Color(1,1,1,0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		fade_out.interpolate_property($game_settings, "modulate", Color(1,1,1,1), Color(1,1,1,0), 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		fade_out.start()
 #		toggle_ui_icons("show")
 
 func _on_fade_out_tween_completed(object, key):
+	#hide game settings from game after faded out, since it will interfere with other UI overlays even when not visible
 	$game_settings.hide()

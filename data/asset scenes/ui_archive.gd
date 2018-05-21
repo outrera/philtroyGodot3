@@ -3,11 +3,6 @@ extends Panel
 func _ready():
 	pass
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
-
 func icon_fx(photo, scale):
 	$fx.interpolate_property (photo, "scale", photo.scale, scale, 0.3, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	$fx.start()

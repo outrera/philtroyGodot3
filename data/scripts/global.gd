@@ -67,7 +67,11 @@ var files = []
 	
 var playerScript = preload("res://data/scripts/player.gd")
 
+var capture
+
 onready var sceneCol = get_tree().get_root().get_node("world").get_node("scene").get_node("col")
+
+onready var transition = get_tree().get_root().get_node("world").get_node("transition")
 
 func _ready():
 	set_process(true)
@@ -88,6 +92,8 @@ func _ready():
 	weekday = "wednesday"
 	timeofday = "morning"
 	month=7
+
+	transition.hide()
 	
 	eventOverride = null
 
@@ -102,17 +108,12 @@ func _process(delta):
 # this also eliminates problems when deleting a file
 
 func grab_screen():
-	var capture = get_viewport().get_texture().get_data()
+	capture = get_viewport().get_texture().get_data()
 	
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
 	capture.flip_y()
 	capture.convert(5)
 
 	capture.save_png("res://data/graphics/saves/screenshot.png")
-
-	capture.resize(640,400,1)
-	capture.save_png("res://data/graphics/saves/screenshot - thumb.png")
 
 func list_files_in_directory(path):
     var dir = Directory.new()
@@ -142,6 +143,7 @@ func goto_scene(scene):
     get_tree().change_scene("res://"+scene)
 
 func load_scene(sceneLocation): #change this first, see if any conflicts
+	grab_screen()
 	currentLocation = sceneLocation
 	var location = sceneData[sceneLocation][weekday][timeofday]
 	
@@ -167,6 +169,10 @@ func load_scene(sceneLocation): #change this first, see if any conflicts
 			child.set_name("DELETED")
 			child.queue_free()
 			
+	for child in gameRoot.get_node("objects").get_children():
+		child.set_name("DELETED")
+		child.queue_free()
+			
 	var scene = load("res://data/locations/" + sceneLocation + ".tscn")
 	scene = scene.instance()
 	gameRoot.get_node("scene").add_child(scene)
@@ -174,12 +180,11 @@ func load_scene(sceneLocation): #change this first, see if any conflicts
 #	Determine if we´re doing a 3d adventure game or Visual Novel-style game, by checking for type of fisrt node in scene (Area/Area2D)
 #	This is just the first preparation. Still TODO: code currently assumes 3d meshes when placing NPCs and Objects (Using a Vector3) - need to
 #	allow for Vector2 position
-
 	if scene.is_class("Area"):
 		gameType = "Adventure Game"
 		var player = load("res://data/asset scenes/player.tscn")
 		player = player.instance()
-		player.set_translation(Vector3(0,1,0))
+		player.set_translation(Vector3(0,0.6,0))
 		player.set_rotation(Vector3(-0,0,-0))
 		player.set_name("player")
 		player.set_script(playerScript)
@@ -192,24 +197,6 @@ func load_scene(sceneLocation): #change this first, see if any conflicts
 		child.set_name("DELETED")
 		child.queue_free()
 		
-#	if eventOverride == null: 
-#		print("null")
-
-#   OLD CODE - keeping around until I´m sure the below code does not cause unforseen issues :P 
-#	if location.has("actors"):
-#		for name in location["actors"].keys():
-#			var pos = location["actors"][name]["pos"]
-#			var rot = location["actors"][name]["rot"]
-#			#TODO: think I might need to add a default dialogue to charData as well
-#			if location["actors"][name]["dialogue"] != "default":
-#				global.charData[name]["dialogue"] = location["actors"][name]["dialogue"]
-#			var actor = load("res://data/npcs/" + name + ".tscn")
-#			#TODO: pose > animation? For now use base animation.
-#			actor = actor.instance()
-#			actor.set_translation(Vector3(pos.x,pos.y,pos.z))
-#			actor.set_rotation(Vector3(rot.x,rot.y, rot.z))
-#			actor.set_name(name)
-#			gameRoot.get_node("npcs").add_child(actor)
 	if location.has("actors"):
 		for name in location["actors"].keys():
 			var actor
@@ -235,19 +222,6 @@ func load_scene(sceneLocation): #change this first, see if any conflicts
 			actor.set_rotation(Vector3(rot.x,rot.y, rot.z))
 			actor.set_name(name)
 			gameRoot.get_node("npcs").add_child(actor)
-
-#   OLD CODE - keeping around until I´m sure the below code does not cause unforseen issues :P 
-#	if location.has("objects"):
-#		for name in location["objects"].keys():
-#			var pos = location["objects"][name]["pos"]
-#			var rot = location["actors"][name]["rot"]
-#			var object = load("res://data/objects/" + name + ".tscn")
-#			object.set_position(Vector3(pos.x, pos.y, pos.z))
-#			object.set_rotation(Vector3(rot.x,rot.y, rot.z))
-#			object.set_name(name)
-#			get_node("objects").add_child(object)
-
-#	TODO: replace the above conditional block with (might need some refactoring to fit new code):
 	
 	if location.has("objects"):
 		var object
@@ -273,7 +247,7 @@ func load_scene(sceneLocation): #change this first, see if any conflicts
 	#set eventOverride back to null, as it´s only needed and updated when calling load_scene()
 	eventOverride = null
 		
-#	TODO: animate scene transition somehow(time label swapped with animation?)
+#	TODO: animate scene transition somehow. Take screenshot upon changing scene, overlay that screenshot on top of the new scene and fade opacity?
 #	TODO: how to handle scene specific cameras?
 
 func event_notifier():

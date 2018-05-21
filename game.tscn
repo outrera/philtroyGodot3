@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://data/scripts/world.gd" type="Script" id=1]
 [ext_resource path="res://data/scripts/ui.gd" type="Script" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://data/locations/schoolyard.tscn" type="PackedScene" id=23]
 [ext_resource path="res://data/graphics/white.png" type="Texture" id=24]
 [ext_resource path="res://data/asset scenes/player.tscn" type="PackedScene" id=25]
+[ext_resource path="res://data/graphics/saves/screenshot.png" type="Texture" id=26]
 
 [sub_resource type="Environment" id=1]
 
@@ -177,7 +178,7 @@ shader = SubResource( 12 )
 shader_param/amount = 4.0
 _sections_unfolded = [ "shader_param" ]
 
-[node name="world" type="Node"]
+[node name="world" type="Node" index="0"]
 script = ExtResource( 1 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
@@ -545,7 +546,6 @@ margin_bottom = 1081.0
 [node name="npc" parent="npcs" index="0" instance=ExtResource( 19 )]
 
 [node name="objects" type="Node" parent="." index="5"]
-editor/display_folded = true
 
 [node name="object" parent="objects" index="0" instance=ExtResource( 20 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.122, 1.70829, 0 )
@@ -556,7 +556,6 @@ z_index = 95
 _sections_unfolded = [ "Z Index" ]
 
 [node name="scene" type="Area" parent="." index="7"]
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.932482, 0 )
 input_ray_pickable = false
 input_capture_on_drag = false
@@ -634,11 +633,25 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
+[node name="scene_transition" type="Tween" parent="effects" index="4"]
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
 [node name="player" parent="." index="9" instance=ExtResource( 25 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0621125, 0 )
 
 [node name="rotation_helper" parent="player" index="2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.981376, 0 )
+
+[node name="transition" type="Sprite" parent="." index="10"]
+position = Vector2( 959.313, 530.007 )
+z_index = 99
+texture = ExtResource( 26 )
+_sections_unfolded = [ "Z Index" ]
 
 [connection signal="mouse_entered" from="ui/schoolbag" to="ui" method="_on_schoolbag_mouse_entered"]
 [connection signal="mouse_exited" from="ui/schoolbag" to="ui" method="_on_schoolbag_mouse_exited"]

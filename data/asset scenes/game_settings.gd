@@ -13,7 +13,6 @@ func _ready():
 #	pass
 
 func save_fx(save, opacity):
-	print(save)
 	$fx.interpolate_property(save, "modulate", save.modulate, opacity, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$fx.start()
 	
@@ -99,8 +98,12 @@ func _on_save_mouse_entered():
 func _on_save_mouse_exited():
 	pass # replace with function body
 
-func _on_save_input_event():
-	pass # replace with function body
+func _on_save_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			if event.is_pressed():
+				global.capture.resize(640,400,1)
+				global.capture.save_png("res://data/graphics/saves/screenshot - thumb.png")
 
 
 func _on_exit_mouse_entered():

@@ -77,13 +77,5 @@ func _highlight(text):
 #	descriptionLabel.set_position($Camera.unproject_position($player.translation) - Vector2(60,230))
 	descriptionLabel.set_text(text)
 
-
-
-
-
-
-
-
-
 func _on_tween_tween_completed():
 	pass # replace with function body
