@@ -40,10 +40,10 @@ func start_phone_app(app, event):
 		var i = 1
 		var slot = 1
 		
+		#get how many gallery pages are required to display all images
 		var pagenumbers_shown = ceil(float(gallery_thumbs.size())/6)
 		
-		
-		#first hide all images and page numbers
+		#first hide all images and show only amount of pages required
 		for i in range(6):
 			get_node(node + str(i+1)).hide()
 			if i < pagenumbers_shown:

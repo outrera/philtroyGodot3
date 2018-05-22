@@ -1,13 +1,8 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://data/asset scenes/game_settings.gd" type="Script" id=1]
 [ext_resource path="res://data/fonts/ReemKufi-Regular.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://data/graphics/talkhead0b2.png" type="Texture" id=3]
-[ext_resource path="res://data/graphics/saves/save2.png" type="Texture" id=4]
-[ext_resource path="res://data/graphics/saves/save3.png" type="Texture" id=5]
-[ext_resource path="res://data/graphics/saves/save4.png" type="Texture" id=6]
-[ext_resource path="res://data/graphics/saves/save5.png" type="Texture" id=7]
-[ext_resource path="res://data/graphics/saves/save6.png" type="Texture" id=8]
+[ext_resource path="res://data/graphics/saves/save_add.png" type="Texture" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -84,7 +79,12 @@ extents = Vector2( 103.466, 22.1328 )
 custom_solver_bias = 0.0
 extents = Vector2( 251.05, 142.891 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="RectangleShape2D" id=11]
+
+custom_solver_bias = 0.0
+extents = Vector2( 251.258, 140.873 )
+
+[sub_resource type="DynamicFont" id=12]
 
 size = 36
 outline_size = 0
@@ -94,7 +94,7 @@ use_filter = false
 font_data = ExtResource( 2 )
 _sections_unfolded = [ "Font", "Resource", "Settings" ]
 
-[sub_resource type="RectangleShape2D" id=12]
+[sub_resource type="RectangleShape2D" id=13]
 
 custom_solver_bias = 0.0
 extents = Vector2( 19.8512, 19.4919 )
@@ -299,7 +299,6 @@ size_flags_vertical = 1
 _sections_unfolded = [ "Mouse" ]
 
 [node name="save1" type="Sprite" parent="savegames" index="0"]
-editor/display_folded = true
 modulate = Color( 1, 1, 1, 0.501961 )
 position = Vector2( 693.884, 341.585 )
 scale = Vector2( 0.9, 0.9 )
@@ -325,7 +324,6 @@ editor/display_folded = true
 modulate = Color( 1, 1, 1, 0.501961 )
 position = Vector2( 1183.13, 341.488 )
 scale = Vector2( 0.9, 0.9 )
-texture = ExtResource( 4 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="save2" type="Area2D" parent="savegames/save2" index="0"]
@@ -343,15 +341,12 @@ position = Vector2( 542.016, -7.19489 )
 shape = SubResource( 10 )
 
 [node name="save3" type="Sprite" parent="savegames" index="2"]
-editor/display_folded = true
 modulate = Color( 1, 1, 1, 0.501961 )
 position = Vector2( 1669.74, 343.728 )
 scale = Vector2( 0.9, 0.9 )
-texture = ExtResource( 5 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="save3" type="Area2D" parent="savegames/save3" index="0"]
-editor/display_folded = true
 position = Vector2( -2.65601, -2.38089 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -362,14 +357,13 @@ audio_bus_override = false
 audio_bus_name = "Master"
 
 [node name="col" type="CollisionShape2D" parent="savegames/save3/save3" index="0"]
-shape = SubResource( 10 )
+shape = SubResource( 11 )
 
 [node name="save4" type="Sprite" parent="savegames" index="3"]
 editor/display_folded = true
 modulate = Color( 1, 1, 1, 0.501961 )
 position = Vector2( 693.495, 637.002 )
 scale = Vector2( 0.9, 0.9 )
-texture = ExtResource( 6 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="save4" type="Area2D" parent="savegames/save4" index="0"]
@@ -387,11 +381,9 @@ position = Vector2( -2.39825, 328.567 )
 shape = SubResource( 10 )
 
 [node name="save5" type="Sprite" parent="savegames" index="4"]
-editor/display_folded = true
 modulate = Color( 1, 1, 1, 0.501961 )
 position = Vector2( 1184.4, 635.054 )
 scale = Vector2( 0.9, 0.9 )
-texture = ExtResource( 7 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="save5" type="Area2D" parent="savegames/save5" index="0"]
@@ -409,11 +401,9 @@ position = Vector2( 549.211, 321.372 )
 shape = SubResource( 10 )
 
 [node name="save6" type="Sprite" parent="savegames" index="5"]
-editor/display_folded = true
 modulate = Color( 1, 1, 1, 0.501961 )
 position = Vector2( 1669.45, 635.054 )
 scale = Vector2( 0.9, 0.9 )
-texture = ExtResource( 8 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="save6" type="Area2D" parent="savegames/save6" index="0"]
@@ -476,7 +466,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
 text = "1"
 percent_visible = 1.0
 lines_skipped = 0
@@ -486,7 +476,7 @@ _sections_unfolded = [ "Anchor", "custom_colors", "custom_fonts" ]
 [node name="col" type="CollisionShape2D" parent="savegames/page1" index="2"]
 position = Vector2( 19.8132, 20.1734 )
 z_index = 100
-shape = SubResource( 12 )
+shape = SubResource( 13 )
 _sections_unfolded = [ "Z Index" ]
 
 [node name="page2" type="Area2D" parent="savegames" index="7"]
@@ -535,7 +525,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
 text = "2"
 percent_visible = 1.0
 lines_skipped = 0
@@ -544,7 +534,7 @@ _sections_unfolded = [ "Anchor", "custom_colors", "custom_fonts" ]
 
 [node name="col" type="CollisionShape2D" parent="savegames/page2" index="2"]
 position = Vector2( 19.8132, 20.1734 )
-shape = SubResource( 12 )
+shape = SubResource( 13 )
 
 [node name="page3" type="Area2D" parent="savegames" index="8"]
 editor/display_folded = true
@@ -592,7 +582,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
 text = "3"
 percent_visible = 1.0
 lines_skipped = 0
@@ -601,7 +591,7 @@ _sections_unfolded = [ "Anchor", "custom_colors", "custom_fonts" ]
 
 [node name="col" type="CollisionShape2D" parent="savegames/page3" index="2"]
 position = Vector2( 19.8132, 20.1734 )
-shape = SubResource( 12 )
+shape = SubResource( 13 )
 
 [node name="page4" type="Area2D" parent="savegames" index="9"]
 position = Vector2( 664.045, 114.063 )
@@ -648,7 +638,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
 text = "4"
 percent_visible = 1.0
 lines_skipped = 0
@@ -657,7 +647,7 @@ _sections_unfolded = [ "Anchor", "custom_colors", "custom_fonts" ]
 
 [node name="col" type="CollisionShape2D" parent="savegames/page4" index="2"]
 position = Vector2( 19.8132, 20.1734 )
-shape = SubResource( 12 )
+shape = SubResource( 13 )
 
 [node name="page5" type="Area2D" parent="savegames" index="10"]
 editor/display_folded = true
@@ -705,7 +695,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
 text = "5"
 percent_visible = 1.0
 lines_skipped = 0
@@ -714,7 +704,7 @@ _sections_unfolded = [ "Anchor", "custom_colors", "custom_fonts" ]
 
 [node name="col" type="CollisionShape2D" parent="savegames/page5" index="2"]
 position = Vector2( 19.8132, 20.1734 )
-shape = SubResource( 12 )
+shape = SubResource( 13 )
 
 [node name="page6" type="Area2D" parent="savegames" index="11"]
 editor/display_folded = true
@@ -762,7 +752,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
 text = "6"
 percent_visible = 1.0
 lines_skipped = 0
@@ -771,7 +761,7 @@ _sections_unfolded = [ "Anchor", "custom_colors", "custom_fonts" ]
 
 [node name="col" type="CollisionShape2D" parent="savegames/page6" index="2"]
 position = Vector2( 19.8132, 20.1734 )
-shape = SubResource( 12 )
+shape = SubResource( 13 )
 
 [node name="page7" type="Area2D" parent="savegames" index="12"]
 editor/display_folded = true
@@ -819,7 +809,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
 text = "7"
 percent_visible = 1.0
 lines_skipped = 0
@@ -828,7 +818,7 @@ _sections_unfolded = [ "Anchor", "custom_colors", "custom_fonts" ]
 
 [node name="col" type="CollisionShape2D" parent="savegames/page7" index="2"]
 position = Vector2( 19.8132, 20.1734 )
-shape = SubResource( 12 )
+shape = SubResource( 13 )
 
 [node name="page8" type="Area2D" parent="savegames" index="13"]
 editor/display_folded = true
@@ -876,7 +866,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
 text = "8"
 percent_visible = 1.0
 lines_skipped = 0
@@ -885,7 +875,7 @@ _sections_unfolded = [ "Anchor", "custom_colors", "custom_fonts" ]
 
 [node name="col" type="CollisionShape2D" parent="savegames/page8" index="2"]
 position = Vector2( 19.8132, 20.1734 )
-shape = SubResource( 12 )
+shape = SubResource( 13 )
 
 [node name="fx" type="Tween" parent="." index="6"]
 repeat = false

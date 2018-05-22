@@ -114,10 +114,16 @@ func advance_time():
 	global.weekday = global.gameData["weekday"][day]
 	global.timeofday = global.gameData["time"][time]
 	
-	global.transition.show()
-	print(global.transition)
-	transFX.interpolate_property(global.transition, "modulate", Color(1,1,1,1), Color(1,1,1,0), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	transFX.start()
+#	global.grab_screen()
+#
+#	var tex = ImageTexture.new()
+#	tex.create_from_image(global.capture)
+#	get_tree().get_root().get_node("world").get_node("transition").set_texture(tex)
+#
+#	global.transition.show()
+#	global.transition.modulate = Color(1,1,1,1)
+#	transFX.interpolate_property(global.transition, "modulate", Color(1,1,1,1), Color(1,1,1,0), 2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+#	transFX.start()
 	
 	global.load_scene(global.scene)
 	get_parent().connect()

@@ -30,27 +30,12 @@ var archiveData = {
 }
 
 var saveData = {
-	"1": {
-		"id" : "01",
-		"thumb" : "01",
-		"data" : []
-	},
-	"2": {
-		"id" : "02",
-		"thumb" : "02",
-		"data" : []
-	},
-	"3": {
-		"id" : "03",
-		"thumb" : "03",
-		"data" : []
-	},
-	"4": {
-		"id" : "04",
-		"thumb" : "04",
-		"data" : []
+		"save1" : [{
+			"id" : "01",
+			"thumb" : "save_add",
+			"data" : {}
+		}]	
 	}
-}
 
 var dialogue_running
 var blocking_ui = false
@@ -70,6 +55,7 @@ var files = []
 var playerScript = preload("res://data/scripts/player.gd")
 
 var capture
+var thumb_index = 1
 
 onready var sceneCol = get_tree().get_root().get_node("world").get_node("scene").get_node("col")
 
@@ -114,12 +100,24 @@ func _process(delta):
 # this also eliminates problems when deleting a file
 
 func grab_screen():
+	
+#	capture = null
+	
+	get_viewport().set_clear_mode(Viewport.CLEAR_MODE_ONLY_NEXT_FRAME)
+	
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	
 	capture = get_viewport().get_texture().get_data()
 	
 	capture.flip_y()
 	capture.convert(5)
 
-	capture.save_png("res://data/graphics/saves/screenshot.png")
+#	capture.save_png("res://data/graphics/saves/screenshot.png")
+	
+#	capture.save_png("res://data/graphics/saves/screenshot - thumb.png")
+#
+#	thumb_index += 1
 
 func list_files_in_directory(path):
     var dir = Directory.new()
@@ -149,7 +147,6 @@ func goto_scene(scene):
     get_tree().change_scene("res://"+scene)
 
 func load_scene(sceneLocation): #change this first, see if any conflicts
-	grab_screen()
 	currentLocation = sceneLocation
 	var location = sceneData[sceneLocation][weekday][timeofday]
 	

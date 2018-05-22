@@ -18,8 +18,19 @@ func save_fx(save, opacity):
 	
 func pop_game_settings():
 	for save in range(global.saveData.size()):
-		var image = load("res://data/graphics/saves/save" + str(save+1) + ".png")
-		get_node("savegames/save" + str(save+1)).set_texture(image)
+		var save_node = get_node("savegames/save" + str(save+1))
+
+		var tmp = "save" + str(save+1)
+		
+		print(global.saveData[tmp][0].thumb)
+		
+		if global.saveData[tmp][0].thumb == "save_add":
+				var image = load("res://data/graphics/saves/save_add.png")
+				save_node.set_texture(image)
+		else:
+			var image = load("res://data/graphics/saves/save" + str(save+1) + ".png")
+			save_node.set_texture(image)
+			
 
 func _on_save1_mouse_entered():
 	save_fx($savegames/save1, Color(1,1,1,1))
@@ -28,9 +39,37 @@ func _on_save1_mouse_exited():
 	save_fx($savegames/save1, Color(1,1,1,0.5))
 
 
-func _on_save1_input_event():
-	pass # replace with function body
+func _on_save1_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			if event.is_pressed():
 
+				if $savegames/save1.texture.get_path() == "res://data/graphics/saves/save_add.png":
+					
+					#use class for this? https://godotengine.org/qa/827/whats-best-optimal-store-database-common-between-all-nodes#
+					var tmpdict = [{			
+							"id" : "02",
+							"thumb" : "save_add",
+							"data" : []
+						}]
+
+					global.saveData.save2 = tmpdict
+
+					print(global.saveData)
+					
+				global.capture.resize(500,281,1)
+				var texture = ImageTexture.new()
+
+				texture.create_from_image(global.capture)
+				$savegames/save1.set_texture(texture)
+				
+				var save_name = "save1"
+
+				global.capture.save_png("res://data/graphics/saves/" + save_name + ".png")
+				
+				global.saveData["save1"][0].thumb = save_name
+				
+				pop_game_settings()
 
 func _on_save2_mouse_entered():
 	save_fx($savegames/save2, Color(1,1,1,1))

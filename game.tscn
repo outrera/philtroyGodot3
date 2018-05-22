@@ -655,7 +655,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.981376, 0 )
 position = Vector2( 959.313, 530.007 )
 z_index = 99
 texture = ExtResource( 26 )
-_sections_unfolded = [ "Z Index" ]
+_sections_unfolded = [ "Visibility", "Z Index" ]
 
 [node name="audio" type="AudioStreamPlayer" parent="." index="11"]
 stream = ExtResource( 27 )
