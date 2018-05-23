@@ -63,6 +63,16 @@ func _on_scene_input_event(camera, event, click_position, click_normal, shape_id
 				player_pos = player.get_global_transform().origin
 				helper_pos = helper.get_global_transform().origin
 				target_pos = click_position
+				
+				var cross = get_node("../cross")
+				var tween = get_node("../cross/tween")
+				
+				cross.frame = 1
+				cross.position = get_node("../Camera").unproject_position(click_position)
+				cross.play()
+				
+				tween.interpolate_property(cross, "modulate", Color(1,1,1,1), Color(1,1,1,0), 0.6, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+				tween.start()
 
 	else:
 		#need to add this so player doesn´t move when exiting dialog

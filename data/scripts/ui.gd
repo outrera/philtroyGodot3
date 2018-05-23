@@ -180,35 +180,43 @@ func _input(event):
 
 #the below functions handle hover animations for UI icons. This could probably be handled more efficiently in one generic function, not sure how
 func _on_phone_mouse_entered():
-	change_cursor("look")
+	var cursor = load("res://data/graphics/cursor_look.png")
+	Input.set_custom_mouse_cursor(cursor)
 	ui_hover("phone", get_node("phone/Sprite"), Vector2(1.1, 1.1), true, get_node("phone"))
 
 func _on_phone_mouse_exited():
-	change_cursor("default")
+	var cursor = load("res://data/graphics/cursor_default.png")
+	Input.set_custom_mouse_cursor(cursor)
 	ui_hover("", get_node("phone/Sprite"), Vector2(1.0, 1.0), false, null)
 
 func _on_schoolbag_mouse_entered():
-	change_cursor("look")
+	var cursor = load("res://data/graphics/cursor_look.png")
+	Input.set_custom_mouse_cursor(cursor)
 	ui_hover("school bag", get_node("schoolbag/Sprite"), Vector2(1.1, 1.1), true, get_node("schoolbag"))
 
 func _on_schoolbag_mouse_exited():
-	change_cursor("default")
+	var cursor = load("res://data/graphics/cursor_default.png")
+	Input.set_custom_mouse_cursor(cursor)
 	ui_hover("", get_node("schoolbag/Sprite"), Vector2(1.0, 1.0), false, null)
 
 func _on_map_mouse_entered():
-	change_cursor("look")
+	var cursor = load("res://data/graphics/cursor_look.png")
+	Input.set_custom_mouse_cursor(cursor)
 	ui_hover("map", get_node("map/Sprite"), Vector2(1.1, 1.1), true, get_node("map"))
 
 func _on_map_mouse_exited():
-	change_cursor("default")
+	var cursor = load("res://data/graphics/cursor_default.png")
+	Input.set_custom_mouse_cursor(cursor)
 	ui_hover("", get_node("map/Sprite"), Vector2(1.0, 1.0), false, null)
 
 func _on_calendar_mouse_entered():
-	change_cursor("look")
+	var cursor = load("res://data/graphics/cursor_look.png")
+	Input.set_custom_mouse_cursor(cursor)
 	ui_hover("calendar", get_node("calendar/Sprite"), Vector2(1.1, 1.1), true, get_node("calendar"))
 
 func _on_calendar_mouse_exited():
-	change_cursor("default")
+	var cursor = load("res://data/graphics/cursor_default.png")
+	Input.set_custom_mouse_cursor(cursor)
 	ui_hover("", get_node("calendar/Sprite"), Vector2(1.0, 1.0), false, null)
 
 #play effects when hovering over UI icons
