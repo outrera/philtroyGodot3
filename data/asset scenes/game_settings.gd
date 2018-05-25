@@ -5,7 +5,7 @@ extends Panel
 # var b = "textvar"
 
 func _ready():
-	pop_game_settings()
+	pop_game_settings("init")
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
@@ -16,25 +16,25 @@ func save_fx(save, opacity):
 	$fx.interpolate_property(save, "modulate", save.modulate, opacity, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$fx.start()
 	
-func pop_game_settings():
+func pop_game_settings(key):
 	for save in range(global.saveData.size()):
 		var save_node = get_node("savegames/save" + str(save+1))
 
 		var tmp = "save" + str(save+1)
 		
-		print(global.saveData[tmp][0].thumb)
+#		print(global.saveData[tmp][0].thumb)
 		
 		if global.saveData[tmp][0].thumb == "save_add":
 				var image = load("res://data/graphics/saves/save_add.png")
 				save_node.set_texture(image)
-		else:
+		elif key == "init":
 			var image = load("res://data/graphics/saves/save" + str(save+1) + ".png")
 			save_node.set_texture(image)
 			
 func save_to_slot(id):
 	var save_name = "save" + str(id)
 	var texture = ImageTexture.new()
-		
+	
 	if get_node("savegames/save" + str(id)).texture.get_path() == "res://data/graphics/saves/save_add.png":
 
 		var tmpdict = [{			
@@ -53,7 +53,7 @@ func save_to_slot(id):
 	global.capture.save_png("res://data/graphics/saves/" + save_name + ".png")
 	global.saveData["save" + str(id)][0].thumb = save_name
 
-	pop_game_settings()
+	pop_game_settings("refresh")
 			
 func _on_save1_mouse_entered():
 	save_fx($savegames/save1, Color(1,1,1,1))
@@ -63,10 +63,11 @@ func _on_save1_mouse_exited():
 
 
 func _on_save1_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
-			if event.is_pressed():
-				save_to_slot(1)
+	if get_node("savegames/save1").texture:
+		if event is InputEventMouseButton:
+			if event.button_index == BUTTON_LEFT:
+				if event.is_pressed():
+					save_to_slot(1)
 
 func _on_save2_mouse_entered():
 	save_fx($savegames/save2, Color(1,1,1,1))
@@ -75,10 +76,11 @@ func _on_save2_mouse_exited():
 	save_fx($savegames/save2, Color(1,1,1,0.5))
 	
 func _on_save2_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
-			if event.is_pressed():
-				save_to_slot(2)
+	if get_node("savegames/save2").texture:
+		if event is InputEventMouseButton:
+			if event.button_index == BUTTON_LEFT:
+				if event.is_pressed():
+					save_to_slot(2)
 
 
 func _on_save3_mouse_entered():
@@ -88,10 +90,11 @@ func _on_save3_mouse_exited():
 	save_fx($savegames/save3, Color(1,1,1,0.5))
 
 func _on_save3_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
-			if event.is_pressed():
-				save_to_slot(3)
+	if get_node("savegames/save3").texture:
+		if event is InputEventMouseButton:
+			if event.button_index == BUTTON_LEFT:
+				if event.is_pressed():
+					save_to_slot(3)
 
 
 func _on_save4_mouse_entered():
@@ -101,10 +104,11 @@ func _on_save4_mouse_exited():
 	save_fx($savegames/save4, Color(1,1,1,0.5))
 
 func _on_save4_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
-			if event.is_pressed():
-				save_to_slot(4)
+	if get_node("savegames/save4").texture:
+		if event is InputEventMouseButton:
+			if event.button_index == BUTTON_LEFT:
+				if event.is_pressed():
+					save_to_slot(4)
 
 
 func _on_save5_mouse_entered():
@@ -114,10 +118,11 @@ func _on_save5_mouse_exited():
 	save_fx($savegames/save5, Color(1,1,1,0.5))
 
 func _on_save5_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
-			if event.is_pressed():
-				save_to_slot(5)
+	if get_node("savegames/save5").texture:
+		if event is InputEventMouseButton:
+			if event.button_index == BUTTON_LEFT:
+				if event.is_pressed():
+					save_to_slot(5)
 
 
 func _on_save6_mouse_entered():
@@ -127,10 +132,11 @@ func _on_save6_mouse_exited():
 	save_fx($savegames/save6, Color(1,1,1,0.5))
 
 func _on_save6_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
-			if event.is_pressed():
-				save_to_slot(6)
+	if get_node("savegames/save6").texture:
+		if event is InputEventMouseButton:
+			if event.button_index == BUTTON_LEFT:
+				if event.is_pressed():
+					save_to_slot(6)
 
 
 func _on_load_mouse_entered():

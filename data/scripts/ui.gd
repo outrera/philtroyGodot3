@@ -93,6 +93,7 @@ func change_cursor(id):
 	if global.itemInHand != "" and global.blocking_ui!=true:
 		var cursor = load("res://data/graphics/cursor_" + id + ".png")
 		Input.set_custom_mouse_cursor(cursor)
+		global.itemInHand = ""
 
 func advance_time():
 	#keep track of day, week and month
@@ -155,8 +156,9 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_RIGHT:
 			if event.pressed:
+				print("RMB clicked")
 				if global.itemInHand != "":
-					global.itemInHand = ""
+					print("I have something in my hand")
 					change_cursor("default")
 	if hoverNode:
 		if hoverNode.get_name() == "phone":	
@@ -294,6 +296,7 @@ func ui_hide_show(gui_node, move_delta, method1, method2):
 	
 func toggle_game_settings():
 	if !global.blocking_ui and !gameSettingsOpen:
+		sceneCol.disabled = true
 		global.grab_screen()
 		$game_settings.show()
 		global.blocking_ui = true
@@ -303,6 +306,7 @@ func toggle_game_settings():
 #		toggle_ui_icons("hide")
 
 	else:
+		sceneCol.disabled = false
 		global.blocking_ui = false
 		gameSettingsOpen = false
 		fade_out.interpolate_property($game_settings, "modulate", Color(1,1,1,1), Color(1,1,1,0), 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
