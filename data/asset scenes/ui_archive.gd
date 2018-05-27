@@ -2,6 +2,7 @@ extends Panel
 
 func _ready():
 	pass
+#	$"../full_view".hide()
 
 func icon_fx(photo, scale):
 	$fx.interpolate_property (photo, "scale", photo.scale, scale, 0.3, Tween.TRANS_QUAD, Tween.EASE_OUT)
@@ -13,10 +14,21 @@ func _on_sprite1_mouse_entered():
 func _on_sprite1_mouse_exited():
 	icon_fx($Sprite1, Vector2(1, 1))
 
-func _on_sprite1_input_event():
-	global.gallery_page = 1
-
-
+func _on_sprite1_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			if event.is_pressed():
+				print($"../full_view".rect_position)
+				print($"../full_view".rect_scale)
+				$"../full_view".rect_position = Vector2(800, 1800)
+				$"../full_view/sprite".set_texture($Sprite1.get_texture())
+				
+				$"../full_view".show()
+				$galleryFX.interpolate_property($"../full_view", "modulate", Color(1,1,1,0), Color(1,1,1,1), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+				$galleryFX.interpolate_property($"../full_view", "rect_position", $"../full_view".rect_position, $"../full_view".rect_position + Vector2(400,-230), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+				$galleryFX.interpolate_property($"../full_view", "rect_scale", $"../full_view".rect_scale, Vector2(4,4), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+				$galleryFX.start()
+				
 func _on_sprite2_mouse_entered():
 	icon_fx($Sprite2, Vector2(1.2, 1.2))
 
