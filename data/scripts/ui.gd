@@ -79,6 +79,7 @@ func exit_map():
 
 func ui_exit():
 	if phoneOpen == true:	
+		global.phone_app_running = false
 		toggle_ui_overlay("phone_ui", "hide", phoneHidePos)
 	if schoolbagOpen == true:	
 		toggle_ui_overlay("schoolbag_ui", "hide", schoolbagHidePos)

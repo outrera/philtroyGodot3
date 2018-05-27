@@ -69,7 +69,10 @@ func _on_scene_input_event(camera, event, click_position, click_normal, shape_id
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if event.pressed:
-				$Character/AnimationPlayer.play("Run")
+				
+				if !global.is_moving:
+					$Character/AnimationPlayer.play("Run")
+					
 				global.is_moving = true
 				value = 0 
 				player_pos = player.get_global_transform().origin
