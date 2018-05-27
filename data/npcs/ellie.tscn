@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://data/npcs/ellie.gd" type="Script" id=1]
-[ext_resource path="res://data/asset scenes/player_model.tscn" type="PackedScene" id=2]
+[ext_resource path="res://data/asset scenes/Character.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -21,7 +21,7 @@ extents = Vector3( 1, 1.83247, 1 )
 extents = Vector3( 1, 1.81521, 1 )
 
 [node name="npc" type="StaticBody" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7671, 1.70829, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7671, 0.265544, 0 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 1
@@ -82,9 +82,13 @@ shape = SubResource( 3 )
 disabled = false
 _sections_unfolded = [ "Transform", "Visibility" ]
 
-[node name="Scene Root" parent="." index="3" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.729011, 0 )
+[node name="Character" parent="." index="3" instance=ExtResource( 2 )]
+
+[node name="AnimationPlayer" parent="Character" index="1"]
+autoplay = "Idle-loop"
 
 [connection signal="input_event" from="npc_trigger" to="." method="_on_npc_trigger_input_event"]
 [connection signal="mouse_entered" from="npc_trigger" to="." method="_on_npc_trigger_mouse_enter"]
 [connection signal="mouse_exited" from="npc_trigger" to="." method="_on_npc_trigger_mouse_exit"]
+
+[editable path="Character"]

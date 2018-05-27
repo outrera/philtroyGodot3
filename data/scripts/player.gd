@@ -20,12 +20,20 @@ onready var helper_pos = helper.get_global_transform().origin
 
 var playerFacing
 
+var start_anim
+
 var movement = Vector3()
 
 func _ready():
 	set_process(true)
 	set_physics_process(true)
 	set_process_input(true)
+	$Character/AnimationPlayer.play("Run")
+#	$Character/AnimationPlayer.autoplay = "Run"
+	$Character/AnimationPlayer.get_animation("Run").set_loop(true)
+	$Character/AnimationPlayer.get_animation("Idle-loop").set_loop(true)
+	
+	start_anim = true
 
 func _physics_process(delta):
 	#move and rotate player towards set target
@@ -37,10 +45,13 @@ func _physics_process(delta):
 			#TODO: this kinda works, but not 100%. This should only be compared to on click distance to target, not all the time
 			#TODO: also, if player has already turned towards target, turn_towards shouldn´t run. Causing glitches....
 			#TODO: probably easily solved by running a timer on each move/rotate, no turn takes more than 1.5 secs
-			if player_pos.distance_to(target_pos) > 3:
-				player.move_and_collide(Vector3(playerFacing.x, 0, playerFacing.z)*get_physics_process_delta_time()*3)
-			if player_pos.distance_to(target_pos) < 0.5:
+			player.move_and_collide(Vector3(playerFacing.x, 0, playerFacing.z)*get_physics_process_delta_time()*3)
+			if player_pos.distance_to(target_pos) < 2:
 				global.is_moving = false
+	else:
+		if start_anim == true:
+			$Character/AnimationPlayer.play("Idle-loop")
+			start_anim = false
 
 func turn_towards():
 	var t = player.get_transform()
@@ -58,6 +69,7 @@ func _on_scene_input_event(camera, event, click_position, click_normal, shape_id
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if event.pressed:
+				$Character/AnimationPlayer.play("Run")
 				global.is_moving = true
 				value = 0 
 				player_pos = player.get_global_transform().origin
@@ -73,6 +85,8 @@ func _on_scene_input_event(camera, event, click_position, click_normal, shape_id
 				
 				tween.interpolate_property(cross, "modulate", Color(1,1,1,1), Color(1,1,1,0), 0.6, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 				tween.start()
+				
+				start_anim = true
 
 	else:
 		#need to add this so player doesn´t move when exiting dialog

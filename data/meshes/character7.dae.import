@@ -12,8 +12,8 @@ dest_files=[ "res://.import/character7.dae-b0d0b70b03e501a4ec6f2c07d66a5756.scn"
 [params]
 
 nodes/root_type="Spatial"
-nodes/root_name="Scene Root"
-nodes/root_scale=1.0
+nodes/root_name="Character"
+nodes/root_scale=2.0
 nodes/custom_script=""
 nodes/storage=0
 materials/location=1

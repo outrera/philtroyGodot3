@@ -6,7 +6,7 @@
 					"dialogue": "res://data/dialogue/ellie.json",
 					"branch": "a",
 					"pose": "ellie_idle.scn",
-					"pos": {"x": -6,"y": 1.5,"z": -2},
+					"pos": {"x": -6,"y": 1,"z": -2},
 					"rot": {"x": 0,"y": 0,"z": 0}
 				}
 			}
@@ -200,7 +200,7 @@
 					"dialogue": "res://data/dialogue/ellie.json",
 					"branch": "a",
 					"pose": "ellie_idle.scn",
-					"pos": {"x": -6,"y": 1.5,"z": -2},
+					"pos": {"x": -6,"y": 0.8,"z": -2},
 					"rot": {"x": 0,"y": 0,"z": 0}
 				},
 				"bobby": {

@@ -15,7 +15,9 @@ var inventory = [
 ]
 
 func _ready():
-	pass
+	$Character/AnimationPlayer.play()
+#	$Character/AnimationPlayer.autoplay = "Idle-loop"
+	$Character/AnimationPlayer.get_animation("Run").set_loop(true)
 		
 func _on_npc_trigger_mouse_enter():
 	if global.itemInHand == "" and global.blocking_ui!=true:

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://data/scripts/player.gd" type="Script" id=1]
-[ext_resource path="res://data/asset scenes/player_model.tscn" type="PackedScene" id=2]
+[ext_resource path="res://data/asset scenes/Character.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -35,6 +35,7 @@ subdivide_height = 0
 subdivide_depth = 0
 
 [node name="player" type="KinematicBody" index="0"]
+transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 0, 0, 0 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 1
@@ -128,7 +129,7 @@ skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform" ]
 
-[node name="Scene Root" parent="." index="3" instance=ExtResource( 2 )]
-transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 0, 0, 0 )
-_sections_unfolded = [ "Transform" ]
+[node name="Character" parent="." index="3" instance=ExtResource( 2 )]
 
+
+[editable path="Character"]
