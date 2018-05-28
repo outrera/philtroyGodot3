@@ -63,6 +63,10 @@ onready var transition = get_tree().get_root().get_node("world").get_node("trans
 
 onready var audio = get_tree().get_root().get_node("world").get_node("audio")
 
+onready var locLabel = get_tree().get_root().get_node("world").get_node("ui/location")
+onready var locTweenIn = get_tree().get_root().get_node("world").get_node("ui/location/tween_in")
+onready var locTweenOut = get_tree().get_root().get_node("world").get_node("ui/location/tween_out")
+
 func _ready():
 	set_process(true)
 	
@@ -252,6 +256,13 @@ func load_scene(sceneLocation): #change this first, see if any conflicts
 		
 #	TODO: animate scene transition somehow. Take screenshot upon changing scene, overlay that screenshot on top of the new scene and fade opacity?
 #	TODO: how to handle scene specific cameras?
+
+	locLabel.text = currentLocation
+	locLabel.show()
+	locTweenIn.interpolate_property(locLabel, "modulate", Color(1,1,1,0), Color(1,1,1,1), 2, Tween.TRANS_SINE, Tween.EASE_OUT)
+	locTweenIn.interpolate_property(locLabel, "rect_position", locLabel.rect_position, locLabel.rect_position + Vector2(0, 50), 1, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	locTweenIn.start()
+
 
 func event_notifier():
 	pass

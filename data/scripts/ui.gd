@@ -317,3 +317,13 @@ func toggle_game_settings():
 func _on_fade_out_tween_completed(object, key):
 	#hide game settings from game after faded out, since it will interfere with other UI overlays even when not visible
 	$game_settings.hide()
+
+
+func _on_tween_in_tween_completed(object, key):
+	$location/tween_out.interpolate_property($location, "modulate", Color(1,1,1,1), Color(1,1,1,0), 4, Tween.TRANS_QUAD, Tween.EASE_OUT)
+	$location/tween_out.start()
+
+
+func _on_tween_out_tween_completed(object, key):
+	$location.rect_position = Vector2(875, -23)
+	$location.hide()

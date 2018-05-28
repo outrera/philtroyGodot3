@@ -34,6 +34,8 @@ var mousePos = Vector3()
 onready var screenBlur = $"../effects/blurfx"
 onready var effectBlurUI = $"../effects/tween"
 
+var talkAnimFrame
+
 func _ready():
 	set_process_input(true)
 	
@@ -197,6 +199,7 @@ func start_dialogue(json):
 	
 	if branch.has("avatar"):
 		talkAnim = load(branch["avatar"])
+		talkAnimFrame = branch["frame"]
 	else:
 		talkAnim = null
 
@@ -270,8 +273,9 @@ func setup_dialogue_window():
 	#TODO: this should be set dynamically by the json dialogue file
 	if talkAnim != null:
 		talkAnim = talkAnim.instance()
-		talkAnim.set_scale(Vector2(1.5,1.5))
-		talkAnim.set_position(Vector2(VIEWSIZE.x/2 + 40 - dialogBox.width/2, VIEWSIZE.y - dialogBox.posy + 20))
+		talkAnim.frame = talkAnimFrame
+		talkAnim.set_scale(Vector2(0.7,0.7))
+		talkAnim.set_position(Vector2(VIEWSIZE.x/2 - dialogBox.width/2, VIEWSIZE.y - dialogBox.posy + 10))
 		$"ui_dialogue".add_child(talkAnim)
 
 	reply_offset = 0

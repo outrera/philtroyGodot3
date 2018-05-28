@@ -4,6 +4,7 @@
 	"dialogue": {
 		"a": {
 			"avatar": "res://data/npcs/ellie_talkanim.tscn",
+			"frame": 0,
 			"speech" : [
 				"this is dialogue A
 				on to the second line (more...)", 
@@ -29,6 +30,7 @@
 		},
 		"b": {
 			"avatar": "res://data/npcs/ellie_talkanim.tscn",
+			"frame": 1,
 			"speech" : ["this is dialogue B"],
 			"replies" : [
 				{
@@ -40,6 +42,7 @@
 		},
 		"c": {
 			"avatar": "res://data/npcs/ellie_talkanim.tscn",
+			"frame": 2,
 			"speech" : ["this is dialogue C"],
 			"replies" : [
 				{
@@ -51,6 +54,7 @@
 		},
 		"d": {
 			"avatar": "res://data/npcs/ellie_talkanim.tscn",
+			"frame": 3,
 			"speech" : ["this is dialogue D"],
 			"replies" : [
 				{

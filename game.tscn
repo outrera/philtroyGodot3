@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://data/scripts/world.gd" type="Script" id=1]
 [ext_resource path="res://data/scripts/ui.gd" type="Script" id=2]
@@ -159,6 +159,16 @@ radius = 47.2968
 
 custom_solver_bias = 0.0
 radius = 52.1685
+
+[sub_resource type="DynamicFont" id=15]
+
+size = 40
+outline_size = 0
+outline_color = Color( 1, 1, 1, 1 )
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 4 )
+_sections_unfolded = [ "Font", "Settings" ]
 
 [sub_resource type="PlaneShape" id=11]
 
@@ -554,6 +564,44 @@ margin_top = 1.0
 margin_right = 1921.0
 margin_bottom = 1081.0
 
+[node name="location" type="Label" parent="ui" index="18"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 875.0
+margin_top = -22.1908
+margin_right = 1076.0
+margin_bottom = 37.8092
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 15 )
+text = "Schoolyard"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "Visibility", "custom_fonts" ]
+
+[node name="tween_in" type="Tween" parent="ui/location" index="0"]
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="tween_out" type="Tween" parent="ui/location" index="1"]
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
 [node name="npcs" type="Node" parent="." index="4"]
 
 [node name="npc" parent="npcs" index="0" instance=ExtResource( 19 )]
@@ -605,7 +653,6 @@ _sections_unfolded = [ "Transform" ]
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="effects" type="Node" parent="." index="8"]
-editor/display_folded = true
 
 [node name="blurfx" type="TextureRect" parent="effects" index="0"]
 show_behind_parent = true
@@ -702,6 +749,8 @@ playback/speed = 1.0
 [connection signal="mouse_exited" from="ui/map" to="ui" method="_on_map_mouse_exited"]
 [connection signal="mouse_entered" from="ui/calendar" to="ui" method="_on_calendar_mouse_entered"]
 [connection signal="mouse_exited" from="ui/calendar" to="ui" method="_on_calendar_mouse_exited"]
+[connection signal="tween_completed" from="ui/location/tween_in" to="ui" method="_on_tween_in_tween_completed"]
+[connection signal="tween_completed" from="ui/location/tween_out" to="ui" method="_on_tween_out_tween_completed"]
 [connection signal="input_event" from="scene" to="player" method="_on_scene_input_event"]
 [connection signal="tween_completed" from="effects/fade_out" to="ui" method="_on_fade_out_tween_completed"]
 
