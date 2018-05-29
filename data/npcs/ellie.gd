@@ -23,10 +23,11 @@ func _on_npc_trigger_mouse_enter():
 	if global.itemInHand == "" and global.blocking_ui!=true:
 		var cursor = load("res://data/graphics/cursor_talk.png")
 		Input.set_custom_mouse_cursor(cursor)
-	if global.itemInHand == "":
+	if global.itemInHand == "" and global.blocking_ui!=true:
 		emit_signal("highlight", identity)
 	else:
-		emit_signal("highlight", "Give to " + identity + "?")
+		if global.blocking_ui!=true:
+			emit_signal("highlight", "Give " + global.itemInHand + " to " + identity + "?")
 
 func _on_npc_trigger_mouse_exit():
 	if global.itemInHand == "" and global.blocking_ui!=true:
@@ -36,7 +37,7 @@ func _on_npc_trigger_mouse_exit():
 	emit_signal("look_at", "")
 
 func _on_npc_trigger_input_event(camera, event, click_position, click_normal, shape_idx):
-	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and global.blocking_ui!=true:
 		if event.is_pressed():
 			if global.itemInHand == "":	
 				emit_signal("dialogue", identity, self.get_transform().origin)

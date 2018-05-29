@@ -160,7 +160,7 @@ radius = 47.2968
 custom_solver_bias = 0.0
 radius = 52.1685
 
-[sub_resource type="DynamicFont" id=15]
+[sub_resource type="DynamicFont" id=11]
 
 size = 40
 outline_size = 0
@@ -170,11 +170,11 @@ use_filter = false
 font_data = ExtResource( 4 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="PlaneShape" id=11]
+[sub_resource type="PlaneShape" id=12]
 
 plane = Plane( 0, 1, 0, 0 )
 
-[sub_resource type="Shader" id=12]
+[sub_resource type="Shader" id=13]
 
 code = "shader_type canvas_item;
 
@@ -185,14 +185,14 @@ void fragment() {
 	COLOR.rgb = textureLod(SCREEN_TEXTURE,SCREEN_UV,amount).rgb;
 }"
 
-[sub_resource type="ShaderMaterial" id=13]
+[sub_resource type="ShaderMaterial" id=14]
 
 render_priority = 0
-shader = SubResource( 12 )
+shader = SubResource( 13 )
 shader_param/amount = 4.0
 _sections_unfolded = [ "shader_param" ]
 
-[sub_resource type="SpriteFrames" id=14]
+[sub_resource type="SpriteFrames" id=15]
 
 animations = [ {
 "frames": [ ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ) ],
@@ -579,7 +579,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 11 )
 text = "Schoolyard"
 percent_visible = 1.0
 lines_skipped = 0
@@ -645,7 +645,7 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="col" type="CollisionShape" parent="scene" index="0"]
 transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
-shape = SubResource( 11 )
+shape = SubResource( 12 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 
@@ -656,7 +656,7 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="blurfx" type="TextureRect" parent="effects" index="0"]
 show_behind_parent = true
-material = SubResource( 13 )
+material = SubResource( 14 )
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -729,7 +729,7 @@ mix_target = 0
 bus = "Master"
 
 [node name="cross" type="AnimatedSprite" parent="." index="12"]
-frames = SubResource( 14 )
+frames = SubResource( 15 )
 animation = "default"
 frame = 2
 

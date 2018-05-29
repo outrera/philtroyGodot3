@@ -151,8 +151,13 @@ func goto_scene(scene):
     get_tree().change_scene("res://"+scene)
 
 func load_scene(sceneLocation): #change this first, see if any conflicts
+	var location
 	currentLocation = sceneLocation
-	var location = sceneData[sceneLocation][weekday][timeofday]
+	
+	if sceneData[sceneLocation].has(weekday):
+		location = sceneData[sceneLocation][weekday][timeofday]
+	else:
+		location = sceneData[sceneLocation]["default"][timeofday]
 	
 	var gameRoot = get_tree().get_root().get_node("world")
 
