@@ -59,7 +59,7 @@ var thumb_index = 1
 
 onready var sceneCol = get_tree().get_root().get_node("world").get_node("scene").get_node("col")
 
-onready var transition = get_tree().get_root().get_node("world").get_node("transition")
+onready var transition = get_tree().get_root().get_node("world").get_node("ui/transition")
 
 onready var audio = get_tree().get_root().get_node("world").get_node("audio")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://data/scripts/world.gd" type="Script" id=1]
 [ext_resource path="res://data/scripts/ui.gd" type="Script" id=2]
@@ -18,7 +18,7 @@
 [ext_resource path="res://data/asset scenes/map_ui.tscn" type="PackedScene" id=16]
 [ext_resource path="res://data/asset scenes/calendar_UI.tscn" type="PackedScene" id=17]
 [ext_resource path="res://data/asset scenes/game_settings.tscn" type="PackedScene" id=18]
-[ext_resource path="res://icon.png" type="Texture" id=19]
+[ext_resource path="res://data/graphics/saves/screenshot.png" type="Texture" id=19]
 [ext_resource path="res://data/npcs/ellie.tscn" type="PackedScene" id=20]
 [ext_resource path="res://data/asset scenes/object.tscn" type="PackedScene" id=21]
 [ext_resource path="res://data/asset scenes/dialogue.tscn" type="PackedScene" id=22]
@@ -26,11 +26,10 @@
 [ext_resource path="res://data/locations/schoolyard.tscn" type="PackedScene" id=24]
 [ext_resource path="res://data/graphics/white.png" type="Texture" id=25]
 [ext_resource path="res://data/asset scenes/player.tscn" type="PackedScene" id=26]
-[ext_resource path="res://data/graphics/saves/screenshot.png" type="Texture" id=27]
-[ext_resource path="res://data/audio/ambient/FromHere.ogg" type="AudioStream" id=28]
-[ext_resource path="res://data/graphics/UI/crosshairs01.png" type="Texture" id=29]
-[ext_resource path="res://data/graphics/UI/crosshairs02.png" type="Texture" id=30]
-[ext_resource path="res://data/graphics/UI/crosshairs03.png" type="Texture" id=31]
+[ext_resource path="res://data/audio/ambient/FromHere.ogg" type="AudioStream" id=27]
+[ext_resource path="res://data/graphics/UI/crosshairs01.png" type="Texture" id=28]
+[ext_resource path="res://data/graphics/UI/crosshairs02.png" type="Texture" id=29]
+[ext_resource path="res://data/graphics/UI/crosshairs03.png" type="Texture" id=30]
 
 [sub_resource type="Environment" id=1]
 
@@ -196,7 +195,7 @@ _sections_unfolded = [ "shader_param" ]
 [sub_resource type="SpriteFrames" id=15]
 
 animations = [ {
-"frames": [ ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ) ],
+"frames": [ ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -603,9 +602,12 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="test" type="Sprite" parent="ui" index="19"]
-position = Vector2( 1578.5, 704.912 )
+[node name="transition" type="Sprite" parent="ui" index="19"]
+visible = false
+position = Vector2( 959.313, 530.007 )
+z_index = 99
 texture = ExtResource( 19 )
+_sections_unfolded = [ "Visibility", "Z Index" ]
 
 [node name="npcs" type="Node" parent="." index="4"]
 
@@ -718,22 +720,15 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0621125, 0 )
 [node name="rotation_helper" parent="player" index="2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.981376, 0 )
 
-[node name="transition" type="Sprite" parent="." index="10"]
-visible = false
-position = Vector2( 959.313, 530.007 )
-z_index = 99
-texture = ExtResource( 27 )
-_sections_unfolded = [ "Visibility", "Z Index" ]
-
-[node name="audio" type="AudioStreamPlayer" parent="." index="11"]
-stream = ExtResource( 28 )
+[node name="audio" type="AudioStreamPlayer" parent="." index="10"]
+stream = ExtResource( 27 )
 volume_db = -35.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="cross" type="AnimatedSprite" parent="." index="12"]
+[node name="cross" type="AnimatedSprite" parent="." index="11"]
 frames = SubResource( 15 )
 animation = "default"
 frame = 2

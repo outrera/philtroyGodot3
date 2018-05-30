@@ -43,6 +43,9 @@ onready var calendarShowPos
 onready var uiIconsShowPos = $map.position.y
 onready var uiIconsHidePos = uiIconsShowPos + 200
 
+var trans_capture
+var trans_tex
+
 onready var gameSettingsUI = load("res://data/asset scenes/game_settings.tscn")
 
 func _ready():
@@ -70,6 +73,16 @@ func item_in_hand(a,b):
 	ui_exit()
 	
 func load_map_location(location):
+
+	var trans_tex = ImageTexture.new()
+
+	trans_tex.create_from_image(trans_capture)
+
+	$transition.set_texture(trans_tex)
+
+	$transition.show()
+	transFX.interpolate_property($transition, "modulate", Color(1,1,1,1), Color(1,1,1,0), 4, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	transFX.start()
 	get_parent().change_location(location)
 	ui_exit()
 		
@@ -117,18 +130,27 @@ func advance_time():
 
 #	TODO: the below code for some reason returns NIL the first time, but captures and assigns a texture the second time
 #	and then reuses that same screenshot, even if I run the code again. WHY?!
-#	global.grab_screen()
-#	global.capture.resize(1920,1080,1)
-#
-#	var tex = ImageTexture.new()
-#
-#	tex.create_from_image(global.capture)
 
-#	get_tree().get_root().get_node("world").get_node("transition").set_texture(tex)
-#
-#	get_tree().get_root().get_node("world").get_node("transition").show()
-#	transFX.interpolate_property(global.transition, "modulate", Color(1,1,1,1), Color(1,1,1,0), 2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-#	transFX.start()
+	get_viewport().set_clear_mode(Viewport.CLEAR_MODE_ONLY_NEXT_FRAME)
+	
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	
+	trans_capture = get_viewport().get_texture().get_data()
+	
+	trans_capture.flip_y()
+	trans_capture.convert(5)
+
+	var trans_tex = ImageTexture.new()
+
+	trans_tex.create_from_image(trans_capture)
+
+	$transition.set_texture(trans_tex)
+
+	$transition.show()
+	transFX.interpolate_property($transition, "modulate", Color(1,1,1,1), Color(1,1,1,0), 4, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	transFX.start()
+	
 #	keep track of day, week and month
 	
 	global.load_scene(global.scene)
@@ -176,6 +198,16 @@ func _input(event):
 				toggle_ui_overlay("schoolbag_ui", "show", schoolbagShowPos)
 		elif hoverNode.get_name() == "map":	
 			if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():
+				get_viewport().set_clear_mode(Viewport.CLEAR_MODE_ONLY_NEXT_FRAME)
+				
+				yield(get_tree(), "idle_frame")
+				yield(get_tree(), "idle_frame")
+				
+				trans_capture = get_viewport().get_texture().get_data()
+				
+				trans_capture.flip_y()
+				trans_capture.convert(5)
+				
 				toggle_ui_overlay("map_ui", "show", mapShowPos)
 		elif hoverNode.get_name() == "calendar":	
 			if event is InputEventMouseButton:
@@ -187,43 +219,51 @@ func _input(event):
 
 #the below functions handle hover animations for UI icons. This could probably be handled more efficiently in one generic function, not sure how
 func _on_phone_mouse_entered():
-	var cursor = load("res://data/graphics/cursor_look.png")
-	Input.set_custom_mouse_cursor(cursor)
+	if global.itemInHand == "":
+		var cursor = load("res://data/graphics/cursor_look.png")
+		Input.set_custom_mouse_cursor(cursor)
 	ui_hover("phone", get_node("phone/Sprite"), Vector2(1.1, 1.1), true, get_node("phone"))
 
 func _on_phone_mouse_exited():
-	var cursor = load("res://data/graphics/cursor_default.png")
-	Input.set_custom_mouse_cursor(cursor)
+	if global.itemInHand == "":
+		var cursor = load("res://data/graphics/cursor_default.png")
+		Input.set_custom_mouse_cursor(cursor)
 	ui_hover("", get_node("phone/Sprite"), Vector2(1.0, 1.0), false, null)
 
 func _on_schoolbag_mouse_entered():
-	var cursor = load("res://data/graphics/cursor_look.png")
-	Input.set_custom_mouse_cursor(cursor)
+	if global.itemInHand == "":
+		var cursor = load("res://data/graphics/cursor_look.png")
+		Input.set_custom_mouse_cursor(cursor)
 	ui_hover("school bag", get_node("schoolbag/Sprite"), Vector2(1.1, 1.1), true, get_node("schoolbag"))
 
 func _on_schoolbag_mouse_exited():
-	var cursor = load("res://data/graphics/cursor_default.png")
-	Input.set_custom_mouse_cursor(cursor)
+	if global.itemInHand == "":
+		var cursor = load("res://data/graphics/cursor_default.png")
+		Input.set_custom_mouse_cursor(cursor)
 	ui_hover("", get_node("schoolbag/Sprite"), Vector2(1.0, 1.0), false, null)
 
 func _on_map_mouse_entered():
-	var cursor = load("res://data/graphics/cursor_look.png")
-	Input.set_custom_mouse_cursor(cursor)
+	if global.itemInHand == "":
+		var cursor = load("res://data/graphics/cursor_look.png")
+		Input.set_custom_mouse_cursor(cursor)
 	ui_hover("map", get_node("map/Sprite"), Vector2(1.1, 1.1), true, get_node("map"))
 
 func _on_map_mouse_exited():
-	var cursor = load("res://data/graphics/cursor_default.png")
-	Input.set_custom_mouse_cursor(cursor)
+	if global.itemInHand == "":
+		var cursor = load("res://data/graphics/cursor_default.png")
+		Input.set_custom_mouse_cursor(cursor)
 	ui_hover("", get_node("map/Sprite"), Vector2(1.0, 1.0), false, null)
 
 func _on_calendar_mouse_entered():
-	var cursor = load("res://data/graphics/cursor_look.png")
-	Input.set_custom_mouse_cursor(cursor)
+	if global.itemInHand == "":
+		var cursor = load("res://data/graphics/cursor_look.png")
+		Input.set_custom_mouse_cursor(cursor)
 	ui_hover("calendar", get_node("calendar/Sprite"), Vector2(1.1, 1.1), true, get_node("calendar"))
 
 func _on_calendar_mouse_exited():
-	var cursor = load("res://data/graphics/cursor_default.png")
-	Input.set_custom_mouse_cursor(cursor)
+	if global.itemInHand == "":
+		var cursor = load("res://data/graphics/cursor_default.png")
+		Input.set_custom_mouse_cursor(cursor)
 	ui_hover("", get_node("calendar/Sprite"), Vector2(1.0, 1.0), false, null)
 
 #play effects when hovering over UI icons
