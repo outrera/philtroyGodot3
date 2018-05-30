@@ -97,7 +97,6 @@ func change_cursor(id):
 		global.itemInHand = ""
 
 func advance_time():
-	#keep track of day, week and month
 	time += 1
 	if time == 4:
 		time = 0
@@ -115,17 +114,22 @@ func advance_time():
 	global.month = global.gameData["month"][month]
 	global.weekday = global.gameData["weekday"][day]
 	global.timeofday = global.gameData["time"][time]
-	
+
+#	TODO: the below code for some reason returns NIL the first time, but captures and assigns a texture the second time
+#	and then reuses that same screenshot, even if I run the code again. WHY?!
 #	global.grab_screen()
+#	global.capture.resize(1920,1080,1)
 #
 #	var tex = ImageTexture.new()
+#
 #	tex.create_from_image(global.capture)
+
 #	get_tree().get_root().get_node("world").get_node("transition").set_texture(tex)
 #
-#	global.transition.show()
-#	global.transition.modulate = Color(1,1,1,1)
+#	get_tree().get_root().get_node("world").get_node("transition").show()
 #	transFX.interpolate_property(global.transition, "modulate", Color(1,1,1,1), Color(1,1,1,0), 2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 #	transFX.start()
+#	keep track of day, week and month
 	
 	global.load_scene(global.scene)
 	get_parent().connect()
