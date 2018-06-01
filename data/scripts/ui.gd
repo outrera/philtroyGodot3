@@ -81,7 +81,7 @@ func load_map_location(location):
 	$transition.set_texture(trans_tex)
 
 	$transition.show()
-	transFX.interpolate_property($transition, "modulate", Color(1,1,1,1), Color(1,1,1,0), 4, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	transFX.interpolate_property($transition, "modulate", Color(1,1,1,1), Color(1,1,1,0), 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	transFX.start()
 	get_parent().change_location(location)
 	ui_exit()
@@ -148,7 +148,7 @@ func advance_time():
 	$transition.set_texture(trans_tex)
 
 	$transition.show()
-	transFX.interpolate_property($transition, "modulate", Color(1,1,1,1), Color(1,1,1,0), 4, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	transFX.interpolate_property($transition, "modulate", Color(1,1,1,1), Color(1,1,1,0), 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	transFX.start()
 	
 #	keep track of day, week and month
@@ -198,8 +198,12 @@ func _input(event):
 				toggle_ui_overlay("schoolbag_ui", "show", schoolbagShowPos)
 		elif hoverNode.get_name() == "map":	
 			if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():
+				# TODO: investigate ho wo prevent map_ui transition running until screenshot is captured
+				# TEST: run screenshot code after transitioning out of map ui, and only then run scene change?
 				get_viewport().set_clear_mode(Viewport.CLEAR_MODE_ONLY_NEXT_FRAME)
 				
+				# so far, tests have shown no reason to use the below, and they make transition to map ui a bit choppy, so..
+				yield(get_tree(), "idle_frame")
 				yield(get_tree(), "idle_frame")
 				yield(get_tree(), "idle_frame")
 				
@@ -291,11 +295,13 @@ func toggle_ui_overlay(id, mode, deltaPos):
 	var ui_node = get_node(id)
 	if mode == "show":
 		global.blocking_ui = true
+		global.sceneCol.disabled = true
 		toggle_ui_icons("hide")
 		effectBlurUI.interpolate_property(screenBlur, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 		positionDelta = ui_node.position - deltaPos
 	else:
-		global.blocking_ui = false
+		$dummy_node/dummy_tween.interpolate_property ($dummy_node, "position", $dummy_node.position, $dummy_node.position + Vector2(1,0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+		$dummy_node/dummy_tween.start()
 		toggle_ui_icons("show")
 		if global.itemInHand == "":
 			change_cursor("default")
@@ -371,3 +377,8 @@ func _on_tween_in_tween_completed(object, key):
 func _on_tween_out_tween_completed(object, key):
 	$location.rect_position = Vector2(875, -23)
 	$location.hide()
+
+#use to delay blocking_ui = false flag
+func _on_dummy_tween_tween_completed(object, key):
+	global.blocking_ui = false
+	sceneCol.disabled = false

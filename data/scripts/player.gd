@@ -34,6 +34,11 @@ func _ready():
 	$Character/AnimationPlayer.get_animation("Idle-loop").set_loop(true)
 	
 	start_anim = true
+#needs a separate flag because right now this stops player even if I´m only hovering a UI icon	
+#func _process(delta):
+#	if global.sceneCol.disabled == true:
+#		global.is_moving = false
+#		$Character/AnimationPlayer.stop()
 
 func _physics_process(delta):
 	#move and rotate player towards set target
@@ -66,7 +71,7 @@ func turn_towards():
 	playerFacing = (helper_pos - player_pos).normalized()
 
 func _on_scene_input_event(camera, event, click_position, click_normal, shape_idx):
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and global.blocking_ui != true:
 		if event.button_index == BUTTON_LEFT:
 			if event.pressed:
 				

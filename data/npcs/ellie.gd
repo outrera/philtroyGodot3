@@ -40,6 +40,8 @@ func _on_npc_trigger_input_event(camera, event, click_position, click_normal, sh
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and global.blocking_ui!=true:
 		if event.is_pressed():
 			if global.itemInHand == "":	
+				global.blocking_ui = true
+				global.sceneCol.disabled = true
 				emit_signal("dialogue", identity, self.get_transform().origin)
 			else:
 				var keys = global.inventoryData.keys()

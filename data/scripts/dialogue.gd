@@ -183,6 +183,8 @@ func _pick_reply(n):
 		effectBlurUI.interpolate_property(screenBlur, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 		global.dialogue_running = false
 		kill_dialogue()
+		global.blocking_ui = false
+		global.sceneCol.disabled = false
 		get_parent().get_node("ui").toggle_ui_icons("show")
 
 func _reply_mouseover(mouseover, reply):
