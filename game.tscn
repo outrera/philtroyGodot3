@@ -627,13 +627,12 @@ playback/repeat = false
 playback/speed = 1.0
 
 [node name="transition" type="Sprite" parent="ui" index="19"]
-position = Vector2( 959.313, 530.007 )
+position = Vector2( 959.825, 540.366 )
 z_index = 1
 texture = ExtResource( 19 )
-_sections_unfolded = [ "Visibility", "Z Index" ]
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
 [node name="dummy_node" type="Area2D" parent="ui" index="20"]
-editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -703,7 +702,6 @@ _sections_unfolded = [ "Transform" ]
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="effects" type="Node" parent="." index="8"]
-editor/display_folded = true
 
 [node name="blurfx" type="TextureRect" parent="effects" index="0"]
 show_behind_parent = true
@@ -775,6 +773,7 @@ bus = "Master"
 
 [node name="cross" type="AnimatedSprite" parent="." index="11"]
 editor/display_folded = true
+position = Vector2( -38.1771, -0.323536 )
 frames = SubResource( 16 )
 animation = "default"
 frame = 2
@@ -800,6 +799,7 @@ playback/speed = 1.0
 [connection signal="tween_completed" from="ui/dummy_node/dummy_tween" to="ui" method="_on_dummy_tween_tween_completed"]
 [connection signal="input_event" from="scene" to="player" method="_on_scene_input_event"]
 [connection signal="tween_completed" from="effects/fade_out" to="ui" method="_on_fade_out_tween_completed"]
+[connection signal="tween_completed" from="effects/tween" to="ui" method="_on_tween_tween_completed"]
 
 [editable path="dialogue"]
 

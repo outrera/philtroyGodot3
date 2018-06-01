@@ -46,6 +46,9 @@ onready var uiIconsHidePos = uiIconsShowPos + 200
 var trans_capture
 var trans_tex
 
+var change_scene
+var next_scene
+
 onready var gameSettingsUI = load("res://data/asset scenes/game_settings.tscn")
 
 func _ready():
@@ -70,20 +73,6 @@ func item_in_hand(a,b):
 	var tempTex = load(b)
 	Input.set_custom_mouse_cursor(tempTex)
 #	$item_in_hand.set_texture(tempTex)
-	ui_exit()
-	
-func load_map_location(location):
-
-	var trans_tex = ImageTexture.new()
-
-	trans_tex.create_from_image(trans_capture)
-
-	$transition.set_texture(trans_tex)
-
-	$transition.show()
-	transFX.interpolate_property($transition, "modulate", Color(1,1,1,1), Color(1,1,1,0), 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	transFX.start()
-	get_parent().change_location(location)
 	ui_exit()
 		
 func exit_map():
@@ -382,3 +371,27 @@ func _on_tween_out_tween_completed(object, key):
 func _on_dummy_tween_tween_completed(object, key):
 	global.blocking_ui = false
 	sceneCol.disabled = false
+
+func _on_tween_tween_completed(object, key):
+	print("tween complete")
+	if change_scene == true:
+		print("change scene")
+		var trans_tex = ImageTexture.new()
+
+		trans_tex.create_from_image(trans_capture)
+	
+		$transition.set_texture(trans_tex)
+	
+		$transition.show()
+		transFX.interpolate_property($transition, "modulate", Color(1,1,1,1), Color(1,1,1,0), 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		transFX.start()
+		get_parent().change_location(next_scene)
+		change_scene = false
+	
+func load_map_location(location):
+	print("load map location")
+	ui_exit()
+	change_scene = true
+	print(change_scene)
+	next_scene = location
+	
