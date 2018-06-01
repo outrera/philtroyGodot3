@@ -67,6 +67,8 @@ onready var locLabel = get_tree().get_root().get_node("world").get_node("ui/loca
 onready var locTweenIn = get_tree().get_root().get_node("world").get_node("ui/location/tween_in")
 onready var locTweenOut = get_tree().get_root().get_node("world").get_node("ui/location/tween_out")
 
+onready var worldEnv = get_tree().get_root().get_node("world").get_node("Camera/env")
+
 func _ready():
 	set_process(true)
 	
@@ -151,6 +153,24 @@ func goto_scene(scene):
     get_tree().change_scene("res://"+scene)
 
 func load_scene(sceneLocation): #change this first, see if any conflicts
+
+	if timeofday == "morning":
+		worldEnv.environment.background_sky.sun_latitude = 30
+		worldEnv.environment.background_sky.sun_color = Color(0.8, 1, 0.8, 0.5)	
+		worldEnv.environment.ambient_light_energy = 1
+	if timeofday == "noon":
+		worldEnv.environment.background_sky.sun_latitude = 50
+		worldEnv.environment.background_sky.sun_color = Color(1, 1, 1, 1)	
+		worldEnv.environment.ambient_light_energy = 2
+	if timeofday == "evening":
+		worldEnv.environment.background_sky.sun_latitude = 15
+		worldEnv.environment.background_sky.sun_color = Color(0.2, 0.2, 1, 1)	
+		worldEnv.environment.ambient_light_energy = 0.2
+	if timeofday == "night":
+		worldEnv.environment.background_sky.sun_latitude = 0
+		worldEnv.environment.background_sky.sun_color = Color(0.2, 0.2, 1, 1)	
+		worldEnv.environment.ambient_light_energy = 0.01
+			
 	var location
 	currentLocation = sceneLocation
 	
