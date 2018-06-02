@@ -1,4 +1,5 @@
 {
+	"environment": "interior",
 	"monday":{
 		"morning": {
 			"actors": {
