@@ -4,6 +4,8 @@
 	"dialogue": {
 		"a": {
 			"avatar": "res://data/npcs/ellie_talkanim.tscn",
+			"animate": "false",
+			"loop": "false",
 			"frame": 0,
 			"speech" : [
 				"this is dialogue A

@@ -48,6 +48,7 @@ var save_page = 1
 var scene
 var locations = []
 var currentLocation
+var previous_location
 var eventOverride = {}
 
 var files = []
@@ -183,6 +184,7 @@ func load_scene(sceneLocation): #change this first, see if any conflicts
 		lightDummy.rotation_degrees = Vector3(120, 0, 0)
 			
 	var location
+	previous_location = currentLocation
 	currentLocation = sceneLocation
 	
 	if sceneData[sceneLocation].has(weekday):
@@ -294,11 +296,12 @@ func load_scene(sceneLocation): #change this first, see if any conflicts
 #	TODO: animate scene transition somehow. Take screenshot upon changing scene, overlay that screenshot on top of the new scene and fade opacity?
 #	TODO: how to handle scene specific cameras?
 
-	locLabel.text = currentLocation
-	locLabel.show()
-	locTweenIn.interpolate_property(locLabel, "modulate", Color(1,1,1,0), Color(1,1,1,1), 2, Tween.TRANS_SINE, Tween.EASE_OUT)
-	locTweenIn.interpolate_property(locLabel, "rect_position", locLabel.rect_position, locLabel.rect_position + Vector2(0, 50), 1, Tween.TRANS_QUAD, Tween.EASE_OUT)
-	locTweenIn.start()
+	if previous_location != currentLocation:
+		locLabel.text = currentLocation
+		locLabel.show()
+		locTweenIn.interpolate_property(locLabel, "modulate", Color(1,1,1,0), Color(1,1,1,1), 2, Tween.TRANS_SINE, Tween.EASE_OUT)
+		locTweenIn.interpolate_property(locLabel, "rect_position", locLabel.rect_position, locLabel.rect_position + Vector2(0, 50), 1, Tween.TRANS_QUAD, Tween.EASE_OUT)
+		locTweenIn.start()
 
 
 func event_notifier():
