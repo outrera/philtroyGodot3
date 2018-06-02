@@ -69,6 +69,9 @@ onready var locTweenOut = get_tree().get_root().get_node("world").get_node("ui/l
 
 onready var worldEnv = get_tree().get_root().get_node("world").get_node("Camera/env")
 
+onready var lightDir = get_tree().get_root().get_node("world").get_node("pos3d/lightDirectional")
+onready var lightDummy = get_tree().get_root().get_node("world").get_node("pos3d")
+
 func _ready():
 	set_process(true)
 	
@@ -84,7 +87,7 @@ func _ready():
 		sceneData[location] = load_json("res://data/locations/location_" + location + ".json")
 	
 	gameday = 1
-	day= 1
+	day= 3
 	weekday = "wednesday"
 	timeofday = "morning"
 	month=7
@@ -157,19 +160,27 @@ func load_scene(sceneLocation): #change this first, see if any conflicts
 	if timeofday == "morning":
 		worldEnv.environment.background_sky.sun_latitude = 30
 		worldEnv.environment.background_sky.sun_color = Color(0.8, 1, 0.8, 0.5)	
-		worldEnv.environment.ambient_light_energy = 1
+		worldEnv.environment.ambient_light_energy = 0.7
+		lightDir.light_energy = 0.6
+		lightDummy.rotation_degrees = Vector3(0, 0, 0)
 	if timeofday == "noon":
 		worldEnv.environment.background_sky.sun_latitude = 50
 		worldEnv.environment.background_sky.sun_color = Color(1, 1, 1, 1)	
-		worldEnv.environment.ambient_light_energy = 2
+		worldEnv.environment.ambient_light_energy = 1.5
+		lightDir.light_energy = 1
+		lightDummy.rotation_degrees = Vector3(50, 0, 0)
 	if timeofday == "evening":
 		worldEnv.environment.background_sky.sun_latitude = 15
 		worldEnv.environment.background_sky.sun_color = Color(0.2, 0.2, 1, 1)	
 		worldEnv.environment.ambient_light_energy = 0.2
+		lightDir.light_energy = 0.2
+		lightDummy.rotation_degrees = Vector3(100, 0, 0)
 	if timeofday == "night":
 		worldEnv.environment.background_sky.sun_latitude = 0
 		worldEnv.environment.background_sky.sun_color = Color(0.2, 0.2, 1, 1)	
 		worldEnv.environment.ambient_light_energy = 0.01
+		lightDir.light_energy = 0.05
+		lightDummy.rotation_degrees = Vector3(120, 0, 0)
 			
 	var location
 	currentLocation = sceneLocation
@@ -182,13 +193,14 @@ func load_scene(sceneLocation): #change this first, see if any conflicts
 	var gameRoot = get_tree().get_root().get_node("world")
 
 #if today has event - override
+	print(gameday)
 	if eventData["date"].has(str(gameday)) and eventData["date"][str(gameday)][0].has(timeofday):
-		if eventData["type"] == "persistent":
+		if eventData["date"][str(gameday)][0][timeofday]["type"] == "persistent":				
 			pass
 			#loop through actors and objects in eventOverride, remove and add from location specified
 
-		elif eventData["type"] == "oneoff":
-			eventOverride = load_json("events/" + eventData["date"][str(gameday)][0][timeofday]["name"] + ".json")
+		if eventData["date"][str(gameday)][0][timeofday]["type"] == "oneoff":
+			eventOverride = load_json("events/" + eventData["date"][str(gameday)][0][timeofday]["event"] + ".json")
 	else:
 		pass
 	

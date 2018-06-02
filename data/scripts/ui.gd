@@ -103,6 +103,7 @@ func advance_time():
 	if time == 4:
 		time = 0
 		day +=1
+		global.gameday += 1
 		dayOfMonth += 1
 		if day == 7:
 			day = 0
@@ -112,7 +113,6 @@ func advance_time():
 			if month == 12:
 				month = 0
 	global.day = day
-	global.gameday += 1 # replace the above with this, remove day from global.gameData
 	global.month = global.gameData["month"][month]
 	global.weekday = global.gameData["weekday"][day]
 	global.timeofday = global.gameData["time"][time]
