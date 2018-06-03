@@ -186,6 +186,9 @@ func _pick_reply(n):
 		global.blocking_ui = false
 		global.sceneCol.disabled = false
 		get_parent().get_node("ui").toggle_ui_icons("show")
+		if replies[n].has("action"):
+			get_parent()._look_at(replies[n]["action"])
+			print("found action!")
 
 func _reply_mouseover(mouseover, reply):
 	if mouseover == "TRUE":

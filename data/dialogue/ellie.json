@@ -31,7 +31,7 @@
 		"b": {
 			"avatar": "res://data/npcs/ellie_talkanim.tscn",
 			"frame": 1,
-			"speech": ["Wait! I might be interested in that, but I don´t have much dough on me"],
+			"speech": ["Wait! I might be interested in that, but I don´t have much cash on me"],
 			"replies": [{
 					"reply": "Arrangements could be made to satisfy both our interests",
 					"next": "d",
@@ -71,7 +71,8 @@
 			"replies": [{
 				"reply": "Thy wish is my command, princess.",
 				"next": "g",
-				"exit": "true"
+				"exit": "true",
+				"action": "Gotta call Devaun."
 			}]
 		},
 		"f": {
