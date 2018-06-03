@@ -1,5 +1,9 @@
 extends Node
 
+signal timer_end
+
+var timer
+
 var clickPos
 
 #flags/states
@@ -14,12 +18,16 @@ var time = 0
 var month = 6
 var dayOfMonth = 1
 
+var thoughts_showing = false
+
 var sceneData = {}
 
 onready var descriptionLabel = $"ui/descriptionLabel"
 onready var lookatLabel = $"ui/lookatLabel"
 
 onready var screenBlur = $"effects/blurfx"
+onready var materialize =$"ui/lookatLabel/materialize"
+onready var dissolve =$"ui/lookatLabel/dissolve"
 
 onready var viewsize = get_viewport().get_visible_rect().size
 
@@ -64,18 +72,56 @@ func _input(event):
 	pass
 
 func _look_at(text):
-	if text != "":
+	if text != "" and isLookingAt == false:
 		lookatLabel.show()
-		isLookingAt = false
-	else:
-		lookatLabel.hide()
+		materialize.interpolate_property(lookatLabel, "modulate", Color(1,1,1,0), Color(1,1,1,1), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		materialize.start()
 		isLookingAt = true
+#	else:
+#		if isLookingAt = 
+#		lookatLabel.hide()
+#		isLookingAt = true
 	lookatLabel.add_color_override("font_color", Color(0,0,0,1))
 	lookatLabel.set_text(text)
+	
+#func text_bubble(text, display_time):
+#	if text != "":
+#		lookatLabel.show()
+#		materialize.interpolate_property($transition, "modulate", Color(1,1,1,0), Color(1,1,1,1), 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+#		isLookingAt = false
+#	else:
+#		lookatLabel.hide()
+#		isLookingAt = true
+#	lookatLabel.add_color_override("font_color", Color(0,0,0,1))
+#	lookatLabel.set_text(text)
 	
 func _highlight(text):
 #	descriptionLabel.set_position($Camera.unproject_position($player.translation) - Vector2(60,230))
 	descriptionLabel.set_text(text)
 
-func _on_tween_tween_completed():
+func _on_tween_tween_completed(object, key):
 	pass # replace with function body
+
+
+func _on_materialize_tween_completed(object, key):
+	_wait(2)
+
+func _wait( seconds ):
+    self._create_timer(self, seconds, true, "dissolve")
+    yield(self,"timer_end")
+
+func dissolve():
+	dissolve.interpolate_property(lookatLabel, "modulate", Color(1,1,1,1), Color(1,1,1,0), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	dissolve.start()
+	isLookingAt = false
+
+func _create_timer(object_target, float_wait_time, bool_is_oneshot, string_function):
+	# KidsCanCode suggested yield(get_tree().create_timer(2.0), 'timeout')
+	# will try that version later, but for now this works great
+    timer = Timer.new()
+    timer.set_one_shot(bool_is_oneshot)
+    timer.set_timer_process_mode(0)
+    timer.set_wait_time(float_wait_time)
+    timer.connect("timeout", object_target, string_function)
+    self.add_child(timer)
+    timer.start()

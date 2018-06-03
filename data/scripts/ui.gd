@@ -395,3 +395,4 @@ func load_map_location(location):
 	print(change_scene)
 	next_scene = location
 	
+	

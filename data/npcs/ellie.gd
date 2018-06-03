@@ -34,7 +34,7 @@ func _on_npc_trigger_mouse_exit():
 		var cursor = load("res://data/graphics/cursor_default.png")
 		Input.set_custom_mouse_cursor(cursor)
 	emit_signal("highlight", "")
-	emit_signal("look_at", "")
+#	emit_signal("look_at", "")
 
 func _on_npc_trigger_input_event(camera, event, click_position, click_normal, shape_idx):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and global.blocking_ui!=true:
