@@ -51,7 +51,8 @@
 			"replies": [{
 				"reply": "...",
 				"next": "f",
-				"exit": "true"
+				"exit": "true",
+				"bubble": "What a bitch..."
 			}]
 		},
 		"d": {
@@ -72,7 +73,7 @@
 				"reply": "Thy wish is my command, princess.",
 				"next": "g",
 				"exit": "true",
-				"action": "Gotta call Devaun."
+				"bubble": "Gotta call Devaun."
 			}]
 		},
 		"f": {

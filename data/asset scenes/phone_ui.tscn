@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://data/asset scenes/phone_ui.gd" type="Script" id=1]
 [ext_resource path="res://data/graphics/phone_ui.png" type="Texture" id=2]
@@ -11,10 +11,12 @@
 [ext_resource path="res://data/graphics/phone_games.png" type="Texture" id=9]
 [ext_resource path="res://data/fonts/ReemKufi-Regular.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://data/graphics/phone_home.png" type="Texture" id=11]
-[ext_resource path="res://data/asset scenes/ui_archive.gd" type="Script" id=12]
-[ext_resource path="res://data/graphics/gallery/img01 - thumb.png" type="Texture" id=13]
-[ext_resource path="res://data/graphics/UI/gallery_page_highlight.png" type="Texture" id=14]
-[ext_resource path="res://data/graphics/gallery/img10 - thumb.png" type="Texture" id=15]
+[ext_resource path="res://data/asset scenes/contact_node.tscn" type="PackedScene" id=12]
+[ext_resource path="res://data/asset scenes/contact_node_mom.tscn" type="PackedScene" id=13]
+[ext_resource path="res://data/asset scenes/ui_archive.gd" type="Script" id=14]
+[ext_resource path="res://data/graphics/gallery/img01 - thumb.png" type="Texture" id=15]
+[ext_resource path="res://data/graphics/UI/gallery_page_highlight.png" type="Texture" id=16]
+[ext_resource path="res://data/graphics/gallery/img10 - thumb.png" type="Texture" id=17]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -121,7 +123,7 @@ radius = 16.3567
 custom_solver_bias = 0.0
 radius = 15.9418
 
-[node name="phone_ui" type="Area2D" index="0"]
+[node name="phone_ui" type="Area2D"]
 input_pickable = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -352,8 +354,6 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 
 [node name="ui_phone" type="Panel" parent="apps" index="0"]
-editor/display_folded = true
-visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -569,6 +569,18 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect" ]
 
+[node name="contact_node" parent="apps/ui_phone" index="10" instance=ExtResource( 12 )]
+margin_left = 18.8366
+margin_top = 18.8365
+margin_right = 338.837
+margin_bottom = 78.8365
+
+[node name="contact_node2" parent="apps/ui_phone" index="11" instance=ExtResource( 13 )]
+margin_left = 18.0
+margin_top = 91.8398
+margin_right = 338.0
+margin_bottom = 151.84
+
 [node name="ui_mail" type="Panel" parent="apps" index="1"]
 editor/display_folded = true
 visible = false
@@ -686,6 +698,7 @@ lines_skipped = 0
 max_lines_visible = -1
 
 [node name="ui_archive" type="Panel" parent="apps" index="3"]
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -700,7 +713,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-script = ExtResource( 12 )
+script = ExtResource( 14 )
 _sections_unfolded = [ "Focus", "Hint", "Mouse", "Visibility" ]
 
 [node name="header" type="Label" parent="apps/ui_archive" index="0"]
@@ -746,7 +759,7 @@ max_lines_visible = -1
 [node name="Sprite1" type="Sprite" parent="apps/ui_archive" index="2"]
 position = Vector2( 100, 140 )
 z_index = 99
-texture = ExtResource( 13 )
+texture = ExtResource( 15 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="sprite1" type="Area2D" parent="apps/ui_archive/Sprite1" index="0"]
@@ -766,7 +779,7 @@ shape = SubResource( 9 )
 [node name="Sprite2" type="Sprite" parent="apps/ui_archive" index="3"]
 editor/display_folded = true
 position = Vector2( 260, 140 )
-texture = ExtResource( 13 )
+texture = ExtResource( 15 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="sprite2" type="Area2D" parent="apps/ui_archive/Sprite2" index="0"]
@@ -786,7 +799,7 @@ shape = SubResource( 10 )
 [node name="Sprite3" type="Sprite" parent="apps/ui_archive" index="4"]
 editor/display_folded = true
 position = Vector2( 100.992, 289.409 )
-texture = ExtResource( 13 )
+texture = ExtResource( 15 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="sprite3" type="Area2D" parent="apps/ui_archive/Sprite3" index="0"]
@@ -806,7 +819,7 @@ shape = SubResource( 11 )
 [node name="Sprite4" type="Sprite" parent="apps/ui_archive" index="5"]
 editor/display_folded = true
 position = Vector2( 260.77, 290.917 )
-texture = ExtResource( 13 )
+texture = ExtResource( 15 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="sprite4" type="Area2D" parent="apps/ui_archive/Sprite4" index="0"]
@@ -826,7 +839,7 @@ shape = SubResource( 12 )
 [node name="Sprite5" type="Sprite" parent="apps/ui_archive" index="6"]
 editor/display_folded = true
 position = Vector2( 104.006, 438.636 )
-texture = ExtResource( 13 )
+texture = ExtResource( 15 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="sprite5" type="Area2D" parent="apps/ui_archive/Sprite5" index="0"]
@@ -846,7 +859,7 @@ shape = SubResource( 13 )
 [node name="Sprite6" type="Sprite" parent="apps/ui_archive" index="7"]
 editor/display_folded = true
 position = Vector2( 262.277, 440.144 )
-texture = ExtResource( 13 )
+texture = ExtResource( 15 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="sprite6" type="Area2D" parent="apps/ui_archive/Sprite6" index="0"]
@@ -885,7 +898,7 @@ audio_bus_name = "Master"
 [node name="highlight" type="Sprite" parent="apps/ui_archive/page1" index="0"]
 visible = false
 position = Vector2( 55.9849, 541.188 )
-texture = ExtResource( 14 )
+texture = ExtResource( 16 )
 
 [node name="num" type="Label" parent="apps/ui_archive/page1" index="1"]
 anchor_left = 0.0
@@ -925,7 +938,7 @@ audio_bus_name = "Master"
 [node name="highlight" type="Sprite" parent="apps/ui_archive/page2" index="0"]
 visible = false
 position = Vector2( 55.9849, 541.188 )
-texture = ExtResource( 14 )
+texture = ExtResource( 16 )
 
 [node name="num" type="Label" parent="apps/ui_archive/page2" index="1"]
 anchor_left = 0.0
@@ -965,7 +978,7 @@ audio_bus_name = "Master"
 [node name="highlight" type="Sprite" parent="apps/ui_archive/page3" index="0"]
 visible = false
 position = Vector2( 55.9849, 541.188 )
-texture = ExtResource( 14 )
+texture = ExtResource( 16 )
 
 [node name="num" type="Label" parent="apps/ui_archive/page3" index="1"]
 anchor_left = 0.0
@@ -1005,7 +1018,7 @@ audio_bus_name = "Master"
 [node name="highlight" type="Sprite" parent="apps/ui_archive/page4" index="0"]
 visible = false
 position = Vector2( 55.9849, 541.188 )
-texture = ExtResource( 14 )
+texture = ExtResource( 16 )
 
 [node name="num" type="Label" parent="apps/ui_archive/page4" index="1"]
 anchor_left = 0.0
@@ -1045,7 +1058,7 @@ audio_bus_name = "Master"
 [node name="highlight" type="Sprite" parent="apps/ui_archive/page5" index="0"]
 visible = false
 position = Vector2( 55.9849, 541.188 )
-texture = ExtResource( 14 )
+texture = ExtResource( 16 )
 
 [node name="num" type="Label" parent="apps/ui_archive/page5" index="1"]
 anchor_left = 0.0
@@ -1085,7 +1098,7 @@ audio_bus_name = "Master"
 [node name="highlight" type="Sprite" parent="apps/ui_archive/page6" index="0"]
 visible = false
 position = Vector2( 55.9849, 541.188 )
-texture = ExtResource( 14 )
+texture = ExtResource( 16 )
 
 [node name="num" type="Label" parent="apps/ui_archive/page6" index="1"]
 anchor_left = 0.0
@@ -1256,7 +1269,7 @@ _sections_unfolded = [ "Rect" ]
 [node name="sprite" type="Sprite" parent="apps/full_view" index="0"]
 position = Vector2( 79.3818, 79.4451 )
 z_index = 103
-texture = ExtResource( 15 )
+texture = ExtResource( 17 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
 [connection signal="input_event" from="homescreen/phone/phone" to="." method="_on_phone_input_event"]

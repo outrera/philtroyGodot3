@@ -28,11 +28,11 @@ func icon_fx(node, scale):
 	$fx.start()
 
 func start_phone_app(app, event):
-	if app == "phone":
-		#display phone contacts
-		for contact in range(global.contactData.size()):
-			var node = "apps/ui_phone/Label"
-			get_node(node + str(contact+1)).set_text(global.contactData["c" + str(contact+1)])
+#	if app == "phone":
+#		#display phone contacts
+#		for contact in range(global.contactData.size()):
+#			var node = "apps/ui_phone/Label"
+#			get_node(node + str(contact+1)).set_text(global.contactData["c" + str(contact+1)])
 			
 	if app == "archive":
 		var node = "apps/ui_archive/Sprite"

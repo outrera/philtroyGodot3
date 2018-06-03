@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://data/scripts/world.gd" type="Script" id=1]
 [ext_resource path="res://data/scripts/ui.gd" type="Script" id=2]
@@ -19,17 +19,18 @@
 [ext_resource path="res://data/asset scenes/calendar_UI.tscn" type="PackedScene" id=17]
 [ext_resource path="res://data/asset scenes/game_settings.tscn" type="PackedScene" id=18]
 [ext_resource path="res://data/graphics/saves/screenshot.png" type="Texture" id=19]
-[ext_resource path="res://data/npcs/ellie.tscn" type="PackedScene" id=20]
-[ext_resource path="res://data/asset scenes/object.tscn" type="PackedScene" id=21]
-[ext_resource path="res://data/asset scenes/dialogue.tscn" type="PackedScene" id=22]
-[ext_resource path="res://data/scripts/scene.gd" type="Script" id=23]
-[ext_resource path="res://data/locations/schoolyard.tscn" type="PackedScene" id=24]
-[ext_resource path="res://data/graphics/white.png" type="Texture" id=25]
-[ext_resource path="res://data/asset scenes/player.tscn" type="PackedScene" id=26]
-[ext_resource path="res://data/audio/ambient/FromHere.ogg" type="AudioStream" id=27]
-[ext_resource path="res://data/graphics/UI/crosshairs01.png" type="Texture" id=28]
-[ext_resource path="res://data/graphics/UI/crosshairs02.png" type="Texture" id=29]
-[ext_resource path="res://data/graphics/UI/crosshairs03.png" type="Texture" id=30]
+[ext_resource path="res://data/graphics/UI/FF.png" type="Texture" id=20]
+[ext_resource path="res://data/npcs/ellie.tscn" type="PackedScene" id=21]
+[ext_resource path="res://data/asset scenes/object.tscn" type="PackedScene" id=22]
+[ext_resource path="res://data/asset scenes/dialogue.tscn" type="PackedScene" id=23]
+[ext_resource path="res://data/scripts/scene.gd" type="Script" id=24]
+[ext_resource path="res://data/locations/schoolyard.tscn" type="PackedScene" id=25]
+[ext_resource path="res://data/graphics/white.png" type="Texture" id=26]
+[ext_resource path="res://data/asset scenes/player.tscn" type="PackedScene" id=27]
+[ext_resource path="res://data/audio/ambient/FromHere.ogg" type="AudioStream" id=28]
+[ext_resource path="res://data/graphics/UI/crosshairs01.png" type="Texture" id=29]
+[ext_resource path="res://data/graphics/UI/crosshairs02.png" type="Texture" id=30]
+[ext_resource path="res://data/graphics/UI/crosshairs03.png" type="Texture" id=31]
 
 [sub_resource type="ProceduralSky" id=19]
 
@@ -212,6 +213,11 @@ use_filter = false
 font_data = ExtResource( 3 )
 _sections_unfolded = [ "Font", "Settings" ]
 
+[sub_resource type="RectangleShape2D" id=21]
+
+custom_solver_bias = 0.0
+extents = Vector2( 20.8556, 18.9813 )
+
 [sub_resource type="PlaneShape" id=13]
 
 plane = Plane( 0, 1, 0, 0 )
@@ -237,7 +243,7 @@ _sections_unfolded = [ "shader_param" ]
 [sub_resource type="SpriteFrames" id=16]
 
 animations = [ {
-"frames": [ ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ) ],
+"frames": [ ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -380,7 +386,8 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts" ]
 
-[node name="lookatLabel" type="Label" parent="ui" index="3"]
+[node name="thoughtBubble" type="Label" parent="ui" index="3"]
+editor/display_folded = true
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
@@ -404,13 +411,13 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts" ]
 
-[node name="bubble" type="Sprite" parent="ui/lookatLabel" index="0"]
+[node name="bubble" type="Sprite" parent="ui/thoughtBubble" index="0"]
 position = Vector2( 77.9949, 17.8947 )
 z_index = -99
 texture = ExtResource( 5 )
 _sections_unfolded = [ "Z Index" ]
 
-[node name="materialize" type="Tween" parent="ui/lookatLabel" index="1"]
+[node name="materialize" type="Tween" parent="ui/thoughtBubble" index="1"]
 repeat = false
 playback_process_mode = 1
 playback_speed = 1.0
@@ -418,7 +425,7 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="dissolve" type="Tween" parent="ui/lookatLabel" index="2"]
+[node name="dissolve" type="Tween" parent="ui/thoughtBubble" index="2"]
 repeat = false
 playback_process_mode = 1
 playback_speed = 1.0
@@ -695,18 +702,35 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
+[node name="Area2D" type="Area2D" parent="ui" index="21"]
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="Sprite" type="Sprite" parent="ui/Area2D" index="0"]
+position = Vector2( 1868.17, 1048.21 )
+texture = ExtResource( 20 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ui/Area2D" index="1"]
+position = Vector2( 1868.5, 1047.49 )
+shape = SubResource( 21 )
+
 [node name="npcs" type="Node" parent="." index="3"]
 editor/display_folded = true
 
-[node name="npc" parent="npcs" index="0" instance=ExtResource( 20 )]
+[node name="npc" parent="npcs" index="0" instance=ExtResource( 21 )]
 
 [node name="objects" type="Node" parent="." index="4"]
 editor/display_folded = true
 
-[node name="object" parent="objects" index="0" instance=ExtResource( 21 )]
+[node name="object" parent="objects" index="0" instance=ExtResource( 22 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.122, 1.70829, 0 )
 
-[node name="dialogue" parent="." index="5" instance=ExtResource( 22 )]
+[node name="dialogue" parent="." index="5" instance=ExtResource( 23 )]
 editor/display_folded = true
 z_index = 95
 _sections_unfolded = [ "Z Index" ]
@@ -734,7 +758,7 @@ reverb_bus_enable = false
 reverb_bus_name = "Master"
 reverb_bus_amount = 0.0
 reverb_bus_uniformity = 0.0
-script = ExtResource( 23 )
+script = ExtResource( 24 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="col" type="CollisionShape" parent="scene" index="0"]
@@ -743,7 +767,7 @@ shape = SubResource( 13 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 
-[node name="Area" parent="scene" index="1" instance=ExtResource( 24 )]
+[node name="Area" parent="scene" index="1" instance=ExtResource( 25 )]
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="effects" type="Node" parent="." index="7"]
@@ -762,7 +786,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 2
 size_flags_vertical = 2
-texture = ExtResource( 25 )
+texture = ExtResource( 26 )
 expand = true
 stretch_mode = 0
 _sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Hint", "Margin", "Material", "Mouse", "Rect", "Size Flags", "Visibility" ]
@@ -802,7 +826,7 @@ playback/speed = 1.0
 [node name="cuttlefish" type="Sprite" parent="effects" index="5"]
 visible = false
 
-[node name="player" parent="." index="8" instance=ExtResource( 26 )]
+[node name="player" parent="." index="8" instance=ExtResource( 27 )]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0621125, 0 )
 
@@ -810,7 +834,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0621125, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.981376, 0 )
 
 [node name="audio" type="AudioStreamPlayer" parent="." index="9"]
-stream = ExtResource( 27 )
+stream = ExtResource( 28 )
 volume_db = -35.0
 pitch_scale = 1.0
 autoplay = false
@@ -832,7 +856,7 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[connection signal="tween_completed" from="ui/lookatLabel/materialize" to="." method="_on_materialize_tween_completed"]
+[connection signal="tween_completed" from="ui/thoughtBubble/materialize" to="." method="_on_materialize_tween_completed"]
 [connection signal="mouse_entered" from="ui/schoolbag" to="ui" method="_on_schoolbag_mouse_entered"]
 [connection signal="mouse_exited" from="ui/schoolbag" to="ui" method="_on_schoolbag_mouse_exited"]
 [connection signal="mouse_entered" from="ui/phone" to="ui" method="_on_phone_mouse_entered"]

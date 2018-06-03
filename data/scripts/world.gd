@@ -23,11 +23,11 @@ var thoughts_showing = false
 var sceneData = {}
 
 onready var descriptionLabel = $"ui/descriptionLabel"
-onready var lookatLabel = $"ui/lookatLabel"
+onready var thought_bubble = $"ui/thoughtBubble"
 
 onready var screenBlur = $"effects/blurfx"
-onready var materialize =$"ui/lookatLabel/materialize"
-onready var dissolve =$"ui/lookatLabel/dissolve"
+onready var materialize =$"ui/thoughtBubble/materialize"
+onready var dissolve =$"ui/thoughtBubble/dissolve"
 
 onready var viewsize = get_viewport().get_visible_rect().size
 
@@ -59,7 +59,7 @@ func connect():
 
 func _process(delta):
 		if global.gameType == "Adventure Game":
-			lookatLabel.set_position($Camera.unproject_position((get_node("player").translation) + Vector3(0,4.6,0)) - Vector2(30,0))
+			thought_bubble.set_position($Camera.unproject_position((get_node("player").translation) + Vector3(0,4.6,0)) - Vector2(30,0))
 
 func change_location(location):
 	global.scene = location
@@ -71,29 +71,15 @@ func change_location(location):
 func _input(event):
 	pass
 
-func _look_at(text):
+func thought_bubble(text):
 	if text != "" and isLookingAt == false:
-		lookatLabel.show()
-		materialize.interpolate_property(lookatLabel, "modulate", Color(1,1,1,0), Color(1,1,1,1), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		thought_bubble.show()
+		materialize.interpolate_property(thought_bubble, "modulate", Color(1,1,1,0), Color(1,1,1,1), 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		materialize.start()
 		isLookingAt = true
-#	else:
-#		if isLookingAt = 
-#		lookatLabel.hide()
-#		isLookingAt = true
-	lookatLabel.add_color_override("font_color", Color(0,0,0,1))
-	lookatLabel.set_text(text)
-	
-#func text_bubble(text, display_time):
-#	if text != "":
-#		lookatLabel.show()
-#		materialize.interpolate_property($transition, "modulate", Color(1,1,1,0), Color(1,1,1,1), 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-#		isLookingAt = false
-#	else:
-#		lookatLabel.hide()
-#		isLookingAt = true
-#	lookatLabel.add_color_override("font_color", Color(0,0,0,1))
-#	lookatLabel.set_text(text)
+
+	thought_bubble.add_color_override("font_color", Color(0,0,0,1))
+	thought_bubble.set_text(text)
 	
 func _highlight(text):
 #	descriptionLabel.set_position($Camera.unproject_position($player.translation) - Vector2(60,230))
@@ -111,7 +97,7 @@ func _wait( seconds ):
     yield(self,"timer_end")
 
 func dissolve():
-	dissolve.interpolate_property(lookatLabel, "modulate", Color(1,1,1,1), Color(1,1,1,0), 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	dissolve.interpolate_property(thought_bubble, "modulate", Color(1,1,1,1), Color(1,1,1,0), 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	dissolve.start()
 	isLookingAt = false
 

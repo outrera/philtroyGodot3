@@ -174,7 +174,6 @@ func _input(event):
 			if event.pressed:
 				print("RMB clicked")
 				if global.itemInHand != "":
-					print("I have something in my hand")
 					change_cursor("default")
 	if hoverNode:
 		if hoverNode.get_name() == "phone":	
@@ -213,50 +212,54 @@ func _input(event):
 #the below functions handle hover animations for UI icons. This could probably be handled more efficiently in one generic function, not sure how
 func _on_phone_mouse_entered():
 	if global.itemInHand == "":
-		var cursor = load("res://data/graphics/cursor_look.png")
+		var cursor = load("res://data/graphics/cursor_settings.png")
 		Input.set_custom_mouse_cursor(cursor)
 	ui_hover("phone", get_node("phone/Sprite"), Vector2(1.1, 1.1), true, get_node("phone"))
 
 func _on_phone_mouse_exited():
 	if global.itemInHand == "":
-		var cursor = load("res://data/graphics/cursor_default.png")
-		Input.set_custom_mouse_cursor(cursor)
+		if global.blocking_ui != true:
+			var cursor = load("res://data/graphics/cursor_default.png")
+			Input.set_custom_mouse_cursor(cursor)
 	ui_hover("", get_node("phone/Sprite"), Vector2(1.0, 1.0), false, null)
 
 func _on_schoolbag_mouse_entered():
 	if global.itemInHand == "":
-		var cursor = load("res://data/graphics/cursor_look.png")
+		var cursor = load("res://data/graphics/cursor_settings.png")
 		Input.set_custom_mouse_cursor(cursor)
 	ui_hover("school bag", get_node("schoolbag/Sprite"), Vector2(1.1, 1.1), true, get_node("schoolbag"))
 
 func _on_schoolbag_mouse_exited():
 	if global.itemInHand == "":
-		var cursor = load("res://data/graphics/cursor_default.png")
-		Input.set_custom_mouse_cursor(cursor)
+		if global.blocking_ui != true:
+			var cursor = load("res://data/graphics/cursor_default.png")
+			Input.set_custom_mouse_cursor(cursor)
 	ui_hover("", get_node("schoolbag/Sprite"), Vector2(1.0, 1.0), false, null)
 
 func _on_map_mouse_entered():
 	if global.itemInHand == "":
-		var cursor = load("res://data/graphics/cursor_look.png")
+		var cursor = load("res://data/graphics/cursor_settings.png")
 		Input.set_custom_mouse_cursor(cursor)
 	ui_hover("map", get_node("map/Sprite"), Vector2(1.1, 1.1), true, get_node("map"))
 
 func _on_map_mouse_exited():
 	if global.itemInHand == "":
-		var cursor = load("res://data/graphics/cursor_default.png")
-		Input.set_custom_mouse_cursor(cursor)
+		if global.blocking_ui != true:
+			var cursor = load("res://data/graphics/cursor_default.png")
+			Input.set_custom_mouse_cursor(cursor)
 	ui_hover("", get_node("map/Sprite"), Vector2(1.0, 1.0), false, null)
 
 func _on_calendar_mouse_entered():
 	if global.itemInHand == "":
-		var cursor = load("res://data/graphics/cursor_look.png")
+		var cursor = load("res://data/graphics/cursor_settings.png")
 		Input.set_custom_mouse_cursor(cursor)
 	ui_hover("calendar", get_node("calendar/Sprite"), Vector2(1.1, 1.1), true, get_node("calendar"))
 
 func _on_calendar_mouse_exited():
 	if global.itemInHand == "":
-		var cursor = load("res://data/graphics/cursor_default.png")
-		Input.set_custom_mouse_cursor(cursor)
+		if global.blocking_ui != true:
+			var cursor = load("res://data/graphics/cursor_default.png")
+			Input.set_custom_mouse_cursor(cursor)
 	ui_hover("", get_node("calendar/Sprite"), Vector2(1.0, 1.0), false, null)
 
 #play effects when hovering over UI icons
@@ -283,12 +286,17 @@ func toggle_ui_overlay(id, mode, deltaPos):
 	var positionDelta
 	var ui_node = get_node(id)
 	if mode == "show":
+		print("change cursor")
+		var cursor = load("res://data/graphics/cursor_arrow.png")
+		Input.set_custom_mouse_cursor(cursor)
 		global.blocking_ui = true
 		global.sceneCol.disabled = true
 		toggle_ui_icons("hide")
 		effectBlurUI.interpolate_property(screenBlur, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 		positionDelta = ui_node.position - deltaPos
 	else:
+		var cursor = load("res://data/graphics/cursor_default.png")
+		Input.set_custom_mouse_cursor(cursor)
 		$dummy_node/dummy_tween.interpolate_property ($dummy_node, "position", $dummy_node.position, $dummy_node.position + Vector2(1,0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 		$dummy_node/dummy_tween.start()
 		toggle_ui_icons("show")
@@ -343,6 +351,8 @@ func toggle_game_settings():
 		gameSettingsOpen = true
 		fade_in.interpolate_property($game_settings, "modulate", Color(1,1,1,0), Color(1,1,1,1), 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		fade_in.start()
+		var cursor = load("res://data/graphics/cursor_arrow.png")
+		Input.set_custom_mouse_cursor(cursor)
 #		toggle_ui_icons("hide")
 
 	else:
@@ -351,6 +361,8 @@ func toggle_game_settings():
 		gameSettingsOpen = false
 		fade_out.interpolate_property($game_settings, "modulate", Color(1,1,1,1), Color(1,1,1,0), 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		fade_out.start()
+		var cursor = load("res://data/graphics/cursor_default.png")
+		Input.set_custom_mouse_cursor(cursor)
 #		toggle_ui_icons("show")
 
 func _on_fade_out_tween_completed(object, key):
@@ -373,9 +385,7 @@ func _on_dummy_tween_tween_completed(object, key):
 	sceneCol.disabled = false
 
 func _on_tween_tween_completed(object, key):
-	print("tween complete")
 	if change_scene == true:
-		print("change scene")
 		var trans_tex = ImageTexture.new()
 
 		trans_tex.create_from_image(trans_capture)
