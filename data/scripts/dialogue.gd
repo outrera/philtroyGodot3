@@ -103,7 +103,11 @@ func _talk_to(identity, clickPos):
 	charData = global.charData
 #	else:
 #		charData = global.eventOverride[npc]
-	start_dialogue(charData[npc]["dialogue"])
+	if global.sceneData[global.currentLocation].has(global.weekday):
+		if global.sceneData[global.currentLocation]["default"][global.timeofday]["actors"].has(npc):
+			start_dialogue(global.sceneData[global.currentLocation][global.weekday][global.timeofday]["actors"][npc]["dialogue"])
+	else:
+		start_dialogue(charData[npc]["dialogue"])
 
 func _pick_reply(n):
 	replyCurrent =-1
