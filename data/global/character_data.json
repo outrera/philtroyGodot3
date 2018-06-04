@@ -3,6 +3,10 @@
 		"dialogue": "res://data/dialogue/ellie.json", 
 		"branch": "a",
 		"relationship": "2"},
+	"devaun": {
+		"dialogue": "res://data/dialogue/devaun.json", 
+		"branch": "a",
+		"relationship": "2"},
 	"bobby": {
 		"dialogue": "res://data/dialogue/bobby.json", 
 		"branch": "a",

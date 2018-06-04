@@ -149,3 +149,11 @@ func _on_page3_input_event(viewport, event, shape_idx):
 			if event.is_pressed():
 				global.gallery_page = 3
 				start_phone_app("archive", event)
+
+
+func _on_call_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			if event.is_pressed():
+				get_node("../../dialogue")._talk_to("devaun", Vector3(1,1,1))
+				get_parent().ui_exit()

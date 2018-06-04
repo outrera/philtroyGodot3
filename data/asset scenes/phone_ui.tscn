@@ -123,7 +123,7 @@ radius = 16.3567
 custom_solver_bias = 0.0
 radius = 15.9418
 
-[node name="phone_ui" type="Area2D"]
+[node name="phone_ui" type="Area2D" index="0"]
 input_pickable = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -364,10 +364,11 @@ margin_right = 1139.0
 margin_bottom = 2168.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
-mouse_filter = 0
+mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+_sections_unfolded = [ "Mouse" ]
 
 [node name="header" type="Label" parent="apps/ui_phone" index="0"]
 anchor_left = 0.0
@@ -574,6 +575,11 @@ margin_left = 18.8366
 margin_top = 18.8365
 margin_right = 338.837
 margin_bottom = 78.8365
+mouse_filter = 2
+_sections_unfolded = [ "Mouse", "Rect" ]
+
+[node name="call" parent="apps/ui_phone/contact_node/fondo" index="1"]
+_sections_unfolded = [ "Pickable" ]
 
 [node name="contact_node2" parent="apps/ui_phone" index="11" instance=ExtResource( 13 )]
 margin_left = 18.0
@@ -1290,6 +1296,7 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 [connection signal="input_event" from="homescreen/games/games" to="." method="_on_games_input_event"]
 [connection signal="mouse_entered" from="homescreen/games/games" to="." method="_on_games_mouse_entered"]
 [connection signal="mouse_exited" from="homescreen/games/games" to="." method="_on_games_mouse_exited"]
+[connection signal="input_event" from="apps/ui_phone/contact_node/fondo/call" to="." method="_on_call_input_event"]
 [connection signal="input_event" from="apps/ui_archive/Sprite1/sprite1" to="apps/ui_archive" method="_on_sprite1_input_event"]
 [connection signal="mouse_entered" from="apps/ui_archive/Sprite1/sprite1" to="apps/ui_archive" method="_on_sprite1_mouse_entered"]
 [connection signal="mouse_exited" from="apps/ui_archive/Sprite1/sprite1" to="apps/ui_archive" method="_on_sprite1_mouse_exited"]
@@ -1326,3 +1333,5 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 [connection signal="input_event" from="apps/ui_archive/page6" to="apps/ui_archive" method="_on_page6_input_event"]
 [connection signal="mouse_entered" from="apps/ui_archive/page6" to="apps/ui_archive" method="_on_page6_mouse_entered"]
 [connection signal="mouse_exited" from="apps/ui_archive/page6" to="apps/ui_archive" method="_on_page6_mouse_exited"]
+
+[editable path="apps/ui_phone/contact_node"]

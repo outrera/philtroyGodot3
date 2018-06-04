@@ -160,17 +160,31 @@ func _pick_reply(n):
 	if replies[n]["exit"] != "true":
 		if replies[n]["next"].ends_with(".json"):
 			if global.sceneData[global.currentLocation].has(global.weekday):
-				global.sceneData[global.currentLocation][global.weekday][global.timeofday]["actors"][npc]["dialogue"] = replies[n]["next"]
+				if global.sceneData[global.currentLocation][global.weekday][global.timeofday]["actors"].has(npc):
+					global.sceneData[global.currentLocation][global.weekday][global.timeofday]["actors"][npc]["dialogue"] = replies[n]["next"]
+				else:
+					global.charData[npc]["dialogue"] = replies[n]["next"]
 			else:
-				global.sceneData[global.currentLocation]["default"][global.timeofday]["actors"][npc]["dialogue"] = replies[n]["next"]				
+				if global.sceneData[global.currentLocation]["default"][global.timeofday]["actors"].has(npc):
+					global.sceneData[global.currentLocation]["default"][global.timeofday]["actors"][npc]["dialogue"] = replies[n]["next"]				
+				else:
+					global.charData[npc]["dialogue"] = replies[n]["next"]
 			charData[npc]["dialogue"] = replies[n]["next"]
 			pageIndex = 0
 			start_dialogue("res://data/dialogue/" + charData[npc]["dialogue"]) + charData[npc]["relationship"] + (".json")
 		else:
+			# this might cause issues if location does not have current day. Need to account for "default"
 			if global.sceneData[global.currentLocation].has(global.weekday):
-				global.sceneData[global.currentLocation][global.weekday][global.timeofday]["actors"][npc]["branch"] = replies[n]["next"]
+				if global.sceneData[global.currentLocation][global.weekday][global.timeofday]["actors"].has(npc):
+					global.sceneData[global.currentLocation][global.weekday][global.timeofday]["actors"][npc]["branch"] = replies[n]["next"]
+				else:
+					global.charData[npc]["branch"] = replies[n]["next"]
 			else:
-				global.sceneData[global.currentLocation]["default"][global.timeofday]["actors"][npc]["branch"] = replies[n]["next"]
+				if global.sceneData[global.currentLocation]["default"][global.timeofday]["actors"].has(npc):
+					global.sceneData[global.currentLocation]["default"][global.timeofday]["actors"][npc]["branch"] = replies[n]["next"]
+				else:
+					global.charData[npc]["branch"] = replies[n]["next"]
+					
 			charData[npc]["branch"] = replies[n]["next"]
 			pageIndex = 0
 			start_dialogue(charData[npc]["dialogue"])
@@ -179,7 +193,12 @@ func _pick_reply(n):
 	#if "exit" is "true", kill dialogue
 	else:
 		pageIndex = 0
-		charData[npc]["branch"] = replies[n]["next"]
+		
+		if replies[n]["next"].ends_with(".json"):
+			charData[npc]["dialogue"] = replies[n]["next"]
+		else:
+			charData[npc]["branch"] = replies[n]["next"]
+			
 		effectBlurUI.interpolate_property(screenBlur, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 		global.dialogue_running = false
 		kill_dialogue()
