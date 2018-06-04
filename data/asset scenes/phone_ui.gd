@@ -155,5 +155,6 @@ func _on_call_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if event.is_pressed():
+				# HARDCODED : this should be handled by contact node data
 				get_node("../../dialogue")._talk_to("devaun", Vector3(1,1,1))
 				get_parent().ui_exit()

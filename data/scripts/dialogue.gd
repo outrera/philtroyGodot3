@@ -124,25 +124,40 @@ func _pick_reply(n):
 				global.gameData[npc] = replies[n]["variables"][item]["value"]
 			
 	if replies[n].has("event"):
+		
+		var eventDay
+		var daysToAdd
+		var event_cached = global.load_json("res://data/events/" + replies[n]["event"][0]["id"] + ".json")
 		#what´s today(weekday)?
-		#what´s the day(weekday) of the event?
-		#how many days until that day(weekday)?
-		#add that number to global.gameData["day"]
-		#add:
 		var weekDayNum = {"monday": 1, "tuesday": 2, "wednesday": 3, "thursday": 4, "friday": 5, "saturday": 6, "sunday": 7}
+		var currentDay = global.gameData["daycount"][global.weekday]
 		
-		var currentDay = weekDayNum[global.gameData["weekday"][global.weekday]]
-		var eventDay = weekDayNum[replies[n]["event"]["eventDay"]]
+		#what´s the day(weekday) of the event?
+		if event_cached["weekday"] != "same":
+			eventDay = global.gameData["daycount"][event_cached["weekday"]]
+		else:
+			eventDay = global.gameday
+			
+		#how many days until that day(weekday)?
+		if eventDay > currentDay:
+			daysToAdd = eventDay - currentDay
+		elif eventDay < currentDay:
+			daysToAdd = 7 - (currentDay - eventDay)
 		
-		var daysToAdd = currentDay - 7 + eventDay
+		#if weekday is not "same"
+		if event_cached["weekday"] != "same":
+			#add that number to global.gameData["day"]
+			eventDay = global.gameday + daysToAdd
+#			global.eventData["date"][eventDay]["weekday"] = event_cached["weekday"]
+		#else event day is today
+		else:
+			eventDay = global.gameday
+#			global.eventData["date"][eventDay]["weekday"] = global.gameday
+			
 		
-		eventDay = global.gameday + daysToAdd
-
-		global.eventData["date"][eventDay]["weekday"] = replies[n]["event"]["eventDay"]
-		global.eventData["date"][eventDay]["time"] = replies[n]["event"]["eventTOD"]
-		global.eventData["date"][eventDay]["name"] = replies[n]["event"]["name"]
-		global.eventData["date"][eventDay]["fail"]["noshow"] = replies[n]["event"]["noshow"]
-		global.eventData["date"][eventDay]["fail"]["cancel"] = replies[n]["event"]["cancel"]
+#		global.eventData["date"][eventDay][0][event_cached["timeofday"]]["event"] = event_cached["event"]
+#		global.eventData["date"][eventDay][0][event_cached["timeofday"]]["type"] = event_cached["type"]
+#		global.eventData["date"][eventDay][0][event_cached["timeofday"]]["icon"] = event_cached["calendar"]["icon"]
 		
 	#if there is a progress array in json, update game progression variables
 	if replies[n].has("progress"):
@@ -221,6 +236,7 @@ func _reply_mouseover(mouseover, reply):
 		replyCurrent = -1
 
 func start_dialogue(json):
+	print(json)
 #	TODO: when calling a dialogue, call start_dialogue("ellie_date_0" + str(global.chardata["relationship"]) + ".json")
 	global.dialogue_running = true
 	talkData = global.load_json(json)
