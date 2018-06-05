@@ -40,6 +40,11 @@
 				"bubble": "Remember: School hall, evening",
 				"event": [{
 						"id": "meeting_devaun"
+				}],
+				"progress": [{
+					"name": "ellie",
+					"dialogue": "res://data/dialogue/ellie.json",
+					"branch": "a"
 				}]
 			}]
 		},

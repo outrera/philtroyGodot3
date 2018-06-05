@@ -152,21 +152,24 @@ func _pick_reply(n):
 
 		var event_class = {"event": event_cached["event"], "type": event_cached["type"], "icon": event_cached["calendar"]["icon"]}
 
-		global.eventData["date"]["3"] = {"evening": ""}		
-#		global.eventData["date"]["3"]["evening"] = "changed!"
+		global.eventData["date"][str(event_gameday)] = {"evening": ""}		
 		global.eventData["date"][str(event_gameday)][event_cached["timeofday"]] = event_class
 
 		print(global.eventData)
 		
 	#if there is a progress array in json, update game progression variables
 	if replies[n].has("progress"):
+		print("we have progress!")
 		for item in range(0, replies[n]["progress"].size()):
 			var affected = replies[n]["progress"][item]["name"]
-			if replies[n]["progress"][item]["next"].ends_with("json"):
-				global.charData[affected]["dialogue"] = replies[n]["progress"][item]["next"]
-			else:
-				global.charData[affected]["branch"] = replies[n]["progress"][item]["next"]
+			
+			if replies[n]["progress"][item].has("dialogue"):
+				global.charData[affected]["dialogue"] = replies[n]["progress"][item]["dialogue"]
 
+			global.charData[affected]["branch"] = replies[n]["progress"][item]["branch"]
+			
+			print(global.charData[affected])
+				
 	#if "exit" is "false" take value from "next" and start next dialogue
 	if replies[n]["exit"] != "true":
 		if replies[n]["next"].ends_with(".json"):
