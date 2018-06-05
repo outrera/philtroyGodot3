@@ -1,7 +1,7 @@
 {
 	"event": "Pick up the weed",
 	"type": "oneoff",
-	"weekday": "same",
+	"weekday": "friday",
 	"timeofday": "evening",
 	"calendar": {
 		"icon": "meeting_devaun.png",

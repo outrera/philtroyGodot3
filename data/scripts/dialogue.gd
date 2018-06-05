@@ -125,39 +125,38 @@ func _pick_reply(n):
 			
 	if replies[n].has("event"):
 		
-		var eventDay
-		var daysToAdd
 		var event_cached = global.load_json("res://data/events/" + replies[n]["event"][0]["id"] + ".json")
-		#what´s today(weekday)?
-		var weekDayNum = {"monday": 1, "tuesday": 2, "wednesday": 3, "thursday": 4, "friday": 5, "saturday": 6, "sunday": 7}
-		var currentDay = global.gameData["daycount"][global.weekday]
-		
+
+		var current_gameday = global.gameday
+		var current_weekday = global.gameData["daycount"][global.weekday]
+		var event_gameday
+		var event_weekday
+		var daysToAdd
+			
+		if event_cached["weekday"] != "same":
+			event_weekday = global.gameData["daycount"][event_cached["weekday"]]
+		else:
+			event_weekday = current_gameday
+
 		#what´s the day(weekday) of the event?
 		if event_cached["weekday"] != "same":
-			eventDay = global.gameData["daycount"][event_cached["weekday"]]
+			event_gameday = global.gameday + global.gameData["daycount"][event_cached["weekday"]] - current_weekday
 		else:
-			eventDay = global.gameday
+			event_gameday = global.gameday
 			
 		#how many days until that day(weekday)?
-		if eventDay > currentDay:
-			daysToAdd = eventDay - currentDay
-		elif eventDay < currentDay:
-			daysToAdd = 7 - (currentDay - eventDay)
-		
-		#if weekday is not "same"
-		if event_cached["weekday"] != "same":
-			#add that number to global.gameData["day"]
-			eventDay = global.gameday + daysToAdd
-#			global.eventData["date"][eventDay]["weekday"] = event_cached["weekday"]
-		#else event day is today
-		else:
-			eventDay = global.gameday
-#			global.eventData["date"][eventDay]["weekday"] = global.gameday
-			
-		
-#		global.eventData["date"][eventDay][0][event_cached["timeofday"]]["event"] = event_cached["event"]
-#		global.eventData["date"][eventDay][0][event_cached["timeofday"]]["type"] = event_cached["type"]
-#		global.eventData["date"][eventDay][0][event_cached["timeofday"]]["icon"] = event_cached["calendar"]["icon"]
+		if event_gameday > current_gameday:
+			daysToAdd = event_weekday - current_gameday
+		elif event_gameday < current_gameday:
+			daysToAdd = 7 - (current_gameday - event_weekday)
+
+		var event_class = {"event": event_cached["event"], "type": event_cached["type"], "icon": event_cached["calendar"]["icon"]}
+
+		global.eventData["date"]["3"] = {"evening": ""}		
+#		global.eventData["date"]["3"]["evening"] = "changed!"
+		global.eventData["date"][str(event_gameday)][event_cached["timeofday"]] = event_class
+
+		print(global.eventData)
 		
 	#if there is a progress array in json, update game progression variables
 	if replies[n].has("progress"):
@@ -167,13 +166,6 @@ func _pick_reply(n):
 				global.charData[affected]["dialogue"] = replies[n]["progress"][item]["next"]
 			else:
 				global.charData[affected]["branch"] = replies[n]["progress"][item]["next"]
-
-#   OLD CODE - keeping around until I´m sure the below code does not cause unforseen issues :P 
-#	if replies[n]["exit"] != "true":
-#		charData[npc]["branch"] = replies[n]["next"]
-#		pageIndex = 0
-#		print(global.sceneData)
-#		start_dialogue(charData[npc]["dialogue"])
 
 	#if "exit" is "false" take value from "next" and start next dialogue
 	if replies[n]["exit"] != "true":

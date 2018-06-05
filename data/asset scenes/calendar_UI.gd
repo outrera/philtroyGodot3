@@ -35,7 +35,7 @@ func _ready():
 		
 		if i > offsetDay-2 and i<30 + offsetDay - 1:
 			if global.eventData["date"].has(str(i-(offsetDay-2))):
-				var date = global.eventData["date"][str(i-(offsetDay-2))][0]["evening"]
+				var date = global.eventData["date"][str(i-(offsetDay-2))]["evening"]
 				current_month.push_back("event")
 				event_label = date["event"]
 #				current_month[i-1] = "event"
