@@ -196,13 +196,16 @@ func load_scene(sceneLocation): #change this first, see if any conflicts
 
 #if today has event - override
 	print(gameday)
-	if eventData["date"].has(str(gameday)) and eventData["date"][str(gameday)][0].has(timeofday):
-		if eventData["date"][str(gameday)][0][timeofday]["type"] == "persistent":				
+	if eventData["date"].has(str(gameday)) and eventData["date"][str(gameday)].has(timeofday):
+		if eventData["date"][str(gameday)][timeofday]["type"] == "persistent":				
 			pass
 			#loop through actors and objects in eventOverride, remove and add from location specified
 
-		if eventData["date"][str(gameday)][0][timeofday]["type"] == "oneoff":
-			eventOverride = load_json("events/" + eventData["date"][str(gameday)][0][timeofday]["event"] + ".json")
+		if eventData["date"][str(gameday)][timeofday]["type"] == "oneoff":
+			print("oneoff event override activated!")
+			eventOverride = load_json("res://data/events/" + eventData["date"][str(gameday)][timeofday]["event"] + ".json")
+			print("res://events/" + eventData["date"][str(gameday)][timeofday]["event"] + ".json")
+			print(eventOverride)
 	else:
 		pass
 	

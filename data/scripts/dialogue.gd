@@ -155,7 +155,7 @@ func _pick_reply(n):
 		global.eventData["date"][str(event_gameday)] = {"evening": ""}		
 		global.eventData["date"][str(event_gameday)][event_cached["timeofday"]] = event_class
 
-#		print(global.eventData)
+		print(global.eventData)
 		
 	#if there is a progress array in json, update game progression variables
 	if replies[n].has("progress"):

@@ -1,0 +1,43 @@
+{
+	"name": "Devaun",
+	"background": "background.png",
+	"dialogue": {
+		"a": {
+			"avatar": "res://data/npcs/devaun_talkanim.tscn",
+			"animate": "false",
+			"loop": "false",
+			"frame": 1,
+			"speech": [
+				"Here´s the stuff"
+			],
+			"replies": [{
+					"reply": "You´re nothing but reliability itself, Devaun. Pleasure doing bizniz.",
+					"next": "b",
+					"exit": "false"
+				}
+			]
+		},
+		"b": {
+			"avatar": "res://data/npcs/devaun_talkanim.tscn",
+			"frame": 0,
+			"speech": ["Sorry, that´s all I had. Call me tomorrow for more."],
+			"replies": [{
+					"reply": "might do...",
+					"next": "b",
+					"exit": "true",
+					"progress": [{
+						"name": "ellie",
+						"dialogue": "res://data/dialogue/ellie - test.json",
+						"branch": "a"
+					}],
+					"variables": [{
+						"name": "weed",
+						"value": 1
+
+					}]
+
+				}
+			]
+		}
+	}
+}

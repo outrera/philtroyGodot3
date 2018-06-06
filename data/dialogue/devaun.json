@@ -3,7 +3,7 @@
 	"background": "background.png",
 	"dialogue": {
 		"a": {
-			"avatar": "res://data/npcs/devaun_talkanim.tscn",
+			"avatar": "res://data/npcs/devaun_avatar.tscn",
 			"animate": "false",
 			"loop": "false",
 			"frame": 1,
@@ -19,7 +19,7 @@
 			]
 		},
 		"b": {
-			"avatar": "res://data/npcs/devaun_talkanim.tscn",
+			"avatar": "res://data/npcs/devaun_avatar.tscn",
 			"frame": 0,
 			"speech": ["How much we talking?"],
 			"replies": [{
@@ -30,7 +30,7 @@
 			]
 		},
 		"c": {
-			"avatar": "res://data/npcs/devaun_talkanim.tscn",
+			"avatar": "res://data/npcs/devaun_avatar.tscn",
 			"frame": 0,
 			"speech": ["K bruv. You know the deal, same bat time, same bat channel. The caped crusader always responds to distress calls."],
 			"replies": [{
@@ -49,7 +49,7 @@
 			}]
 		},
 		"d": {
-			"avatar": "res://data/npcs/devaun_talkanim.tscn",
+			"avatar": "res://data/npcs/devaun_avatar.tscn",
 			"frame": 0,
 			"speech": ["bzzzzz....", "bzzzzz....", "bzzzzz....", "Not picking up.."],
 			"replies": [{

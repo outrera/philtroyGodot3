@@ -1,7 +1,7 @@
 {
-	"event": "Pick up the weed",
+	"event": "meeting_devaun",
 	"type": "oneoff",
-	"weekday": "friday",
+	"weekday": "wednesday",
 	"timeofday": "evening",
 	"calendar": {
 		"icon": "meeting_devaun.png",
@@ -21,8 +21,8 @@
 		"actor": [{
 			"devaun": {
 				"to": ["schoolhall"],
-				"model": "model_devaun",
-				"avatar": "avatar_devaun",
+				"model": "devaun",
+				"avatar": "devaun_avatar",
 				"dialogue": "devaun_weed",
 				"branch": "a",
 				"pos": {
