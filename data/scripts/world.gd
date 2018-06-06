@@ -58,7 +58,7 @@ func connect():
 		object.connect("highlight", self, "_highlight")
 
 func _process(delta):
-		if global.gameType == "Adventure Game":
+		if global.gameType == "3D Point n Click":
 			thought_bubble.set_position($Camera.unproject_position((get_node("player").translation) + Vector3(0,4.6,0)) - Vector2(30,0))
 
 func change_location(location):

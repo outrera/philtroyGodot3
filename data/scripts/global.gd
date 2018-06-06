@@ -227,7 +227,7 @@ func load_scene(sceneLocation): #change this first, see if any conflicts
 #	This is just the first preparation. Still TODO: code currently assumes 3d meshes when placing NPCs and Objects (Using a Vector3) - need to
 #	allow for Vector2 position
 	if scene.is_class("Area"):
-		gameType = "Adventure Game"
+		gameType = "3D Point n Click"
 		var player = load("res://data/asset scenes/player.tscn")
 		player = player.instance()
 		player.set_translation(Vector3(0,0.6,0))
