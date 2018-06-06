@@ -155,20 +155,28 @@ func _pick_reply(n):
 		global.eventData["date"][str(event_gameday)] = {"evening": ""}		
 		global.eventData["date"][str(event_gameday)][event_cached["timeofday"]] = event_class
 
-		print(global.eventData)
+#		print(global.eventData)
 		
 	#if there is a progress array in json, update game progression variables
 	if replies[n].has("progress"):
+		# TODO: if progress has a location - update global.sceneData override instead of charData
 		print("we have progress!")
 		for item in range(0, replies[n]["progress"].size()):
 			var affected = replies[n]["progress"][item]["name"]
 			
+			# TODO: create function that goes though every scene affected is in and update dialogue. Or, can I make this simpler
+			# use default dialogue more? For now, this works, so revisit at a later time, make better.
 			if replies[n]["progress"][item].has("dialogue"):
 				global.charData[affected]["dialogue"] = replies[n]["progress"][item]["dialogue"]
+				global.sceneData[global.currentLocation]["default"][global.timeofday]["actors"][affected]["dialogue"] = replies[n]["progress"][item]["dialogue"]
+				if global.sceneData[global.currentLocation].has(global.weekday):
+					if global.sceneData[global.currentLocation][global.weekday][global.timeofday]["actors"].has(affected):
+						global.sceneData[global.currentLocation][global.weekday][global.timeofday]["actors"][affected]["dialogue"] = replies[n]["progress"][item]["dialogue"]
 
 			global.charData[affected]["branch"] = replies[n]["progress"][item]["branch"]
 			
 			print(global.charData[affected])
+			print(global.sceneData[global.currentLocation]["default"][global.timeofday]["actors"][affected]["dialogue"])
 				
 	#if "exit" is "false" take value from "next" and start next dialogue
 	if replies[n]["exit"] != "true":
@@ -231,7 +239,7 @@ func _reply_mouseover(mouseover, reply):
 		replyCurrent = -1
 
 func start_dialogue(json):
-	print(json)
+
 #	TODO: when calling a dialogue, call start_dialogue("ellie_date_0" + str(global.chardata["relationship"]) + ".json")
 	global.dialogue_running = true
 	talkData = global.load_json(json)

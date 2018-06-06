@@ -3,10 +3,10 @@
 	"background": "background.png",
 	"dialogue": {
 		"a": {
-			"avatar": "res://data/npcs/ellie_talkanim.tscn",
+			"avatar": "res://data/npcs/devaun_talkanim.tscn",
 			"animate": "false",
 			"loop": "false",
-			"frame": 0,
+			"frame": 1,
 			"speech": [
 				"bzzzzz....",
 				"This is Devaun speaking."
@@ -19,8 +19,8 @@
 			]
 		},
 		"b": {
-			"avatar": "res://data/npcs/ellie_talkanim.tscn",
-			"frame": 1,
+			"avatar": "res://data/npcs/devaun_talkanim.tscn",
+			"frame": 0,
 			"speech": ["How much we talking?"],
 			"replies": [{
 					"reply": "20",
@@ -30,7 +30,7 @@
 			]
 		},
 		"c": {
-			"avatar": "res://data/npcs/ellie_talkanim.tscn",
+			"avatar": "res://data/npcs/devaun_talkanim.tscn",
 			"frame": 0,
 			"speech": ["K bruv. You know the deal, same bat time, same bat channel. The caped crusader always responds to distress calls."],
 			"replies": [{
@@ -43,14 +43,14 @@
 				}],
 				"progress": [{
 					"name": "ellie",
-					"dialogue": "res://data/dialogue/ellie.json",
+					"dialogue": "res://data/dialogue/ellie - test.json",
 					"branch": "a"
 				}]
 			}]
 		},
 		"d": {
-			"avatar": "res://data/npcs/ellie_talkanim.tscn",
-			"frame": 3,
+			"avatar": "res://data/npcs/devaun_talkanim.tscn",
+			"frame": 0,
 			"speech": ["bzzzzz....", "bzzzzz....", "bzzzzz....", "Not picking up.."],
 			"replies": [{
 				"reply": "hang up",
